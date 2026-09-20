@@ -1,4 +1,4 @@
-# agentic-asm — attacker agent (M4)
+# agentic-asm - attacker agent (M4)
 
 Implements the proposal's "team of specialists" architecture for the
 **attacker** side only, against **VAmPI** only, per the current milestone
