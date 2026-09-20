@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Attacker Agent — Attack Surface Dashboard</title>
+<style>
+  :root {
+    --bg: #0f1117; --panel: #171a24; --panel2: #1d212c; --border: #2a2f3d;
+    --text: #e6e8ef; --muted: #8b90a3; --accent: #5b8cff;
+    --red: #ff5d6c; --green: #38d18f; --amber: #f5c451;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--panel); border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; margin-right: 8px; }
+  header .sub { color: var(--muted); font-size: 12px; margin-right: auto; }
+  input { background: var(--panel2); border: 1px solid var(--border); color: var(--text); padding: 6px 9px; border-radius: 6px; font-size: 13px; }
+  input#target { width: 230px; } input#model { width: 100px; }
+  button { background: var(--accent); border: none; color: white; padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  button:disabled { background: #3a3f52; cursor: not-allowed; }
+  button.secondary { background: var(--panel2); border: 1px solid var(--border); color: var(--muted); }
+  .status { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+  .status.idle { background: #21262f; color: var(--muted); }
+  .status.running { background: #2a2410; color: var(--amber); }
+  .status.running::before { content: "● "; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: .3; } }
+
+  main { display: grid; grid-template-columns: 300px 1fr 380px; gap: 14px; padding: 14px 20px; align-items: start; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .panel h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+  .panel .body { max-height: 72vh; overflow-y: auto; }
+
+  .rounds { display: flex; gap: 8px; padding: 10px 20px 0; flex-wrap: wrap; }
+  .round-chip { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; font-size: 12px; }
+  .round-chip b { color: var(--text); }
+  .round-chip .v { color: var(--red); } .round-chip .d { color: var(--green); } .round-chip .i { color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  td, th { padding: 8px 12px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+  th { color: var(--muted); font-size: 11px; text-transform: uppercase; }
+  .ep-path { font-family: ui-monospace, Menlo, monospace; font-size: 12px; }
+  .method { font-family: ui-monospace, monospace; font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--panel2); color: var(--accent); }
+
+  .verdict { font-weight: 700; font-size: 11px; padding: 2px 8px; border-radius: 12px; white-space: nowrap; }
+  .verdict.true { background: rgba(255,93,108,.15); color: var(--red); }
+  .verdict.false { background: rgba(56,209,143,.15); color: var(--green); }
+  .verdict.null { background: rgba(139,144,163,.15); color: var(--muted); }
+  .finding-title { font-weight: 600; }
+  .finding-owasp { color: var(--muted); font-size: 11px; }
+  .evidence { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--muted); margin-top: 4px; white-space: pre-wrap; word-break: break-word; max-height: 4.2em; overflow-y: auto; background: var(--panel2); padding: 6px 8px; border-radius: 6px; }
+
+  .log { font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; padding: 10px 14px; }
+  .log .row { padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
+  .log .src { color: var(--accent); font-weight: 700; }
+  .log .src.planner { color: var(--amber); }
+  .log .src.operator { color: #c77dff; }
+  .log .src.orchestrator { color: var(--muted); }
+  .log .msg.warn { color: var(--amber); }
+  .log .ts { color: var(--muted); margin-right: 6px; }
+  .empty { color: var(--muted); padding: 16px 14px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚔ Attacker Agent</h1>
+  <span class="sub">Scout → Planner → Operator, against VAmPI</span>
+  <input id="target" value="__DEFAULT_TARGET__">
+  <input id="model" value="__DEFAULT_MODEL__">
+  <button id="runBtn" onclick="runRound()">Run round</button>
+  <button class="secondary" onclick="resetState()">Reset state</button>
+  <span id="statusPill" class="status idle">idle</span>
+</header>
+
+<div class="rounds" id="rounds"></div>
+
+<main>
+  <div class="panel">
+    <h2>Attack Surface</h2>
+    <div class="body" id="surface"><div class="empty">no data yet — run a round</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>Findings</h2>
+    <div class="body" id="findings"><div class="empty">no findings yet — run a round</div></div>
+  </div>
+
+  <div class="panel">
+    <h2>Live log</h2>
+    <div class="body log" id="log"><div class="empty">idle</div></div>
+  </div>
+</main>
+
+<script>
+const OWASP_SHORT = s => (s || "").split(" ")[0];
+
+async function poll() {
+  let res;
+  try { res = await fetch("/api/state"); } catch (e) { return; }
+  if (!res.ok) return;
+  const state = await res.json();
+  renderStatus(state.running);
+  renderRounds(state.rounds);
+  renderSurface(state.attack_surface);
+  renderFindings(state.findings);
+  renderLog(state.events);
+}
+
+function renderStatus(running) {
+  const pill = document.getElementById("statusPill");
+  const btn = document.getElementById("runBtn");
+  if (running && running.active) {
+    pill.textContent = "running: " + running.target;
+    pill.className = "status running";
+    btn.disabled = true;
+  } else {
+    pill.textContent = running && running.error ? "error: " + running.error : "idle";
+    pill.className = "status idle";
+    btn.disabled = false;
+  }
+}
+
+function renderRounds(rounds) {
+  const el = document.getElementById("rounds");
+  if (!rounds || !rounds.length) { el.innerHTML = ""; return; }
+  el.innerHTML = rounds.slice().reverse().map(r => `
+    <div class="round-chip">
+      <b>Round ${r.round}</b> · ${r.status}
+      ${r.status === "done" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
+    </div>`).join("");
+}
+
+function renderSurface(surface) {
+  const el = document.getElementById("surface");
+  if (!surface || !surface.endpoints || !surface.endpoints.length) {
+    el.innerHTML = '<div class="empty">no data yet — run a round</div>'; return;
+  }
+  el.innerHTML = `<table><tbody>` + surface.endpoints.map(e => `
+    <tr>
+      <td><span class="method">${e.method}</span></td>
+      <td>
+        <div class="ep-path">${escapeHtml(e.path)}</div>
+        <div class="finding-owasp">${escapeHtml(e.summary || "")}${e.auth_required ? " · auth required" : ""}</div>
+      </td>
+    </tr>`).join("") + `</tbody></table>`;
+}
+
+function verdictLabel(v) { return v === true ? "VULNERABLE" : v === false ? "defended" : "inconclusive"; }
+
+function renderFindings(findings) {
+  const el = document.getElementById("findings");
+  const list = Object.values(findings || {});
+  if (!list.length) { el.innerHTML = '<div class="empty">no findings yet — run a round</div>'; return; }
+  list.sort((a, b) => (b.verdict === true) - (a.verdict === true));
+  el.innerHTML = `<table><tbody>` + list.map(f => `
+    <tr>
+      <td><span class="verdict ${f.verdict}">${verdictLabel(f.verdict)}</span></td>
+      <td>
+        <div class="finding-title">${escapeHtml(f.title)}</div>
+        <div class="finding-owasp">${escapeHtml(f.owasp)} · ${f.kind} · round ${f.last_round} · ${f.status}</div>
+        <div class="evidence">${escapeHtml((f.evidence || "").toString())}</div>
+      </td>
+    </tr>`).join("") + `</tbody></table>`;
+}
+
+function renderLog(events) {
+  const el = document.getElementById("log");
+  if (!events || !events.length) { el.innerHTML = '<div class="empty">idle</div>'; return; }
+  const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 20;
+  el.innerHTML = events.map(e => {
+    const t = new Date(e.ts * 1000).toLocaleTimeString();
+    return `<div class="row"><span class="ts">${t}</span><span class="src ${e.source}">${e.source}</span> <span class="msg ${e.level}">${escapeHtml(e.message)}</span></div>`;
+  }).join("");
+  if (atBottom) el.scrollTop = el.scrollHeight;
+}
+
+function escapeHtml(s) {
+  return (s ?? "").toString().replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+async function runRound() {
+  const target = document.getElementById("target").value.trim();
+  const model = document.getElementById("model").value.trim();
+  const res = await fetch("/api/run", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({target, model}) });
+  if (!res.ok) { const body = await res.json().catch(() => ({})); alert(body.error || "could not start round"); }
+  poll();
+}
+
+async function resetState() {
+  if (!confirm("Clear all rounds, findings and log history?")) return;
+  await fetch("/api/reset", { method: "POST" });
+  poll();
+}
+
+poll();
+setInterval(poll, 1500);
+</script>
+</body>
+</html>

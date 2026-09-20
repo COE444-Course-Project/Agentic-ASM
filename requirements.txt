@@ -1,0 +1,8 @@
+langgraph
+langchain-ollama
+langchain-mcp-adapters
+mcp
+httpx
+python-dotenv
+pyjwt
+flask

@@ -1,0 +1,46 @@
+# One-command demo/setup: brings up both VAmPI instances (from the sibling
+# ../VAmPI clone) plus this agent's GUI, all on one Docker network, so the
+# agent can reach VAmPI by service name instead of localhost.
+#
+# Requires VAmPI cloned as a SIBLING of this repo:
+#   workspace/
+#     agentic-asm/   <- this repo (contains this file)
+#     VAmPI/         <- https://github.com/erev0s/VAmPI
+#
+# Usage:
+#   docker compose up -d --build          # VAmPI (5001/5002) + GUI (8765)
+#   curl localhost:5001/createdb && curl localhost:5002/createdb   # once, after first boot
+#   docker compose run --rm agent python3 run_attacker.py --target http://vampi-vulnerable:5000 --rounds 3
+#   docker compose down                   # stop everything
+#
+# Ollama must be installed and running NATIVELY on the host (not in this
+# compose file) with `ollama pull qwen2.5` already done -- see Dockerfile
+# for why, and README.md for the install command per OS.
+
+include:
+  - path: ../VAmPI/docker-compose.yaml
+
+services:
+  agent:
+    build: .
+    ports:
+      - "8765:8765"
+    volumes:
+      # Shared with the host so: (a) the long-running `agent` service here
+      # and any one-off `docker compose run agent ...` invocation see the
+      # same rounds/findings instead of each writing to their own
+      # ephemeral container filesystem, and (b) state survives a rebuild.
+      - ./state:/app/state
+    environment:
+      # Internal service names on the shared compose network -- NOT the
+      # host-mapped localhost:5001/5002 used when running natively.
+      - TARGET=http://vampi-vulnerable:5000
+      - MODEL=qwen2.5
+      - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    extra_hosts:
+      # host.docker.internal resolves automatically on Docker Desktop
+      # (macOS/Windows); this makes it also resolve on Linux Docker Engine.
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      - vampi-secure
+      - vampi-vulnerable
