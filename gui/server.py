@@ -63,7 +63,7 @@ def _run_round_in_background(target: str, model: str) -> bool:
 
 @app.get("/")
 def index():
-    html = (Path(__file__).parent / "static" / "index.html").read_text()
+    html = (Path(__file__).parent / "static" / "index.html").read_text(encoding="utf-8")
     html = html.replace("__DEFAULT_TARGET__", DEFAULT_TARGET).replace("__DEFAULT_MODEL__", DEFAULT_MODEL)
     return Response(html, mimetype="text/html")
 

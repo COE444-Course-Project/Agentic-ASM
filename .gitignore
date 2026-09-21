@@ -5,3 +5,4 @@ state/
 reports/
 .DS_Store
 .env
+venv/
