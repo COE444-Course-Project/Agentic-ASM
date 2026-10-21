@@ -1,0 +1,3703 @@
+{
+  "round": 10,
+  "target": "http://localhost:8000",
+  "findings": [
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0001",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0001",
+      "endpoint": "/api/collection_0001/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0001",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0001",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0002",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0002",
+      "endpoint": "/api/collection_0002/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0002",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0002",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0003",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0003",
+      "endpoint": "/api/collection_0003/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0003",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0003",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0004",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0004",
+      "endpoint": "/api/collection_0004/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0004",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0004",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0005",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0005",
+      "endpoint": "/api/collection_0005/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0005",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0005",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0006",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0006",
+      "endpoint": "/api/collection_0006/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0006",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0006",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0007",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0007",
+      "endpoint": "/api/collection_0007/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0007",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0007",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0008",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0008",
+      "endpoint": "/api/collection_0008/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0008",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0008",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0009",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0009",
+      "endpoint": "/api/collection_0009/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0009",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0009",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0010",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0010",
+      "endpoint": "/api/collection_0010/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0010",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0010",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0011",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0011",
+      "endpoint": "/api/collection_0011/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0011",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0011",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0012",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0012",
+      "endpoint": "/api/collection_0012/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0012",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0012",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0013",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0013",
+      "endpoint": "/api/collection_0013/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0013",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0013",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0014",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0014",
+      "endpoint": "/api/collection_0014/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0014",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0014",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0015",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0015",
+      "endpoint": "/api/collection_0015/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0015",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0015",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0016",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0016",
+      "endpoint": "/api/collection_0016/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0016",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0016",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0017",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0017",
+      "endpoint": "/api/collection_0017/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0017",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0017",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0018",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0018",
+      "endpoint": "/api/collection_0018/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0018",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0018",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0019",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0019",
+      "endpoint": "/api/collection_0019/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0019",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0019",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0020",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0020",
+      "endpoint": "/api/collection_0020/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0020",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0020",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0021",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0021",
+      "endpoint": "/api/collection_0021/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0021",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0021",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0022",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0022",
+      "endpoint": "/api/collection_0022/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0022",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0022",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0023",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0023",
+      "endpoint": "/api/collection_0023/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0023",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0023",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0024",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0024",
+      "endpoint": "/api/collection_0024/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0024",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0024",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0025",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0025",
+      "endpoint": "/api/collection_0025/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0025",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0025",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0026",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0026",
+      "endpoint": "/api/collection_0026/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0026",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0026",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0027",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0027",
+      "endpoint": "/api/collection_0027/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0027",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0027",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0028",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0028",
+      "endpoint": "/api/collection_0028/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0028",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0028",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0029",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0029",
+      "endpoint": "/api/collection_0029/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0029",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0029",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0030",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0030",
+      "endpoint": "/api/collection_0030/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0030",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0030",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0031",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0031",
+      "endpoint": "/api/collection_0031/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0031",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0031",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0032",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0032",
+      "endpoint": "/api/collection_0032/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0032",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0032",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0033",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0033",
+      "endpoint": "/api/collection_0033/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0033",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0033",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0034",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0034",
+      "endpoint": "/api/collection_0034/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0034",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0034",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0035",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0035",
+      "endpoint": "/api/collection_0035/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0035",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0035",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0036",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0036",
+      "endpoint": "/api/collection_0036/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0036",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0036",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0037",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0037",
+      "endpoint": "/api/collection_0037/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0037",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0037",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0038",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0038",
+      "endpoint": "/api/collection_0038/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0038",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0038",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0039",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0039",
+      "endpoint": "/api/collection_0039/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0039",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0039",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0040",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0040",
+      "endpoint": "/api/collection_0040/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0040",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0040",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0041",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0041",
+      "endpoint": "/api/collection_0041/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0041",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0041",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0042",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0042",
+      "endpoint": "/api/collection_0042/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0042",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0042",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0043",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0043",
+      "endpoint": "/api/collection_0043/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0043",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0043",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0044",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0044",
+      "endpoint": "/api/collection_0044/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0044",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0044",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0045",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0045",
+      "endpoint": "/api/collection_0045/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0045",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0045",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0046",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0046",
+      "endpoint": "/api/collection_0046/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0046",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0046",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0047",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0047",
+      "endpoint": "/api/collection_0047/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0047",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0047",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0048",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0048",
+      "endpoint": "/api/collection_0048/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0048",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0048",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0049",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0049",
+      "endpoint": "/api/collection_0049/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0049",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0049",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0050",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0050",
+      "endpoint": "/api/collection_0050/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0050",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0050",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0051",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0051",
+      "endpoint": "/api/collection_0051/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0051",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0051",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0052",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0052",
+      "endpoint": "/api/collection_0052/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0052",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0052",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0053",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0053",
+      "endpoint": "/api/collection_0053/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0053",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0053",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0054",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0054",
+      "endpoint": "/api/collection_0054/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0054",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0054",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0055",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0055",
+      "endpoint": "/api/collection_0055/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0055",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0055",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0056",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0056",
+      "endpoint": "/api/collection_0056/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0056",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0056",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0057",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0057",
+      "endpoint": "/api/collection_0057/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0057",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0057",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0058",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0058",
+      "endpoint": "/api/collection_0058/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0058",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0058",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0059",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0059",
+      "endpoint": "/api/collection_0059/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0059",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0059",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0060",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0060",
+      "endpoint": "/api/collection_0060/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0060",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0060",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0061",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0061",
+      "endpoint": "/api/collection_0061/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0061",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0061",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0062",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0062",
+      "endpoint": "/api/collection_0062/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0062",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0062",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0063",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0063",
+      "endpoint": "/api/collection_0063/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0063",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0063",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0064",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0064",
+      "endpoint": "/api/collection_0064/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0064",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0064",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0065",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0065",
+      "endpoint": "/api/collection_0065/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0065",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0065",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0066",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0066",
+      "endpoint": "/api/collection_0066/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0066",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0066",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0067",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0067",
+      "endpoint": "/api/collection_0067/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0067",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0067",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0068",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0068",
+      "endpoint": "/api/collection_0068/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0068",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0068",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0069",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0069",
+      "endpoint": "/api/collection_0069/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0069",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0069",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0070",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0070",
+      "endpoint": "/api/collection_0070/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0070",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0070",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0071",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0071",
+      "endpoint": "/api/collection_0071/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0071",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0071",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0072",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0072",
+      "endpoint": "/api/collection_0072/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0072",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0072",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0073",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0073",
+      "endpoint": "/api/collection_0073/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0073",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0073",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0074",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0074",
+      "endpoint": "/api/collection_0074/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0074",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0074",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0075",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0075",
+      "endpoint": "/api/collection_0075/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0075",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0075",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0076",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0076",
+      "endpoint": "/api/collection_0076/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0076",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0076",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0077",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0077",
+      "endpoint": "/api/collection_0077/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0077",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0077",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0078",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0078",
+      "endpoint": "/api/collection_0078/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0078",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0078",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0079",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0079",
+      "endpoint": "/api/collection_0079/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0079",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0079",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0080",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0080",
+      "endpoint": "/api/collection_0080/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0080",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0080",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0081",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0081",
+      "endpoint": "/api/collection_0081/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0081",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0081",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0082",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0082",
+      "endpoint": "/api/collection_0082/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0082",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0082",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0083",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0083",
+      "endpoint": "/api/collection_0083/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0083",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0083",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0084",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0084",
+      "endpoint": "/api/collection_0084/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0084",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0084",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0085",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0085",
+      "endpoint": "/api/collection_0085/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0085",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0085",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0086",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0086",
+      "endpoint": "/api/collection_0086/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0086",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0086",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0087",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0087",
+      "endpoint": "/api/collection_0087/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0087",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0087",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0088",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0088",
+      "endpoint": "/api/collection_0088/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0088",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0088",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0089",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0089",
+      "endpoint": "/api/collection_0089/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0089",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0089",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0090",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0090",
+      "endpoint": "/api/collection_0090/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0090",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0090",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0091",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0091",
+      "endpoint": "/api/collection_0091/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0091",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0091",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0092",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0092",
+      "endpoint": "/api/collection_0092/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0092",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0092",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0093",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0093",
+      "endpoint": "/api/collection_0093/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0093",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0093",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0094",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0094",
+      "endpoint": "/api/collection_0094/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0094",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0094",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0095",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0095",
+      "endpoint": "/api/collection_0095/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0095",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0095",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0096",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0096",
+      "endpoint": "/api/collection_0096/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0096",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0096",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0097",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0097",
+      "endpoint": "/api/collection_0097/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0097",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0097",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0098",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0098",
+      "endpoint": "/api/collection_0098/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0098",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0098",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0099",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0099",
+      "endpoint": "/api/collection_0099/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0099",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0099",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0100",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0100",
+      "endpoint": "/api/collection_0100/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0100",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0100",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0101",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0101",
+      "endpoint": "/api/collection_0101/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0101",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0101",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0102",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0102",
+      "endpoint": "/api/collection_0102/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0102",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0102",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0103",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0103",
+      "endpoint": "/api/collection_0103/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0103",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0103",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0104",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0104",
+      "endpoint": "/api/collection_0104/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0104",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0104",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0105",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0105",
+      "endpoint": "/api/collection_0105/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0105",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0105",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0106",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0106",
+      "endpoint": "/api/collection_0106/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0106",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0106",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0107",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0107",
+      "endpoint": "/api/collection_0107/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0107",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0107",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0108",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0108",
+      "endpoint": "/api/collection_0108/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0108",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0108",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0109",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0109",
+      "endpoint": "/api/collection_0109/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0109",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0109",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0110",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0110",
+      "endpoint": "/api/collection_0110/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0110",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0110",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0111",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0111",
+      "endpoint": "/api/collection_0111/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0111",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0111",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0112",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0112",
+      "endpoint": "/api/collection_0112/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0112",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0112",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0113",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0113",
+      "endpoint": "/api/collection_0113/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0113",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0113",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0114",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0114",
+      "endpoint": "/api/collection_0114/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0114",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0114",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0115",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0115",
+      "endpoint": "/api/collection_0115/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0115",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0115",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0116",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0116",
+      "endpoint": "/api/collection_0116/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0116",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0116",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0117",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0117",
+      "endpoint": "/api/collection_0117/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0117",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0117",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0118",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0118",
+      "endpoint": "/api/collection_0118/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0118",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0118",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0119",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0119",
+      "endpoint": "/api/collection_0119/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0119",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0119",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0120",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0120",
+      "endpoint": "/api/collection_0120/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0120",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0120",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0121",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0121",
+      "endpoint": "/api/collection_0121/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0121",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0121",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0122",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0122",
+      "endpoint": "/api/collection_0122/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0122",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0122",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0123",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0123",
+      "endpoint": "/api/collection_0123/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0123",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0123",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0124",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0124",
+      "endpoint": "/api/collection_0124/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0124",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0124",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0125",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0125",
+      "endpoint": "/api/collection_0125/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0125",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0125",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0126",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0126",
+      "endpoint": "/api/collection_0126/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0126",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0126",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0127",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0127",
+      "endpoint": "/api/collection_0127/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0127",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0127",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0128",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0128",
+      "endpoint": "/api/collection_0128/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0128",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0128",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0129",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0129",
+      "endpoint": "/api/collection_0129/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0129",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0129",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0130",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0130",
+      "endpoint": "/api/collection_0130/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0130",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0130",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0131",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0131",
+      "endpoint": "/api/collection_0131/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0131",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0131",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0132",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0132",
+      "endpoint": "/api/collection_0132/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0132",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0132",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0133",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0133",
+      "endpoint": "/api/collection_0133/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0133",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0133",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0134",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0134",
+      "endpoint": "/api/collection_0134/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0134",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0134",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0135",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0135",
+      "endpoint": "/api/collection_0135/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0135",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0135",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0136",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0136",
+      "endpoint": "/api/collection_0136/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0136",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0136",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0137",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0137",
+      "endpoint": "/api/collection_0137/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0137",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0137",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0138",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0138",
+      "endpoint": "/api/collection_0138/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0138",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0138",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0139",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0139",
+      "endpoint": "/api/collection_0139/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0139",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0139",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0140",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0140",
+      "endpoint": "/api/collection_0140/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0140",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0140",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0141",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0141",
+      "endpoint": "/api/collection_0141/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0141",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0141",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "id": "http://localhost:8000::lab-bola:collection_0142",
+      "module_id": "lab-bola",
+      "target": "http://localhost:8000",
+      "collection": "collection_0142",
+      "endpoint": "/api/collection_0142/items/{item_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "Object ownership: collection_0142",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0142",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      }
+    }
+  ],
+  "summary": {
+    "vulnerable": 1,
+    "defended": 141,
+    "inconclusive": 0
+  }
+}

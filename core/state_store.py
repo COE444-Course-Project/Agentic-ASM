@@ -1,12 +1,11 @@
 """
-Shared persistent state for the attacker/defender agent loop.
+Shared persistent state for separate attacker and defender passes.
 
 This is the "Attack Surface" box from the proposal's architecture slide:
 Scout writes discovered endpoints into it, Operator writes findings (the
 slide's "Exploit" -> "Telemetry" arrow), the GUI reads it to show live
-progress, and -- once a Defender agent exists -- it will read these same
-findings as its telemetry feed and flip a finding's `status` from "open"
-to "patched" here. That single shared file-store is what lets Planner
+progress. The defender consumes target-scoped findings and closes them
+only after remediation verification. This shared file-store lets Planner
 later skip or re-verify a patched finding on the next round without any
 other module changing: Scout, Planner and Operator only ever talk to this
 module, never directly to each other.
@@ -18,18 +17,42 @@ them.
 from __future__ import annotations
 
 import json
+import os
 import threading
 import time
 from pathlib import Path
 from typing import Any, Optional
 
-STATE_DIR = Path(__file__).resolve().parent.parent / "state"
+STATE_DIR = Path(os.environ.get("ASM_STATE_DIR", str(Path(__file__).resolve().parent.parent / "state")))
 EVENTS_PATH = STATE_DIR / "events.jsonl"
 FINDINGS_PATH = STATE_DIR / "findings.json"
 SURFACE_PATH = STATE_DIR / "attack_surface.json"
 ROUNDS_PATH = STATE_DIR / "rounds.json"
+DEFENDER_PATH = STATE_DIR / "defender_plans.json"
 
 _lock = threading.Lock()
+
+
+def configure(state_dir: Path) -> None:
+    """Select output storage at CLI startup only, before any worker starts."""
+    global STATE_DIR, EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH
+    STATE_DIR = Path(state_dir)
+    EVENTS_PATH = STATE_DIR / "events.jsonl"
+    FINDINGS_PATH = STATE_DIR / "findings.json"
+    SURFACE_PATH = STATE_DIR / "attack_surface.json"
+    ROUNDS_PATH = STATE_DIR / "rounds.json"
+    DEFENDER_PATH = STATE_DIR / "defender_plans.json"
+
+
+def mark_verified_patch(fid: str, evidence: dict) -> None:
+    if evidence.get("applied") is not True or evidence.get("verified") is not True:
+        raise ValueError("Patch closure requires application and verification evidence")
+    with _lock:
+        findings = get_findings()
+        findings[fid].update(status="patched", verdict=False,
+                             detection_evidence=findings[fid].get("evidence"),
+                             evidence=evidence.get("after"), remediation=evidence, updated_at=time.time())
+        _write_json(FINDINGS_PATH, findings)
 
 
 def _ensure_dir() -> None:
@@ -95,10 +118,22 @@ def get_findings() -> dict:
     return _read_json(FINDINGS_PATH, {})
 
 
+def finding_id(target: str, module_id: str) -> str:
+    """Separate targets; adapters may include an endpoint identity in module_id."""
+    return f"{target.rstrip('/')}::{module_id}"
+
+
+def save_defender_report(report: dict) -> None:
+    with _lock:
+        reports = _read_json(DEFENDER_PATH, [])
+        reports.append({**report, "created_at": time.time()})
+        _write_json(DEFENDER_PATH, reports)
+
+
 def upsert_finding(finding: dict, round_id: int) -> None:
     """`finding` must have an 'id'. `status` defaults to 'open' the first
-    time a finding is seen -- a future Defender agent is the only thing
-    expected to move it to 'patched'; Planner/Operator never write it."""
+    time a finding is seen. Positive reassessment reopens a previous patch;
+    only mark_verified_patch can close it with remediation evidence."""
     with _lock:
         findings = _read_json(FINDINGS_PATH, {})
         fid = finding["id"]
@@ -106,7 +141,8 @@ def upsert_finding(finding: dict, round_id: int) -> None:
         merged = {
             **existing,
             **finding,
-            "status": existing.get("status", "open"),
+            "status": ("open" if finding.get("verdict") is True
+                       else existing.get("status", "open")),
             "last_round": round_id,
             "updated_at": time.time(),
         }
@@ -162,11 +198,12 @@ def snapshot() -> dict:
         "findings": get_findings(),
         "rounds": get_rounds(),
         "events": get_events(),
+        "defender_plans": _read_json(DEFENDER_PATH, []),
     }
 
 
 def reset_all() -> None:
     with _lock:
-        for p in (EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH):
+        for p in (EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH):
             if p.exists():
                 p.unlink()

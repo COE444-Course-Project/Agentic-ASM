@@ -378,7 +378,8 @@ async def run_queue(base: str, queue: list[dict], model: str, round_id: int) -> 
             verdict, evidence = None, f"module run failed: {exc}"
 
         finding = {
-            "id": module["id"], "title": module["title"], "owasp": module["owasp"],
+            "id": store.finding_id(base, module["id"]), "module_id": module["id"],
+            "target": base.rstrip("/"), "title": module["title"], "owasp": module["owasp"],
             "kind": module["kind"], "verdict": verdict, "evidence": evidence,
         }
         store.upsert_finding(finding, round_id)

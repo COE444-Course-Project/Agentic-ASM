@@ -15,12 +15,13 @@ import httpx
 from core import state_store as store
 
 
-def run(base: str, round_id: int) -> dict:
+def run(base: str, round_id: int | None) -> dict:
     store.log_event("scout", f"enumerating attack surface at {base}", round_id)
     endpoints: list[dict] = []
     try:
         with httpx.Client(timeout=10) as client:
             r = client.get(f"{base}/openapi.json")
+            r.raise_for_status()
             spec = r.json()
         for path, methods in spec.get("paths", {}).items():
             for method, op in methods.items():

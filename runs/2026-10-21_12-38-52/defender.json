@@ -1,0 +1,2472 @@
+{
+  "target": "http://localhost:8000",
+  "mode": "apply",
+  "plans": [
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0030",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0030",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0030",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0030",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0032",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0032",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0032",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0032",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0033",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0033",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0033",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0033",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0036",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0036",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0036",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0036",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0038",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0038",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0038",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0038",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0040",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0040",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0040",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0040",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0041",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0041",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0041",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0041",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0044",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0044",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0044",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0044",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0045",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0045",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0045",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0045",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0047",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0047",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0047",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0047",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0050",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0050",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0050",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0050",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0051",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0051",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0051",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0051",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0054",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0054",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0054",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0054",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0055",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0055",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0055",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0055",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0058",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0058",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0058",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0058",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0060",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0060",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0060",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0060",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0062",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0062",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0062",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0062",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0064",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0064",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0064",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0064",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0065",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0065",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0065",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0065",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0067",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0067",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0067",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0067",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0069",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0069",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0069",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0069",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0071",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0071",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0071",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0071",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0074",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0074",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0074",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0074",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0075",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0075",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0075",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0075",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0077",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0077",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0077",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0077",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0079",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0079",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0079",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0079",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0081",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0081",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0081",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0081",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0084",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0084",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0084",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0084",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0085",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0085",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0085",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0085",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0088",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0088",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0088",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0088",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0089",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0089",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0089",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0089",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0091",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0091",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0091",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0091",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0093",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0093",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0093",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0093",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0095",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0095",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0095",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0095",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0098",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0098",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0098",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0098",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0100",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0100",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0100",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0100",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0102",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0102",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0102",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0102",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0103",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0103",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0103",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0103",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0105",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0105",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0105",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0105",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0108",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0108",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0108",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0108",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0109",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0109",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0109",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0109",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0112",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0112",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0112",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0112",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0114",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0114",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0114",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0114",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0115",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0115",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0115",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0115",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0117",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0117",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0117",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0117",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0119",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0119",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0119",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0119",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0121",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0121",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0121",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0121",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0124",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0124",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0124",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0124",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0126",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0126",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0126",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0126",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0127",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0127",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0127",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0127",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0129",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0129",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0129",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0129",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0131",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0131",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0131",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0131",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0133",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0133",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0133",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0133",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0135",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0135",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0135",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0135",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0138",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0138",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0138",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0138",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-bola:collection_0139",
+      "target": "http://localhost:8000",
+      "observed_round": 9,
+      "module_id": "lab-bola",
+      "collection": "collection_0139",
+      "proposal": "Enforce object ownership for this lab collection using its policy overlay",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0139",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0139",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "verified_secure": true
+      }
+    }
+  ],
+  "applied": 56,
+  "verified": 56
+}

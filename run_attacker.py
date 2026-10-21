@@ -39,7 +39,7 @@ DEFAULT_TARGET = os.environ.get("TARGET", "http://localhost:5002")
 # (VAmPI reached via localhost's mapped ports) or inside the docker-compose
 # network in this repo (VAmPI reached by its compose service name -- see
 # docker-compose.yml). Anything else needs --i-own-this-target.
-SAFE_HOSTS = ("localhost", "127.0.0.1", "vampi-secure", "vampi-vulnerable")
+SAFE_HOSTS = ("localhost", "127.0.0.1", "vampi-secure", "vampi-vulnerable", "growing-api")
 
 
 def _guard_target(base: str, force: bool) -> None:

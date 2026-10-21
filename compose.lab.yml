@@ -1,0 +1,21 @@
+# Standalone: does not require the sibling VAmPI checkout or Ollama.
+services:
+  growing-api:
+    build:
+      context: .
+      dockerfile: lab/Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      LAB_STATE_FILE: /data/scenario.json
+      LAB_POLICY_FILE: /policy/policy.json
+      LAB_SEED: ${LAB_SEED:-444}
+      LAB_INITIAL_COLLECTIONS: ${LAB_INITIAL_COLLECTIONS:-2}
+      LAB_GROWTH_SECONDS: ${LAB_GROWTH_SECONDS:-60}
+      LAB_MAX_COLLECTIONS: ${LAB_MAX_COLLECTIONS:-100}
+    volumes:
+      - lab-scenario:/data
+      - ./lab-policy:/policy:ro
+
+volumes:
+  lab-scenario:

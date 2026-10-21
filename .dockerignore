@@ -5,3 +5,5 @@ state/
 reports/
 .git/
 .DS_Store
+lab-state/
+lab-policy/

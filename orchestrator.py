@@ -1,11 +1,9 @@
 """
 Orchestrator: "Decides whose turn it is and carries memory between
-rounds." Today there is only an attacker side, so a round is just
-Scout -> Planner -> Operator. The state store (core/state_store.py) is
-what a future run_defender_round() would read (findings as telemetry) and
-write to (patch status) -- so adding the defender later means adding one
-function here and interleaving the two calls in run_attacker.py's loop,
-not redesigning Scout/Planner/Operator.
+rounds." Attacker rounds execute Scout -> Planner -> Operator. Defender
+passes execute Watcher -> Analyst -> Responder. Dry run is the default;
+explicit lab apply mode patches and verifies ownership policy. No automatic
+alternation or attacker-defender loop is implemented.
 """
 from __future__ import annotations
 
@@ -32,11 +30,25 @@ async def run_attacker_round(base: str, model: str) -> dict:
     return {"round": round_id, "surface": surface, "findings": findings, "summary": summary}
 
 
-# Next milestone (M6: "Defender agent triages and patches"). Deliberately
-# left unimplemented rather than stubbed with fake behaviour -- when it
-# exists it will read store.get_findings() as its telemetry and call
-# store.upsert_finding(..., status="patched") once it remediates one, and
-# run_attacker.py will alternate run_attacker_round() / run_defender_round()
-# across N rounds.
-#
-# async def run_defender_round(base: str, model: str) -> dict: ...
+async def run_defender_round(base: str, policy_file=None, client=None) -> dict:
+    """One defender pass. A policy file explicitly opts into lab remediation."""
+    from agents import analyst, responder, watcher
+
+    base = base.rstrip("/")
+    mode = "apply" if policy_file is not None else "dry_run"
+    store.log_event("orchestrator", f"defender {mode} started for {base}")
+    plans = analyst.triage(watcher.observe(base))
+    if policy_file is None:
+        results = responder.draft(plans)
+    elif client is not None:
+        results = responder.apply_lab(plans, client, policy_file)
+    else:
+        import httpx
+        with httpx.Client(base_url=base, timeout=10) as http:
+            results = responder.apply_lab(plans, http, policy_file)
+    report = {"target": base, "mode": mode, "plans": results,
+              "applied": sum(p["applied"] for p in results),
+              "verified": sum(p["verified"] for p in results)}
+    store.save_defender_report(report)
+    store.log_event("orchestrator", f"defender {mode} finished for {base}")
+    return report
