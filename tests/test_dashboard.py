@@ -15,29 +15,32 @@ class DashboardTests(unittest.TestCase):
              patch.object(server, 'assess', return_value=assess_return or {'summary': {}, 'round': 1, 'findings': []}) as assess, \
              patch.object(server, 'run_llm_sample', new_callable=AsyncMock, return_value=[]) as llm, \
              patch.object(server.store, 'log_event'), \
+             patch.object(server.store, 'update_round') as update_round, \
              patch.object(server, 'prepare_vampi') as prepare:
             result = asyncio.run(server.run_dashboard_round('http://localhost:8001', 'qwen2.5', mode, llm_sample=llm_sample))
             if '/users/v1/login' in paths:
                 prepare.assert_called_once()
             else:
                 prepare.assert_not_called()
-            return attacker, scout, assess, llm, result
+            return attacker, scout, assess, llm, result, update_round
 
     def test_custom_discovers_and_assesses_without_llm(self):
-        attacker, scout, assess, llm, result = self.run_mode({'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}})
+        attacker, scout, assess, llm, result, update_round = self.run_mode({'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}})
         attacker.assert_not_called()
         scout.assert_called_once_with('http://localhost:8001', None)
         assess.assert_called_once()
         llm.assert_not_called()
+        update_round.assert_not_called()
         self.assertIn('summary', result)
         self.assertNotIn('llm_findings', result)
 
     def test_vampi_dispatches_attacker(self):
-        attacker, scout, assess, llm, _ = self.run_mode({'/users/v1/login': {}})
+        attacker, scout, assess, llm, _, update_round = self.run_mode({'/users/v1/login': {}})
         attacker.assert_awaited_once_with('http://localhost:8001', 'qwen2.5', should_stop=None)
         assess.assert_not_called()
         scout.assert_not_called()
         llm.assert_not_called()
+        update_round.assert_not_called()
 
     def test_custom_with_llm_sample_runs_sampled_cross_check(self):
         findings = [
@@ -45,17 +48,27 @@ class DashboardTests(unittest.TestCase):
             {'collection': 'collection_0002', 'template': None, 'verdict': False},  # legacy, no template
             {'collection': 'collection_0003', 'template': 'B2', 'verdict': False},
         ]
-        attacker, scout, assess, llm, result = self.run_mode(
+        attacker, scout, assess, llm, result, update_round = self.run_mode(
             {'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}},
             llm_sample=5, assess_return={'summary': {}, 'round': 7, 'findings': findings})
         llm.assert_awaited_once_with('http://localhost:8001', 'qwen2.5',
                                       [('collection_0001', 'B1'), ('collection_0003', 'B2')],
                                       7, 5, should_stop=None)
         self.assertEqual(result['llm_findings'], [])
+        self.assertEqual(result['llm_summary'], {'vulnerable': 0, 'defended': 0, 'inconclusive': 0})
+        # Marked "running" (with the actual sample size, capped by the 2
+        # candidates found, not the raw llm_sample=5 requested) before the
+        # LLM calls happen, then "done" with their outcome once they return --
+        # that's what lets the assessment chip show real progress instead of
+        # the round looking instantly finished.
+        update_round.assert_any_call(7, llm_sample_requested=5, llm_sample_size=2, llm_sample_status='running')
+        update_round.assert_any_call(7, llm_sample_status='done',
+                                      llm_summary={'vulnerable': 0, 'defended': 0, 'inconclusive': 0})
 
     def test_llm_sample_zero_never_calls_run_llm_sample(self):
-        _, _, _, llm, result = self.run_mode({'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}}, llm_sample=0)
+        _, _, _, llm, result, update_round = self.run_mode({'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}}, llm_sample=0)
         llm.assert_not_called()
+        update_round.assert_not_called()
         self.assertNotIn('llm_findings', result)
 
     def test_wrong_type_and_unknown_api_do_not_run(self):

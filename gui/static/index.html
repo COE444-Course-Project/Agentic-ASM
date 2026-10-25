@@ -267,7 +267,7 @@
         <dt>Ollama model</dt>
         <dd>Which local LLM drives VAmPI's reasoning-based checks (SQL injection, mass assignment, enumeration, BOLA) and, if set above 0, the custom API lab's "LLM-sampled checks" too. Disabled when neither applies.</dd>
         <dt>LLM-sampled checks</dt>
-        <dd>Custom API lab only. <code>0</code> (default) keeps the assessment fully deterministic. Above <code>0</code>, that many randomly chosen collections also get an independent LLM-driven cross-check — see "How LLM-sampled checks works" above.</dd>
+        <dd>Custom API lab only. <code>0</code> (default) keeps the assessment fully deterministic. Above <code>0</code>, that many randomly chosen collections also get an independent LLM-driven cross-check — see "How LLM-sampled checks works" above. The assessment chip reads "done" the moment the fast deterministic pass finishes, before those LLM calls start; its own "LLM-sampled checks running (N)…" line (and then a result once they finish) is how you tell they're genuinely in progress, not skipped.</dd>
         <dt>Run assessment</dt>
         <dd>Starts one assessment against the Target URL in the background. VAmPI assessments reset its demo database first; custom API ones do not.</dd>
         <dt>Stop</dt>
@@ -279,7 +279,7 @@
         <dt>Attack Surface panel</dt>
         <dd>Every endpoint discovered on the target so far, from its OpenAPI schema.</dd>
         <dt>Findings panel</dt>
-        <dd>One row per check: <span class="verdict true" style="font-size:10px;">VULNERABLE</span> means the attack succeeded, <span class="verdict false" style="font-size:10px;">defended</span> means it was correctly blocked, <span class="verdict null" style="font-size:10px;">inconclusive</span> means the check itself failed to run cleanly (see its evidence) — never treat inconclusive as "safe".</dd>
+        <dd>One row per check that is or was a finding: <span class="verdict true" style="font-size:10px;">VULNERABLE</span> means the attack succeeded, <span class="verdict false" style="font-size:10px;">defended</span> here means a verified defender patch is blocking a previously-successful attack, and <span class="verdict null" style="font-size:10px;">inconclusive</span> means the check itself failed to run cleanly (see its evidence) — never treat inconclusive as "safe". A collection that was simply always secure and never flagged is left out of this list entirely (it isn't a finding); its "defended" count still appears in the assessment chip above.</dd>
         <dt>Live log</dt>
         <dd>A running narration of what the orchestrator/operator/scout are doing, in order, as an assessment executes.</dd>
         <dt>Custom API lab controls</dt>
@@ -401,11 +401,25 @@ function renderStatus(running) {
 function renderAssessments(rounds) {
   const el = document.getElementById("assessments");
   if (!rounds || !rounds.length) { el.innerHTML = ""; return; }
-  el.innerHTML = rounds.slice().reverse().map(r => `
+  el.innerHTML = rounds.slice().reverse().map(r => {
+    // The deterministic pass finish_round()s the round on its own, so a
+    // round with LLM-sampled checks requested reads "done" (with final
+    // deterministic counts) well before those checks -- real Ollama calls,
+    // not instant -- actually finish. Without this, that looks like the
+    // LLM never ran at all. See gui/server.py's run_dashboard_round.
+    const llmPart = r.llm_sample_status === "running"
+      ? ` · <span class="i">LLM-sampled checks running (${r.llm_sample_size ?? r.llm_sample_requested})…</span>`
+      : r.llm_sample_status === "stopped"
+      ? ` · LLM-sampled checks stopped before finishing`
+      : r.llm_sample_status === "done" && r.llm_summary
+      ? ` · LLM-sampled (${r.llm_sample_size ?? r.llm_sample_requested}): ${r.llm_summary.vulnerable} vulnerable, ${r.llm_summary.defended} defended, ${r.llm_summary.inconclusive} inconclusive`
+      : "";
+    return `
     <div class="assessment-chip">
       <b>Assessment ${r.round}</b> · ${r.status}
-      ${r.status === "done" || r.status === "stopped" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended${r.patched ? ` (${r.patched} patched, ${r.defended - r.patched} always secure)` : ""}</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
-    </div>`).join("");
+      ${r.status === "done" || r.status === "stopped" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended${r.patched ? ` (${r.patched} patched, ${r.defended - r.patched} always secure)` : ""}</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}${llmPart}
+    </div>`;
+  }).join("");
 }
 
 function renderSurface(surface) {
@@ -427,8 +441,17 @@ function verdictLabel(v) { return v === true ? "VULNERABLE" : v === false ? "def
 
 function renderFindings(findings) {
   const el = document.getElementById("findings");
-  const list = Object.values(findings || {});
-  if (!list.length) { el.innerHTML = '<div class="empty">no findings yet — run an assessment</div>'; return; }
+  // A collection that was simply never made vulnerable (verdict false, and
+  // never patched -- status stayed "open") is not a finding, it's a clean
+  // probe result; showing all of those alongside real issues buries the
+  // ones that matter. Keep anything currently/previously vulnerable
+  // (verdict true), anything a verified defender patch actually fixed
+  // (status "patched"), and anything inconclusive (worth investigating,
+  // per the Guide note below) -- drop only "always secure, never flagged".
+  const all = Object.values(findings || {});
+  const list = all.filter(f => f.verdict === true || f.status === "patched" || f.verdict === null);
+  if (!all.length) { el.innerHTML = '<div class="empty">no findings yet — run an assessment</div>'; return; }
+  if (!list.length) { el.innerHTML = `<div class="empty">${all.length} collection(s) checked, all always-secure — no findings to show</div>`; return; }
   list.sort((a, b) => (b.verdict === true) - (a.verdict === true));
   el.innerHTML = `<table><tbody>` + list.map(f => `
     <tr>

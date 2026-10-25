@@ -140,10 +140,26 @@ async def run_dashboard_round(target: str, model: str, mode: str = "auto", shoul
                             policy_file=LAB_POLICY_FILE if LAB_POLICY_FILE.exists() else None)
             if llm_sample > 0 and not (should_stop and should_stop()):
                 candidates = [(f["collection"], f["template"]) for f in result["findings"] if f.get("template")]
-                store.log_event("orchestrator", f"Running up to {llm_sample} LLM-sampled cross-check(s) via {model}")
+                sample_size = min(llm_sample, len(candidates))
+                # assess() already finish_round()'d this round from the fast
+                # deterministic pass alone -- without this, the assessment
+                # chip reads "done" the instant that pass completes, and
+                # nothing in the UI shows that `sample_size` real LLM calls
+                # are still running in the background afterward.
+                store.update_round(result["round"], llm_sample_requested=llm_sample,
+                                    llm_sample_size=sample_size, llm_sample_status="running")
+                store.log_event("orchestrator", f"Running {sample_size} LLM-sampled cross-check(s) via {model}")
                 llm_findings = await run_llm_sample(target, model, candidates, result["round"], llm_sample,
                                                      should_stop=should_stop)
-                result = {**result, "llm_findings": llm_findings}
+                llm_summary = {
+                    "vulnerable": sum(f["verdict"] is True for f in llm_findings),
+                    "defended": sum(f["verdict"] is False for f in llm_findings),
+                    "inconclusive": sum(f["verdict"] is None for f in llm_findings),
+                }
+                stopped_early = bool(should_stop and should_stop())
+                store.update_round(result["round"], llm_sample_status="stopped" if stopped_early else "done",
+                                    llm_summary=llm_summary)
+                result = {**result, "llm_findings": llm_findings, "llm_summary": llm_summary}
             return result
     prepare_vampi(target)
     store.log_event("orchestrator", f"VAmPI database reset and seeded accounts/books verified for {target}")

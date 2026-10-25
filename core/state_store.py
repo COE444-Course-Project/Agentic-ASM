@@ -205,6 +205,21 @@ def finish_round(round_id: int, summary: dict, status: str = "done") -> None:
         _write_json(ROUNDS_PATH, rounds)
 
 
+def update_round(round_id: int, **fields) -> None:
+    """Merge extra fields into an already-finished round without touching
+    `finished_at`/`status`. Used for work that continues after the
+    deterministic pass finish_round()s the round -- the custom lab's
+    optional LLM-sampled cross-check -- so the dashboard can show that
+    it's still running instead of the round looking instantly, silently
+    "done" while real LLM calls are still in flight."""
+    with _lock:
+        rounds = _read_json(ROUNDS_PATH, [])
+        for r in rounds:
+            if r["round"] == round_id:
+                r.update(fields)
+        _write_json(ROUNDS_PATH, rounds)
+
+
 def snapshot() -> dict:
     """Everything the GUI needs in one call."""
     return {
