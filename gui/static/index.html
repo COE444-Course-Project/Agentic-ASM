@@ -17,7 +17,6 @@
   body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
   header { padding: 30px 36px 24px; border-top: 4px solid var(--accent); border-bottom: 1px solid var(--border); }
   .heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
-  .eyebrow { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
   header h1 { font-size: 27px; letter-spacing: -.8px; line-height: 1.3; margin: 4px 0; font-weight: 650; }
   header .sub { color: var(--muted); font-size: 13px; }
   .controls { display: flex; align-items: end; gap: 12px; flex-wrap: wrap; }
@@ -98,7 +97,7 @@
   .verdict.null { background: #f2efeb; color: var(--muted); }
   .finding-title { font-weight: 600; line-height: 1.5; }
   .finding-owasp { color: var(--muted); font-size: 11px; margin-top: 4px; overflow-wrap: anywhere; }
-  .evidence { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #65594e; margin-top: 10px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 90px; overflow-y: auto; background: var(--panel2); padding: 9px 10px; border-left: 2px solid #eac7a9; border-radius: 0 4px 4px 0; }
+  .evidence { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #65594e; margin-top: 10px; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 90px; overflow-y: auto; background: var(--panel2); padding: 9px 10px; border-radius: 4px; }
   .log { font-family: ui-monospace, Menlo, monospace; font-size: 11px; padding: 4px 16px; overflow-wrap: anywhere; }
   .log .row { padding: 10px 0; border-bottom: 1px solid #f0ece7; }
   .log .src { color: var(--accent); font-weight: 650; }
@@ -117,8 +116,7 @@
 <header>
   <div class="heading">
     <div>
-      <div class="eyebrow">Agentic ASM</div>
-      <h1>Attack surface dashboard</h1>
+      <h1>Agentic ASM — attack surface dashboard</h1>
       <div class="sub">Discover endpoints, review findings, and follow each assessment.</div>
     </div>
     <div style="display:flex; align-items:center; gap:10px;">

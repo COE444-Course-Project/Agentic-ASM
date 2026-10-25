@@ -31,6 +31,14 @@ services:
       # same rounds/findings instead of each writing to their own
       # ephemeral container filesystem, and (b) state survives a rebuild.
       - ./state:/app/state
+      # Read-only: lets the dashboard tell "patched" (a verified defender fix
+      # still in effect, per lab-policy/policy.json) apart from "always
+      # secure" even after this dashboard's own findings.json is cleared --
+      # see gui/server.py's LAB_POLICY_FILE and core/lab_checks.assess().
+      # Absent is fine (e.g. before run_defender.py has ever run); the mount
+      # just needs the directory to exist, which `mkdir -p lab-policy` in the
+      # README's setup step already ensures.
+      - ./lab-policy:/app/lab-policy:ro
     environment:
       # Internal service names on the shared compose network -- NOT the
       # host-mapped localhost:5001/5002 used when running natively.

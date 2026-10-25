@@ -39,3 +39,15 @@ def write_policy(path: Path, data: dict):
     temporary = path.with_suffix(".tmp")
     temporary.write_text(json.dumps(data, indent=2))
     temporary.replace(path)
+
+
+def is_patched(policy: dict, collection: str, template: str) -> bool:
+    """True if `policy` (as returned by read_policy) currently enforces
+    authorization for this collection/template -- the ground truth for
+    "a defender patch is actually in effect", independent of any assessment
+    history. `template` may be "legacy" for a pre-template-catalog finding,
+    where a bare `True` entry (not a per-template dict) is the patch."""
+    entry = policy.get("collections", {}).get(collection)
+    if template == "legacy":
+        return entry is True
+    return isinstance(entry, dict) and entry.get(template) is True

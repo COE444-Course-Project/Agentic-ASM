@@ -139,7 +139,7 @@ def main():
             data["endpoint_additions_per_minute"] = (data["growth_after"]["endpoint_method_pairs"] - data["growth_before"]["endpoint_method_pairs"]) / elapsed * 60
             save("observations.json", data)
             start = time.monotonic()
-            before = assess(client, data["target"])
+            before = assess(client, data["target"], policy_file=args.policy_file)
             data["durations_seconds"]["assessment"] = time.monotonic() - start
             save("assessment-before.json", before)
             start = time.monotonic()
@@ -147,7 +147,7 @@ def main():
             data["durations_seconds"]["defense_and_verification"] = time.monotonic() - start
             save("defender.json", defense)
             start = time.monotonic()
-            after = assess(client, data["target"])
+            after = assess(client, data["target"], policy_file=args.policy_file)
             data["durations_seconds"]["independent_reassessment"] = time.monotonic() - start
             save("assessment-after.json", after)
             data["metrics"] = metrics(before, defense, after)

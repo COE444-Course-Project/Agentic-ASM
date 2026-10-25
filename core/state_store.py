@@ -130,14 +130,22 @@ def save_defender_report(report: dict) -> None:
         _write_json(DEFENDER_PATH, reports)
 
 
-def upsert_finding(finding: dict, round_id: int) -> dict:
+def upsert_finding(finding: dict, round_id: int, *, policy_patched: bool = False) -> dict:
     """`finding` must have an 'id'. `status` defaults to 'open' the first
     time a finding is seen. Positive reassessment reopens a previous patch;
     only mark_verified_patch can close it with remediation evidence. Returns
     the merged record so a caller can tell a fresh "never vulnerable" verdict
     apart from one that is secure because of a verified prior patch (its
     `status` stays "patched" here; see "patched" vs "defended" in round
-    summaries below)."""
+    summaries below).
+
+    `policy_patched`, when the caller already confirmed the live lab policy
+    file covers this finding's collection/template, forces `status` to
+    "patched" even if this process has no prior record of it -- findings.json
+    is only *this dashboard's own* history and can be cleared independently
+    of the policy file (e.g. the dashboard's "Reset state" button), so without
+    this a patch that happened before a reset would wrongly look like it was
+    never applied."""
     with _lock:
         findings = _read_json(FINDINGS_PATH, {})
         fid = finding["id"]
@@ -146,6 +154,7 @@ def upsert_finding(finding: dict, round_id: int) -> dict:
             **existing,
             **finding,
             "status": ("open" if finding.get("verdict") is True
+                       else "patched" if policy_patched
                        else existing.get("status", "open")),
             "last_round": round_id,
             "updated_at": time.time(),

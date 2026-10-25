@@ -4,9 +4,11 @@ This is a deterministic lab adapter, not general autonomous discovery. It uses
 supplied lab identities and validates supported operation effects and cleanup.
 """
 import re
+from pathlib import Path
 from typing import Callable, Optional
 
 from core import state_store as store
+from core.lab_policy import is_patched, read_policy
 from core.template_catalog import TEMPLATES
 from core.template_checks import template_for, probe_template
 
@@ -62,16 +64,25 @@ def probe_legacy(client, collection: str) -> dict:
             "verified_secure": healthy and blocked}
 
 
-def assess(client, target: str, should_stop: Optional[Callable[[], bool]] = None) -> dict:
+def assess(client, target: str, should_stop: Optional[Callable[[], bool]] = None,
+           policy_file: Optional[Path] = None) -> dict:
     """One assessment pass; save endpoint-scoped findings for the defender.
 
     `should_stop` is checked between collections only: the probe already in
-    flight for the current collection always finishes first."""
+    flight for the current collection always finishes first. `policy_file`,
+    when given, is read once up front and used as the ground truth for which
+    collections the defender has actually patched -- see
+    core/lab_policy.py's is_patched() and state_store.upsert_finding()'s
+    `policy_patched` -- so "patched" in the summary below stays correct even
+    if this process's own findings.json was cleared (e.g. by the dashboard's
+    "Reset state" button) after the patch was applied. Without a policy_file,
+    "patched" falls back to this process's own assessment history."""
     target = target.rstrip("/")
     names = discover(client)
     spec = client.get("/openapi.json")
     spec.raise_for_status()
     paths = spec.json()["paths"]
+    policy = read_policy(policy_file) if policy_file is not None else None
     round_id = store.start_round(target)
     findings = []
     stopped = False
@@ -96,7 +107,8 @@ def assess(client, target: str, should_stop: Optional[Callable[[], bool]] = None
                            module_id=f"lab-{template}", template=template,
                            endpoint=f"/api/{name}{suffix}", method=method, title=f"{template}: {title} ({name})",
                            owasp="API5:2023 Broken Function Level Authorization" if template == "V1" else finding["owasp"])
-        merged = store.upsert_finding(finding, round_id)
+        policy_patched = policy is not None and is_patched(policy, name, finding.get("template", "legacy"))
+        merged = store.upsert_finding(finding, round_id, policy_patched=policy_patched)
         finding["status"] = merged["status"]
         store.log_event("operator", f"lab assessment {name}: {finding['verdict']}", round_id)
         findings.append(finding)

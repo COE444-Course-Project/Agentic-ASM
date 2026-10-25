@@ -53,7 +53,7 @@ class TemplateTests(unittest.TestCase):
             # actually vulnerable and then patched should count as "patched";
             # the 8 that were secure from the start must not be miscounted as
             # defender output.
-            reassessment = assess(client, "http://testserver")
+            reassessment = assess(client, "http://testserver", policy_file=settings.policy_file)
             self.assertEqual(reassessment["summary"], {"vulnerable": 0, "patched": 8, "defended": 16, "inconclusive": 0})
             # Positive changes and malicious attempts are cleaned up by the probes.
             for user, id in (("alice", 1), ("bob", 2)):
@@ -65,6 +65,29 @@ class TemplateTests(unittest.TestCase):
         policy = read_policy(settings.policy_file)
         self.assertEqual(len(policy["collections"]), 8)
         self.assertTrue(all(len(value) == 1 for value in policy["collections"].values()))
+
+    def test_patched_survives_a_findings_history_reset(self):
+        """The dashboard's "Reset state" button clears findings.json (this
+        process's own assessment history) but never touches the lab policy
+        file. A reassessment afterwards must still report "patched" for a
+        collection the defender genuinely fixed, not fall back to counting
+        it as merely "defended" just because the local history is gone --
+        see state_store.upsert_finding()'s policy_patched parameter."""
+        settings, entries = self.fixed_cases()
+        with TestClient(create_app(settings)) as client:
+            assess(client, "http://testserver")
+            asyncio.run(run_defender_round("http://testserver", settings.policy_file, client))
+            # Simulate "Reset state": this dashboard process has amnesia, but
+            # the policy file -- the actual source of truth -- is untouched.
+            store.configure(self.root / "agent-after-reset")
+            reassessment = assess(client, "http://testserver", policy_file=settings.policy_file)
+            self.assertEqual(reassessment["summary"], {"vulnerable": 0, "patched": 8, "defended": 16, "inconclusive": 0})
+            # Without the policy file, the same reset leaves no way to tell
+            # "patched" from "always secure" apart -- documenting the
+            # fallback, not asserting it's wrong.
+            store.configure(self.root / "agent-after-reset-no-policy")
+            blind_reassessment = assess(client, "http://testserver")
+            self.assertEqual(blind_reassessment["summary"], {"vulnerable": 0, "patched": 0, "defended": 16, "inconclusive": 0})
 
     def test_random_assignment_reproducible_without_all_types_on_each_resource(self):
         settings = self.settings(initial_collections=64)

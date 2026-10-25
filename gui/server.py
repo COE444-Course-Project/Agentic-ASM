@@ -46,6 +46,13 @@ app = Flask(__name__, static_folder=None)
 # page's default fields are correct without editing this file.
 DEFAULT_TARGET = os.environ.get("TARGET", "http://localhost:5002")
 DEFAULT_MODEL = os.environ.get("MODEL", "qwen2.5")
+# Ground truth for which custom-lab collections the defender has actually
+# patched -- see core/lab_checks.assess()'s policy_file param. Only present
+# when this process can see the host's lab-policy/ (mounted in docker-compose
+# .yml); absent natively unless LAB_POLICY_FILE is set to match run_defender
+# .py's --policy-file. Missing/unreadable is fine -- assess() falls back to
+# its own history, same as before this existed.
+LAB_POLICY_FILE = Path(os.environ.get("LAB_POLICY_FILE", ROOT / "lab-policy" / "policy.json"))
 
 # Populates the target dropdown and the "what does this target do" sidebar.
 # Each service has two addresses -- an in-network Docker service name and a
@@ -129,7 +136,8 @@ async def run_dashboard_round(target: str, model: str, mode: str = "auto", shoul
         store.log_event("orchestrator", f"Dashboard selected {detected} assessment for {target}")
         if detected == "custom":
             orchestrator.scout.run(target, None)
-            result = assess(client, target, should_stop=should_stop)
+            result = assess(client, target, should_stop=should_stop,
+                            policy_file=LAB_POLICY_FILE if LAB_POLICY_FILE.exists() else None)
             if llm_sample > 0 and not (should_stop and should_stop()):
                 candidates = [(f["collection"], f["template"]) for f in result["findings"] if f.get("template")]
                 store.log_event("orchestrator", f"Running up to {llm_sample} LLM-sampled cross-check(s) via {model}")
