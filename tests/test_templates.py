@@ -41,7 +41,7 @@ class TemplateTests(unittest.TestCase):
         settings, entries = self.fixed_cases()
         with TestClient(create_app(settings)) as client:
             result = assess(client, "http://testserver")
-            self.assertEqual(result["summary"], {"vulnerable": 8, "defended": 8, "inconclusive": 0})
+            self.assertEqual(result["summary"], {"vulnerable": 8, "patched": 0, "defended": 8, "inconclusive": 0})
             for entry in entries:
                 with self.subTest(template=entry["template"], vulnerable=entry["vulnerable"]):
                     self.assertIs(probe(client, entry["name"])["verdict"], entry["vulnerable"])
@@ -49,6 +49,12 @@ class TemplateTests(unittest.TestCase):
             self.assertEqual(defense["verified"], 8, defense)
             for entry in entries:
                 self.assertTrue(probe(client, entry["name"])["verified_secure"], entry)
+            # All 16 collections now probe secure, but only the 8 that were
+            # actually vulnerable and then patched should count as "patched";
+            # the 8 that were secure from the start must not be miscounted as
+            # defender output.
+            reassessment = assess(client, "http://testserver")
+            self.assertEqual(reassessment["summary"], {"vulnerable": 0, "patched": 8, "defended": 16, "inconclusive": 0})
             # Positive changes and malicious attempts are cleaned up by the probes.
             for user, id in (("alice", 1), ("bob", 2)):
                 response = client.get(f"/api/collection_0009/items/{id}", headers={"Authorization": f"Bearer {user}-token"})
@@ -89,4 +95,4 @@ class TemplateTests(unittest.TestCase):
         app = create_app(self.settings(initial_collections=16, vulnerability_probability=0))
         with TestClient(app) as client:
             result = assess(client, "http://testserver")
-            self.assertEqual(result["summary"], {"vulnerable": 0, "defended": 16, "inconclusive": 0})
+            self.assertEqual(result["summary"], {"vulnerable": 0, "patched": 0, "defended": 16, "inconclusive": 0})

@@ -124,7 +124,7 @@ Ollama. The separate VAmPI pipeline still provides the LLM-driven benchmark.
 |---|---|
 | Surface size | Collections and endpoint/method pairs in two OpenAPI snapshots; the latter includes login and health routes. |
 | Observed growth rate | Difference in endpoint/method pairs divided by measured observation seconds, multiplied by 60. A short observation window can differ from the configured long-term rate. |
-| Assessment outcomes | Number of vulnerable, defended, and inconclusive collections, before and after defense. A collection has supporting routes and one selected operation-family finding. |
+| Assessment outcomes | Number of vulnerable, defended, and inconclusive collections, before and after defense. A collection has supporting routes and one selected operation-family finding. `defended` is every currently-secure collection; its `patched` subset is only those secure because of a verified defender patch still in effect, not merely because `vulnerability_probability` never made them vulnerable in the first place -- the dashboard's assessment chips and `run_live.py`'s metrics both break this out. |
 | Remediation rate | Initially vulnerable findings with a verified defender patch **and** a secure independent reassessment, divided by all initially vulnerable findings. No eligible findings produces N/A, not 100%. |
 | Defender outcomes | Counts of applied policies, verified fixes, failures, and successful rollbacks. |
 | Remaining / unresolved | Initially vulnerable findings still vulnerable, or missing/inconclusive, respectively. Unresolved findings never count as repaired. |

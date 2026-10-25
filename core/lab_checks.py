@@ -96,10 +96,19 @@ def assess(client, target: str, should_stop: Optional[Callable[[], bool]] = None
                            module_id=f"lab-{template}", template=template,
                            endpoint=f"/api/{name}{suffix}", method=method, title=f"{template}: {title} ({name})",
                            owasp="API5:2023 Broken Function Level Authorization" if template == "V1" else finding["owasp"])
-        store.upsert_finding(finding, round_id)
+        merged = store.upsert_finding(finding, round_id)
+        finding["status"] = merged["status"]
         store.log_event("operator", f"lab assessment {name}: {finding['verdict']}", round_id)
         findings.append(finding)
+    # "defended" is every currently-secure collection, same as always; "patched"
+    # is the subset of those secure *because* a verified defender patch is in
+    # effect (store.upsert_finding keeps a finding's "patched" status across
+    # reassessment -- see its docstring) rather than because it was never
+    # vulnerable in the first place. Without this split, a lab seeded at a low
+    # vulnerability_probability looks indistinguishable from one the defender
+    # actually fixed.
     summary = {"vulnerable": sum(f["verdict"] is True for f in findings),
+               "patched": sum(f["verdict"] is False and f.get("status") == "patched" for f in findings),
                "defended": sum(f["verdict"] is False for f in findings),
                "inconclusive": sum(f["verdict"] is None for f in findings)}
     status = "stopped" if stopped else "done"

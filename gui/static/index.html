@@ -277,7 +277,7 @@
         <dt>Reset state</dt>
         <dd>Clears this dashboard's saved assessments, findings and log history. It does not touch the targets themselves or the custom lab's growth.</dd>
         <dt>Assessments strip</dt>
-        <dd>One chip per past assessment, with its vulnerable/defended/inconclusive counts.</dd>
+        <dd>One chip per past assessment, with its vulnerable/defended/inconclusive counts. "Defended" means currently not exploitable; when any of those were made secure by a verified defender patch (rather than simply never having been vulnerable), the chip breaks that count out as "(N patched, M always secure)".</dd>
         <dt>Attack Surface panel</dt>
         <dd>Every endpoint discovered on the target so far, from its OpenAPI schema.</dd>
         <dt>Findings panel</dt>
@@ -406,7 +406,7 @@ function renderAssessments(rounds) {
   el.innerHTML = rounds.slice().reverse().map(r => `
     <div class="assessment-chip">
       <b>Assessment ${r.round}</b> · ${r.status}
-      ${r.status === "done" || r.status === "stopped" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
+      ${r.status === "done" || r.status === "stopped" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended${r.patched ? ` (${r.patched} patched, ${r.defended - r.patched} always secure)` : ""}</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
     </div>`).join("");
 }
 

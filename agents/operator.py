@@ -439,7 +439,8 @@ async def run_queue(base: str, queue: list[dict], model: str, round_id: int,
             "target": base.rstrip("/"), "title": module["title"], "owasp": module["owasp"],
             "kind": module["kind"], "verdict": verdict, "evidence": evidence,
         }
-        store.upsert_finding(finding, round_id)
+        merged = store.upsert_finding(finding, round_id)
+        finding["status"] = merged["status"]
         store.log_event(
             "operator", f"module '{module['id']}' verdict: {_label(verdict)}", round_id,
             data={"verdict": verdict, "evidence": (evidence or "")[:300]},

@@ -130,10 +130,14 @@ def save_defender_report(report: dict) -> None:
         _write_json(DEFENDER_PATH, reports)
 
 
-def upsert_finding(finding: dict, round_id: int) -> None:
+def upsert_finding(finding: dict, round_id: int) -> dict:
     """`finding` must have an 'id'. `status` defaults to 'open' the first
     time a finding is seen. Positive reassessment reopens a previous patch;
-    only mark_verified_patch can close it with remediation evidence."""
+    only mark_verified_patch can close it with remediation evidence. Returns
+    the merged record so a caller can tell a fresh "never vulnerable" verdict
+    apart from one that is secure because of a verified prior patch (its
+    `status` stays "patched" here; see "patched" vs "defended" in round
+    summaries below)."""
     with _lock:
         findings = _read_json(FINDINGS_PATH, {})
         fid = finding["id"]
@@ -149,6 +153,7 @@ def upsert_finding(finding: dict, round_id: int) -> None:
         merged.setdefault("first_round", round_id)
         findings[fid] = merged
         _write_json(FINDINGS_PATH, findings)
+        return merged
 
 
 # -------------------------------------------------------------- attack surface

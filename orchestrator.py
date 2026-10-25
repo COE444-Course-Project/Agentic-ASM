@@ -22,8 +22,13 @@ async def run_attacker_round(base: str, model: str, should_stop: Optional[Callab
     queue = planner.plan(surface, operator.MODULES, round_id, findings_so_far)
     findings = await operator.run_queue(base, queue, model, round_id, should_stop=should_stop)
 
+    # See core/lab_checks.py's assess() for why "patched" (a verified defender
+    # fix still in effect) is broken out from "defended" (merely not currently
+    # vulnerable) -- VAmPI has no remediation adapter, so "patched" is always
+    # 0 here, but the schema stays identical across both assessment paths.
     summary = {
         "vulnerable": sum(1 for f in findings if f["verdict"] is True),
+        "patched": sum(1 for f in findings if f["verdict"] is False and f.get("status") == "patched"),
         "defended": sum(1 for f in findings if f["verdict"] is False),
         "inconclusive": sum(1 for f in findings if f["verdict"] is None),
     }

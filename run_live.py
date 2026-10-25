@@ -73,7 +73,7 @@ def write_summary(folder, data):
         "New collections observed": data["new_collections_observed"],
         "Observed endpoint additions per minute": f"{data['endpoint_additions_per_minute']:.2f}",
         "Before: vulnerable / defended / inconclusive": " / ".join(str(m["before"][key]) for key in ("vulnerable", "defended", "inconclusive")),
-        "After: vulnerable / defended / inconclusive": " / ".join(str(m["after"][key]) for key in ("vulnerable", "defended", "inconclusive")),
+        "After: vulnerable / defended (patched) / inconclusive": f"{m['after']['vulnerable']} / {m['after']['defended']} ({m['after'].get('patched', 0)}) / {m['after']['inconclusive']}",
         "Verified repairs still secure": f"{m['verified_repairs_still_secure']} / {m['initially_vulnerable']}",
         "Remediation rate": percent(m["remediation_rate"]),
         "Defender applied / verified / failed / rolled back": f"{m['defender_applied']} / {m['defender_verified']} / {m['defender_failed']} / {m['defender_rolled_back']}",
