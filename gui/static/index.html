@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Attacker Agent — Attack Surface Dashboard</title>
 <style>
+  select { padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: white; color: #172033; font: inherit; }
+
   :root {
     color-scheme: light;
     --bg: #fff; --panel: #fff; --panel2: #faf9f7; --border: #eae5df;
@@ -21,6 +23,8 @@
   .controls { display: flex; align-items: end; gap: 12px; flex-wrap: wrap; }
   .field { display: flex; flex-direction: column; gap: 6px; }
   .field label { font-size: 11px; font-weight: 650; color: var(--muted); }
+  .info-btn { width: 15px; height: 15px; line-height: 13px; padding: 0; border-radius: 50%; font-size: 10px; font-weight: 700; min-height: 0; background: var(--panel2); color: var(--muted); border: 1px solid var(--border); cursor: pointer; }
+  .info-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
   input { background: #fff; border: 1px solid #dcd4cc; color: var(--text); padding: 10px 12px; border-radius: 7px; font: inherit; height: 42px; }
   input#target { width: 320px; } input#model { width: 160px; }
   input:focus { border-color: var(--accent); outline: 3px solid #ffeddc; }
@@ -30,6 +34,9 @@
   button:disabled { background: #eee8e1; color: #817468; border-color: #eee8e1; cursor: not-allowed; }
   button.secondary { background: #fff; border-color: var(--border); color: var(--muted); }
   button.secondary:hover { background: var(--panel2); color: var(--text); }
+  button.secondary.danger { color: var(--red); }
+  button.secondary.danger:hover { background: #fdeeea; color: var(--red); border-color: #e8b3a4; }
+  button.secondary.danger:disabled { color: #817468; }
   .status { font-size: 12px; padding: 6px 11px; border-radius: 6px; font-weight: 600; max-width: 45%; overflow-wrap: anywhere; }
   .status.idle { background: #f5f3f0; color: var(--muted); }
   .status.running { background: #fff0e3; color: var(--accent); }
@@ -40,11 +47,44 @@
   .panel h2 { font-size: 13px; font-weight: 650; color: var(--text); margin: 0; padding: 16px 18px; border-bottom: 1px solid var(--border); }
   .panel h2::before { content: ""; display: inline-block; width: 4px; height: 13px; border-radius: 2px; background: #e97829; margin-right: 9px; vertical-align: -2px; }
   .panel .body { max-height: 65vh; overflow: auto; scrollbar-width: thin; scrollbar-color: #d8cec3 transparent; }
-  .rounds { display: flex; gap: 8px; padding: 20px 36px 0; flex-wrap: wrap; }
-  .rounds:empty { display: none; }
-  .round-chip { border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 12px; background: #fffcf9; color: var(--muted); }
-  .round-chip b { color: var(--text); }
-  .round-chip .v { color: var(--red); } .round-chip .d { color: var(--green); } .round-chip .i { color: var(--muted); }
+  .assessments { display: flex; gap: 8px; padding: 20px 36px 0; flex-wrap: wrap; }
+  .assessments:empty { display: none; }
+  .lab-panel { margin: 20px 36px 0; }
+  .lab-panel h2 { display: flex; align-items: baseline; gap: 8px; }
+  .hidden { display: none !important; }
+  .lab-body { padding: 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .lab-row { font-size: 12px; color: var(--muted); }
+  .lab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  .lab-grid input[type=number] { width: 100%; }
+  .lab-templates { display: flex; flex-wrap: wrap; gap: 6px 14px; padding-top: 4px; }
+  .lab-templates label { font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
+  .lab-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  #labStatus.error { color: var(--red); } #labStatus.ok { color: var(--green); }
+
+  .guide-backdrop { position: fixed; inset: 0; background: rgba(41, 36, 31, .35); opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 40; }
+  .guide-backdrop.open { opacity: 1; pointer-events: auto; }
+  .guide-sidebar { position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 92vw); background: var(--panel); border-left: 1px solid var(--border); box-shadow: -8px 0 24px rgba(41,36,31,.12); transform: translateX(100%); transition: transform .22s ease; z-index: 41; display: flex; flex-direction: column; }
+  .guide-sidebar.open { transform: translateX(0); }
+  .guide-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .guide-body { overflow-y: auto; padding: 4px 20px 28px; }
+  .guide-body section { padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .guide-body section:last-child { border-bottom: 0; }
+  .guide-body h3 { font-size: 13px; margin: 0 0 8px; }
+  .guide-body p.sub { margin: 0 0 10px; }
+  .guide-dl dt { font-weight: 650; font-size: 12.5px; margin-top: 10px; }
+  .guide-dl dt:first-child { margin-top: 0; }
+  .guide-dl dd { margin: 3px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.55; }
+  .guide-dl code { background: var(--panel2); padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+  .guide-target { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+  .guide-target .gt-url { font-family: ui-monospace, Menlo, monospace; font-size: 12px; overflow-wrap: anywhere; }
+  .guide-target .gt-desc { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .guide-target .gt-badge { font-size: 10px; font-weight: 650; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .guide-target .gt-badge.yes { background: #eef3ed; color: var(--green); }
+  .guide-target .gt-badge.no { background: #f2efeb; color: var(--muted); }
+  @media (max-width: 700px) { .guide-sidebar { width: 100vw; } }
+  .assessment-chip { border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 12px; background: #fffcf9; color: var(--muted); }
+  .assessment-chip b { color: var(--text); }
+  .assessment-chip .v { color: var(--red); } .assessment-chip .d { color: var(--green); } .assessment-chip .i { color: var(--muted); }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   td, th { padding: 14px 12px; border-bottom: 1px solid #f0ece7; text-align: left; vertical-align: top; }
   tr:last-child td { border-bottom: 0; }
@@ -66,9 +106,9 @@
   .log .msg.warn { color: var(--amber); }
   .log .ts { color: var(--muted); margin-right: 6px; }
   .empty { color: var(--muted); padding: 32px 18px; font-size: 13px; }
-  @media (min-width: 1700px) { header, main, .rounds { padding-left: max(36px, calc((100vw - 1700px)/2)); padding-right: max(36px, calc((100vw - 1700px)/2)); } }
+  @media (min-width: 1700px) { header, main, .assessments { padding-left: max(36px, calc((100vw - 1700px)/2)); padding-right: max(36px, calc((100vw - 1700px)/2)); } }
   @media (max-width: 1100px) { main { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); } .panel:last-child { grid-column: 1 / -1; } .panel:last-child .body { max-height: 320px; } }
-  @media (max-width: 700px) { header { padding: 22px 18px; } .heading { align-items: start; } header h1 { font-size: 23px; } main { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 16px; } .rounds { padding: 18px 18px 0; } .field { width: 100%; } input#target, input#model { width: 100%; } .status { max-width: 35%; } }
+  @media (max-width: 700px) { header { padding: 22px 18px; } .heading { align-items: start; } header h1 { font-size: 23px; } main { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 16px; } .assessments { padding: 18px 18px 0; } .field { width: 100%; } input#target, input#model { width: 100%; } .status { max-width: 35%; } }
   @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
 </style>
 </head>
@@ -79,29 +119,60 @@
     <div>
       <div class="eyebrow">Agentic ASM</div>
       <h1>Attack surface dashboard</h1>
-      <div class="sub">Discover endpoints, review findings, and follow each round.</div>
+      <div class="sub">Discover endpoints, review findings, and follow each assessment.</div>
     </div>
-    <span id="statusPill" class="status idle" role="status">idle</span>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="secondary" onclick="toggleGuide(true)" title="What each target is, what the growth controls mean, and a tour of this page">Guide</button>
+      <span id="statusPill" class="status idle" role="status">idle</span>
+    </div>
   </div>
   <div class="controls">
-    <div class="field"><label for="target">Target URL</label><input id="target" value="__DEFAULT_TARGET__" spellcheck="false"></div>
+    <div class="field"><label for="target">Target URL</label><input id="target" list="targetOptions" value="__DEFAULT_TARGET__" spellcheck="false" onchange="updateLabPanel()">
+      <datalist id="targetOptions"></datalist>
+    </div>
+    <div class="field"><label for="mode">Assessment type</label><select id="mode" onchange="updateMode()"><option value="auto">Auto-detect API</option><option value="vampi">VAmPI attacker</option><option value="custom">Custom API assessment</option></select></div>
     <div class="field"><label for="model">Ollama model</label><input id="model" value="__DEFAULT_MODEL__" spellcheck="false"></div>
-    <button id="runBtn" onclick="runRound()">Run round</button>
+    <div class="field" id="llmSampleField"><label for="llmSample">LLM-sampled checks <button type="button" class="info-btn" onclick="toggleGuide(true)" title="What this does">?</button></label><input id="llmSample" type="number" min="0" max="50" value="0" style="width:90px;" oninput="updateMode()"></div>
+    <button id="runBtn" onclick="runAssessment()">Run assessment</button>
+    <button id="stopBtn" class="secondary" onclick="stopAssessment()" disabled title="Stops before the next module/collection; a check already in flight still finishes">Stop</button>
     <button class="secondary" onclick="resetState()">Reset state</button>
   </div>
+  <div class="sub" id="modeHelp">Detects VAmPI or the custom API from its public schema. VAmPI resets demo accounts/books before each assessment. Custom API checks do not use Ollama.</div>
 </header>
 
-<div class="rounds" id="rounds"></div>
+<div class="assessments" id="assessments"></div>
+
+<section class="panel lab-panel" id="labPanel">
+  <h2>Custom API lab controls <span class="sub" id="labPanelTarget"></span></h2>
+  <div class="body lab-body">
+    <div class="lab-row" id="labMeta"><span class="empty">not loaded yet</span></div>
+    <div class="lab-grid">
+      <div class="field"><label for="labGrowthSeconds">Growth interval (s)</label><input id="labGrowthSeconds" type="number" min="0" step="any" value="3" title="Default is a short, bounded demo: one new collection every 3s"></div>
+      <div class="field"><label for="labMaxCollections">Max collections (0 = unlimited)</label><input id="labMaxCollections" type="number" min="0" step="1" value="15" title="Default is a short, bounded demo: stops automatically at 15"></div>
+      <div class="field"><label for="labVulnProb">Vulnerability probability</label><input id="labVulnProb" type="number" min="0" max="1" step="0.05" value="0.5"></div>
+      <div class="field"><label><input type="checkbox" id="labPaused"> Paused</label></div>
+    </div>
+    <div class="field"><label>Templates for future collections</label>
+      <div class="lab-templates" id="labTemplates"></div>
+    </div>
+    <div class="lab-actions">
+      <button class="secondary" onclick="refreshLabGrowth()">Refresh</button>
+      <button onclick="applyLabGrowth()">Apply to lab</button>
+      <button id="resetLabBtn" class="secondary danger" onclick="resetLab()" title="Clears every collection and reseeds to the lab's initial count -- the live equivalent of deleting the scenario Docker volume, no restart needed">Reset lab</button>
+      <span class="sub" id="labStatus"></span>
+    </div>
+  </div>
+</section>
 
 <main>
   <div class="panel">
     <h2>Attack Surface</h2>
-    <div class="body" id="surface"><div class="empty">no data yet — run a round</div></div>
+    <div class="body" id="surface"><div class="empty">no data yet — run an assessment</div></div>
   </div>
 
   <div class="panel">
     <h2>Findings</h2>
-    <div class="body" id="findings"><div class="empty">no findings yet — run a round</div></div>
+    <div class="body" id="findings"><div class="empty">no findings yet — run an assessment</div></div>
   </div>
 
   <div class="panel">
@@ -110,8 +181,184 @@
   </div>
 </main>
 
+<div id="guideBackdrop" class="guide-backdrop" onclick="toggleGuide(false)"></div>
+<aside id="guideSidebar" class="guide-sidebar" aria-hidden="true">
+  <div class="guide-head">
+    <h2 style="border:0; padding:0;">Guide</h2>
+    <button class="secondary" onclick="toggleGuide(false)">Close</button>
+  </div>
+  <div class="guide-body">
+
+    <section>
+      <h3>Known target URLs</h3>
+      <p class="sub">Every target this dashboard knows a working address for. The one marked <b>reachable</b> is the one that will actually work if you pick it right now — the other address for the same service only works if this dashboard is run a different way (see note).</p>
+      <div id="guideTargets"></div>
+    </section>
+
+    <section>
+      <h3>What the custom API lab's growth controls mean</h3>
+      <dl class="guide-dl">
+        <dt>Growth interval (s)</dt>
+        <dd>The lab's "heartbeat": how often, in seconds, it automatically adds one new vulnerability scenario ("collection") to its API. A smaller number grows the attack surface faster. <code>0</code> freezes growth entirely — nothing new appears until you raise it again.</dd>
+        <dt>Max collections (0 = unlimited)</dt>
+        <dd>A ceiling on the total number of scenarios the lab will ever create. Growth pauses automatically once this many exist. <code>0</code> means no ceiling — it grows forever. Raising the cap later resumes growth past the old limit, live, with no restart.</dd>
+        <dt>Vulnerability probability</dt>
+        <dd>The odds, from <code>0</code> (0%) to <code>1</code> (100%), that each <i>new</i> scenario going forward is actually left vulnerable rather than already secure. <code>0.5</code> is a coin flip (the default) — <code>0</code> creates only secure "negative control" cases, <code>1</code> makes every new one vulnerable. This never changes scenarios already created, only future ones.</dd>
+        <dt>Templates</dt>
+        <dd>Which of the 8 known vulnerability shapes (B1–B7, V1 — explained just below) the lab is allowed to pick from for new scenarios. Unchecking one just stops it being chosen going forward; it doesn't remove or change existing collections built from it.</dd>
+        <dt>Paused</dt>
+        <dd>Stops growth immediately regardless of the interval, without losing your other settings — flip it back off to resume exactly where it left off.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h3>The 8 vulnerability templates</h3>
+      <p class="sub">Every collection is assigned exactly one of these on creation. All 8 are the same underlying question -- "can one user reach a resource that isn't theirs?" -- asked through a different shape of API operation, because a fix that only covers the obvious case (plain <code>GET</code> by id) often still misses the other 7.</p>
+      <dl class="guide-dl">
+        <dt>B1 — <code>GET /documents/{id}</code></dt>
+        <dd>Reads another user's document directly, just by knowing/guessing its id — no ownership check on reads at all.</dd>
+        <dt>B2 — <code>POST /exports</code></dt>
+        <dd>Reads stay protected, but <i>exporting</i> the same document via a JSON body reference (<code>{"document_id": …}</code>) skips the ownership check — the flaw hides in a side door, not the obvious path.</dd>
+        <dt>B3 — <code>GET /projects/{project_id}/files/{file_id}</code></dt>
+        <dd>Checks you belong to the project you named, but never checks the <i>file</i> actually belongs to that project — pass your own project id with someone else's file id and it's handed over.</dd>
+        <dt>B4 — <code>POST /documents/batch</code></dt>
+        <dd>Only the <i>first</i> id in a batch request gets ownership-checked; a victim's id smuggled in second (or later) comes back unchecked.</dd>
+        <dt>B5 — <code>PATCH /documents/{id}</code></dt>
+        <dd>Same trap as B2 but for writes: reads are protected, yet you can overwrite another user's document content.</dd>
+        <dt>B6 — <code>POST /documents/{id}/share</code></dt>
+        <dd>You can mint a working public share link for a document you don't own. (The link itself being viewable by anyone is by design — the bug is being allowed to <i>create</i> one for someone else's file.)</dd>
+        <dt>B7 — <code>GET /organisations/{org_id}/invoices/{id}</code></dt>
+        <dd>Having the "billing" role at all is treated as sufficient — it never checks you actually belong to <i>that</i> organisation, so you can read another tenant's invoice. A cross-tenant leak.</dd>
+        <dt>V1 — <code>POST /admin/users/{id}/disable</code></dt>
+        <dd>An ordinary, non-admin user can disable someone else's account — no role check at all. The one role-based (not ownership-based) template; <code>admin</code> is the positive control that's actually supposed to do this.</dd>
+      </dl>
+      <p class="sub">B1–B7 all map to OWASP's <b>API1:2023 Broken Object Level Authorization</b>; V1 maps to <b>API5:2023 Broken Function Level Authorization</b> (it's about a role, not whose data it is). The "defended" version of each template runs the matching correct check instead.</p>
+    </section>
+
+    <section>
+      <h3>Why an assessment can be slow</h3>
+      <p class="sub">A VAmPI assessment (or any LLM-sampled check) loads a local model into memory via Ollama and drives it through several multi-turn tool-calling missions. On a RAM-constrained machine this is genuinely slow, and gets slower the more else is running at the same time — measured directly on an 8GB machine:</p>
+      <dl class="guide-dl">
+        <dt>Deterministic-only (no LLM)</dt>
+        <dd>Sub-2-second, regardless of how large the lab is. The deterministic checks (VAmPI's 3 "insecure by design" modules, and every custom-API collection) are plain HTTP requests — no model involved, no meaningful slowdown.</dd>
+        <dt>Full VAmPI assessment, lab + dashboard stopped</dt>
+        <dd>~218 seconds. This is the floor: even with nothing else competing for memory, loading a 4.6GB local model and running 5 LLM-driven missions sequentially just takes a few minutes on modest hardware.</dd>
+        <dt>Full VAmPI assessment, lab running with ~2,000 collections</dt>
+        <dd>~315 seconds — about 45% slower than the floor above. The lab's in-memory route table and the dashboard's larger state payload compete with Ollama for the same limited RAM and Docker's fixed VM allocation.</dd>
+        <dt>The dominant cost either way</dt>
+        <dd>A 4.6GB model plus Docker Desktop's VM (commonly ~3.8GB) already add up to more than 8GB of RAM on their own, before anything else on the machine is counted — so even the "floor" case above involves real memory pressure (swapping to disk), which is the main reason it's measured in minutes, not seconds.</dd>
+      </dl>
+      <p class="sub">What actually helps, in order of impact: pause or reset the lab before running an LLM-driven assessment (smaller effect, but free and immediate — see the confirmation prompt this page shows you for exactly this); use a smaller/quantized Ollama model; avoid running heavy unrelated apps at the same time; and, if the machine has been up for days, a reboot reclaims memory that's gradually fragmented/swapped out over a long uptime.</p>
+    </section>
+
+    <section>
+      <h3>How "LLM-sampled checks" works</h3>
+      <p class="sub">By default, a Custom API assessment checks <b>every</b> collection, instantly, with plain HTTP requests — no LLM, no reasoning, no cost. That stays the fast, exhaustive, always-on baseline.</p>
+      <p class="sub">Setting <b>LLM-sampled checks</b> above 0 adds an optional second opinion on top: that many <i>randomly chosen</i> collections also get attacked independently by your local Ollama model (<b>Ollama model</b> field), through the exact same tool-calling setup VAmPI's checks use — the model decides what request to send and reads the real response back; it's never just taking the model's word for it.</p>
+      <p class="sub">Why sampled, not exhaustive: the lab is unbounded and keeps growing (yours currently has well over a thousand collections) — running an LLM mission against every single one would take hours to re-prove the same 8 vulnerability shapes over and over. A small sample (5–20 is reasonable) is enough to confirm the deterministic baseline and the model agree, without turning every assessment into an overnight job.</p>
+      <p class="sub">Results show up in <b>Findings</b> as "LLM-driven check: …", tagged <code>kind: llm</code>, alongside (not replacing) the deterministic finding for that same collection — so you can compare the two.</p>
+    </section>
+
+    <section>
+      <h3>Tour of this page</h3>
+      <dl class="guide-dl">
+        <dt>Target URL</dt>
+        <dd>Where an assessment runs against. Pick a known address from the dropdown or type any other HTTP(S) URL.</dd>
+        <dt>Assessment type</dt>
+        <dd><b>Auto-detect API</b> reads the target's public OpenAPI schema and figures out whether it's VAmPI or the custom lab. <b>VAmPI attacker</b> / <b>Custom API assessment</b> force one and error out if the target doesn't actually match.</dd>
+        <dt>Ollama model</dt>
+        <dd>Which local LLM drives VAmPI's reasoning-based checks (SQL injection, mass assignment, enumeration, BOLA) and, if set above 0, the custom API lab's "LLM-sampled checks" too. Disabled when neither applies.</dd>
+        <dt>LLM-sampled checks</dt>
+        <dd>Custom API lab only. <code>0</code> (default) keeps the assessment fully deterministic. Above <code>0</code>, that many randomly chosen collections also get an independent LLM-driven cross-check — see "How LLM-sampled checks works" above.</dd>
+        <dt>Run assessment</dt>
+        <dd>Starts one assessment against the Target URL in the background. VAmPI assessments reset its demo database first; custom API ones do not.</dd>
+        <dt>Stop</dt>
+        <dd>Requests the running assessment to stop. It's cooperative, not instant: whatever single check or collection is already in flight finishes first, then the assessment ends and is recorded as "stopped" with whatever it found so far.</dd>
+        <dt>Reset state</dt>
+        <dd>Clears this dashboard's saved assessments, findings and log history. It does not touch the targets themselves or the custom lab's growth.</dd>
+        <dt>Assessments strip</dt>
+        <dd>One chip per past assessment, with its vulnerable/defended/inconclusive counts.</dd>
+        <dt>Attack Surface panel</dt>
+        <dd>Every endpoint discovered on the target so far, from its OpenAPI schema.</dd>
+        <dt>Findings panel</dt>
+        <dd>One row per check: <span class="verdict true" style="font-size:10px;">VULNERABLE</span> means the attack succeeded, <span class="verdict false" style="font-size:10px;">defended</span> means it was correctly blocked, <span class="verdict null" style="font-size:10px;">inconclusive</span> means the check itself failed to run cleanly (see its evidence) — never treat inconclusive as "safe".</dd>
+        <dt>Live log</dt>
+        <dd>A running narration of what the orchestrator/operator/scout are doing, in order, as an assessment executes.</dd>
+        <dt>Custom API lab controls</dt>
+        <dd>Only shown when the Target URL is the custom lab. Lets you read and change its growth knobs live, from this page, with no shell access needed.</dd>
+        <dt>Reset lab</dt>
+        <dd>Clears every collection and reseeds to the lab's initial count — the live equivalent of deleting the scenario Docker volume and restarting, without touching Docker at all. Irreversible; asks for confirmation first. Growth settings are kept; the applied remediation policy is not cleared (see the confirmation dialog for why that matters).</dd>
+      </dl>
+    </section>
+
+  </div>
+</aside>
+
 <script>
 const OWASP_SHORT = s => (s || "").split(" ")[0];
+const KNOWN_TARGETS = __KNOWN_TARGETS_JSON__;
+const LAB_TEMPLATES = ["B1", "B2", "B3", "B4", "B5", "B6", "B7", "V1"];
+
+function populateTargetOptions() {
+  const el = document.getElementById("targetOptions");
+  el.innerHTML = KNOWN_TARGETS.map(t => {
+    const tag = t.scope === "internal" ? "internal" : "host port";
+    const note = t.reachable ? "" : ", not reachable from this dashboard";
+    return `<option value="${escapeHtml(t.url)}" label="${escapeHtml(t.label)} (${tag}${note})"></option>`;
+  }).join("");
+}
+
+function renderGuideTargets() {
+  document.getElementById("guideTargets").innerHTML = KNOWN_TARGETS.map(t => `
+    <div class="guide-target">
+      <div><b>${escapeHtml(t.label)}</b> <span class="sub">(${t.scope === "internal" ? "Docker-internal" : "host-published port"})</span>
+        <span class="gt-badge ${t.reachable ? "yes" : "no"}">${t.reachable ? "reachable now" : "not reachable now"}</span></div>
+      <div class="gt-url">${escapeHtml(t.url)}</div>
+      <div class="gt-desc">${escapeHtml(t.description)}</div>
+    </div>`).join("");
+}
+
+function toggleGuide(open) {
+  document.getElementById("guideSidebar").classList.toggle("open", open);
+  document.getElementById("guideSidebar").setAttribute("aria-hidden", open ? "false" : "true");
+  document.getElementById("guideBackdrop").classList.toggle("open", open);
+}
+
+function populateLabTemplates() {
+  document.getElementById("labTemplates").innerHTML = LAB_TEMPLATES.map(t =>
+    `<label><input type="checkbox" value="${t}" checked> ${t}</label>`).join("");
+}
+
+// The lab panel targets whatever's in the main Target URL field; it's not a
+// separate target of its own, just an admin view onto that same address.
+function updateLabPanel() {
+  const target = document.getElementById("target").value.trim();
+  const looksLikeLab = target && KNOWN_TARGETS.some(t => t.kind === "custom" && t.url === target);
+  const show = looksLikeLab || document.getElementById("mode").value === "custom";
+  const panel = document.getElementById("labPanel");
+  const wasHidden = panel.classList.contains("hidden");
+  panel.classList.toggle("hidden", !show);
+  document.getElementById("labPanelTarget").textContent = target ? "— " + target : "";
+  if (show && wasHidden) refreshLabGrowth();
+}
+
+// The lab can grow to thousands of endpoints/findings -- rebuilding those
+// two tables' DOM on every 1.5s poll regardless of whether anything changed
+// is the main source of dashboard lag once a lab has been running a while.
+// These signatures are cheap to compute (no stringify of the whole payload)
+// and let poll() skip the expensive re-render when nothing actually moved.
+let _lastSurfaceSig = null, _lastFindingsSig = null, _lastLogSig = null;
+
+function _surfaceSig(surface) {
+  return (surface && surface.endpoints && surface.endpoints.length) || 0;
+}
+
+function _findingsSig(findings) {
+  const list = Object.values(findings || {});
+  let maxUpdated = 0;
+  for (const f of list) if (f.updated_at > maxUpdated) maxUpdated = f.updated_at;
+  return list.length + ":" + maxUpdated;
+}
 
 async function poll() {
   let res;
@@ -119,40 +366,54 @@ async function poll() {
   if (!res.ok) return;
   const state = await res.json();
   renderStatus(state.running);
-  renderRounds(state.rounds);
-  renderSurface(state.attack_surface);
-  renderFindings(state.findings);
-  renderLog(state.events);
+  renderAssessments(state.rounds);
+  const surfaceSig = _surfaceSig(state.attack_surface);
+  if (surfaceSig !== _lastSurfaceSig) { renderSurface(state.attack_surface); _lastSurfaceSig = surfaceSig; }
+  const findingsSig = _findingsSig(state.findings);
+  if (findingsSig !== _lastFindingsSig) { renderFindings(state.findings); _lastFindingsSig = findingsSig; }
+  // /api/state's events are the most recent 1000 only (server-side window),
+  // so length alone would stop changing once that cap is hit even while new
+  // events keep arriving -- the last event's own timestamp always moves.
+  const events = state.events || [];
+  const logSig = events.length + ":" + (events.length ? events[events.length - 1].ts : 0);
+  if (logSig !== _lastLogSig) { renderLog(events); _lastLogSig = logSig; }
 }
 
 function renderStatus(running) {
   const pill = document.getElementById("statusPill");
   const btn = document.getElementById("runBtn");
-  if (running && running.active) {
-    pill.textContent = "running: " + running.target;
+  const stopBtn = document.getElementById("stopBtn");
+  const resetLabBtn = document.getElementById("resetLabBtn");
+  const active = !!(running && running.active);
+  if (active) {
+    const sample = running.llm_sample ? ` (+${running.llm_sample} LLM-sampled)` : "";
+    pill.textContent = (running.stopping ? "stopping " : "running ") + (running.mode || "assessment") + sample + ": " + running.target;
     pill.className = "status running";
     btn.disabled = true;
+    stopBtn.disabled = !!running.stopping;
   } else {
     pill.textContent = running && running.error ? "error: " + running.error : "idle";
     pill.className = "status idle";
     btn.disabled = false;
+    stopBtn.disabled = true;
   }
+  resetLabBtn.disabled = active;
 }
 
-function renderRounds(rounds) {
-  const el = document.getElementById("rounds");
+function renderAssessments(rounds) {
+  const el = document.getElementById("assessments");
   if (!rounds || !rounds.length) { el.innerHTML = ""; return; }
   el.innerHTML = rounds.slice().reverse().map(r => `
-    <div class="round-chip">
-      <b>Round ${r.round}</b> · ${r.status}
-      ${r.status === "done" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
+    <div class="assessment-chip">
+      <b>Assessment ${r.round}</b> · ${r.status}
+      ${r.status === "done" || r.status === "stopped" ? `— <span class="v">${r.vulnerable ?? 0} vulnerable</span>, <span class="d">${r.defended ?? 0} defended</span>, <span class="i">${r.inconclusive ?? 0} inconclusive</span>` : ""}
     </div>`).join("");
 }
 
 function renderSurface(surface) {
   const el = document.getElementById("surface");
   if (!surface || !surface.endpoints || !surface.endpoints.length) {
-    el.innerHTML = '<div class="empty">no data yet — run a round</div>'; return;
+    el.innerHTML = '<div class="empty">no data yet — run an assessment</div>'; return;
   }
   el.innerHTML = `<table><tbody>` + surface.endpoints.map(e => `
     <tr>
@@ -169,14 +430,14 @@ function verdictLabel(v) { return v === true ? "VULNERABLE" : v === false ? "def
 function renderFindings(findings) {
   const el = document.getElementById("findings");
   const list = Object.values(findings || {});
-  if (!list.length) { el.innerHTML = '<div class="empty">no findings yet — run a round</div>'; return; }
+  if (!list.length) { el.innerHTML = '<div class="empty">no findings yet — run an assessment</div>'; return; }
   list.sort((a, b) => (b.verdict === true) - (a.verdict === true));
   el.innerHTML = `<table><tbody>` + list.map(f => `
     <tr>
       <td><span class="verdict ${f.verdict}">${verdictLabel(f.verdict)}</span></td>
       <td>
         <div class="finding-title">${escapeHtml(f.title)}</div>
-        <div class="finding-owasp">${escapeHtml(f.owasp)} · ${escapeHtml(f.target || 'legacy target unknown')} · ${f.kind} · round ${f.last_round} · ${f.status}</div>
+        <div class="finding-owasp">${escapeHtml(f.owasp)} · ${escapeHtml(f.target || 'legacy target unknown')} · ${f.kind} · assessment ${f.last_round} · ${f.status}</div>
         <div class="evidence">${escapeHtml(typeof f.evidence === 'object' ? JSON.stringify(f.evidence, null, 2) : (f.evidence || '').toString())}</div>
       </td>
     </tr>`).join("") + `</tbody></table>`;
@@ -197,20 +458,157 @@ function escapeHtml(s) {
   return (s ?? "").toString().replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
-async function runRound() {
+function updateMode() {
+  const mode = document.getElementById("mode").value;
+  const custom = mode === "custom";
+  const isVampi = mode === "vampi";
+  // LLM-sampled checks only ever apply to the custom API lab -- VAmPI's own
+  // LLM usage is governed entirely by the Ollama model field, so the field
+  // is meaningless (not just disabled) once VAmPI is explicitly selected.
+  const llmSampleField = document.getElementById("llmSampleField");
+  llmSampleField.classList.toggle("hidden", isVampi);
+  if (isVampi) document.getElementById("llmSample").value = "0";
+  const llmSample = Number(document.getElementById("llmSample").value) || 0;
+  // The Ollama model only matters for VAmPI, or for a custom-API assessment
+  // that also asked for LLM-sampled checks -- a pure deterministic custom
+  // assessment never touches it.
+  document.getElementById("model").disabled = custom && llmSample === 0;
+  document.getElementById("modeHelp").textContent = custom
+    ? "Runs endpoint discovery and deterministic custom API checks on every collection (no LLM). Set \"LLM-sampled checks\" above 0 to also cross-check that many random collections with Ollama -- see the Guide."
+    : "Detects VAmPI or the custom API from its public schema. VAmPI resets demo accounts/books before each assessment. \"LLM-sampled checks\" only applies when the target is the custom API lab.";
+  updateLabPanel();
+}
+
+function renderLabGrowth(data) {
+  document.getElementById("labGrowthSeconds").value = data.growth_seconds;
+  document.getElementById("labMaxCollections").value = data.max_collections;
+  document.getElementById("labVulnProb").value = data.vulnerability_probability;
+  document.getElementById("labPaused").checked = !!data.paused;
+  const active = new Set(data.template_ids || []);
+  document.querySelectorAll("#labTemplates input").forEach(cb => cb.checked = active.has(cb.value));
+  document.getElementById("labMeta").innerHTML =
+    `<b>${data.collections}</b> collections grown so far · seed <b>${data.seed}</b>`;
+}
+
+function setLabStatus(message, isError) {
+  const el = document.getElementById("labStatus");
+  el.textContent = message;
+  el.className = "sub " + (isError ? "error" : message ? "ok" : "");
+}
+
+async function refreshLabGrowth() {
+  const target = document.getElementById("target").value.trim();
+  setLabStatus("loading…", false);
+  try {
+    const res = await fetch("/api/lab-growth?target=" + encodeURIComponent(target));
+    const body = await res.json();
+    if (!res.ok) { setLabStatus(body.error || "could not load growth controls", true); return; }
+    renderLabGrowth(body);
+    setLabStatus("loaded", false);
+  } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
+}
+
+async function applyLabGrowth() {
+  const target = document.getElementById("target").value.trim();
+  const templates = [...document.querySelectorAll("#labTemplates input:checked")].map(cb => cb.value);
+  if (!templates.length) { setLabStatus("select at least one template", true); return; }
+  const body = {
+    target,
+    growth_seconds: Number(document.getElementById("labGrowthSeconds").value),
+    max_collections: Number(document.getElementById("labMaxCollections").value),
+    vulnerability_probability: Number(document.getElementById("labVulnProb").value),
+    paused: document.getElementById("labPaused").checked,
+    template_ids: templates,
+  };
+  setLabStatus("applying…", false);
+  try {
+    const res = await fetch("/api/lab-growth", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body) });
+    const resBody = await res.json();
+    if (!res.ok) { setLabStatus(resBody.error || "could not apply", true); return; }
+    renderLabGrowth(resBody);
+    setLabStatus("applied", false);
+  } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
+}
+
+async function resetLab() {
+  const target = document.getElementById("target").value.trim();
+  if (!confirm(
+    "Clear every collection on this lab and reseed to its initial count?\n\n" +
+    "This is irreversible and does NOT need a Docker restart. Growth settings " +
+    "(interval, cap, templates, odds) are kept as-is. It does NOT clear the " +
+    "applied remediation policy (lab-policy/policy.json) -- since collections " +
+    "are renumbered from 1 again, a stale policy entry for an old collection " +
+    "would silently re-apply to the new one with the same name. Clear that " +
+    "file yourself first if you also want a clean remediation slate."
+  )) return;
+  setLabStatus("resetting…", false);
+  try {
+    const res = await fetch("/api/lab-reset", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({target}) });
+    const resBody = await res.json();
+    if (!res.ok) { setLabStatus(resBody.error || "could not reset", true); return; }
+    renderLabGrowth(resBody);
+    setLabStatus("reset — back to " + resBody.collections + " collection(s)", false);
+  } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
+}
+
+// On a memory-constrained machine, Ollama's model and Docker's container
+// runtime are competing for the same finite host RAM as the lab's own
+// (potentially large, still-growing) in-memory route table. Measured
+// directly: a VAmPI LLM assessment took ~218s with the lab stopped vs.
+// ~315s with it running and large -- real overhead, worth a heads-up
+// before kicking off a slow run blind. See the Guide's "Why an assessment
+// can be slow" section for the full numbers.
+async function warnAboutLabContention(mode, llmSample) {
+  const usesOllama = mode !== "custom" || llmSample > 0;
+  if (!usesOllama) return true;
+  const lab = KNOWN_TARGETS.find(t => t.kind === "custom" && t.reachable);
+  if (!lab) return true;
+  try {
+    const res = await fetch("/api/lab-growth?target=" + encodeURIComponent(lab.url));
+    if (!res.ok) return true;
+    const data = await res.json();
+    if (!data.paused && data.collections > 200) {
+      return confirm(
+        `The custom API lab has ${data.collections} collections and is actively growing ` +
+        `(every ${data.growth_seconds}s, unpaused). This competes with Ollama for memory and can ` +
+        `slow an LLM-driven assessment down significantly on a RAM-constrained machine.\n\n` +
+        `Consider pausing the lab first (Custom API lab controls → Paused) for a faster run.\n\n` +
+        `Continue anyway?`
+      );
+    }
+  } catch (e) { /* non-fatal -- never block a run over this diagnostic check */ }
+  return true;
+}
+
+async function runAssessment() {
   const target = document.getElementById("target").value.trim();
   const model = document.getElementById("model").value.trim();
-  const res = await fetch("/api/run", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({target, model}) });
-  if (!res.ok) { const body = await res.json().catch(() => ({})); alert(body.error || "could not start round"); }
+  const mode = document.getElementById("mode").value;
+  const llm_sample = Number(document.getElementById("llmSample").value) || 0;
+  if (!(await warnAboutLabContention(mode, llm_sample))) return;
+  const res = await fetch("/api/run", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({target, model, mode, llm_sample}) });
+  if (!res.ok) { const body = await res.json().catch(() => ({})); alert(body.error || "could not start assessment"); }
+  poll();
+}
+
+async function stopAssessment() {
+  document.getElementById("stopBtn").disabled = true;
+  const res = await fetch("/api/stop", { method: "POST" });
+  if (!res.ok) { const body = await res.json().catch(() => ({})); alert(body.error || "could not stop assessment"); }
   poll();
 }
 
 async function resetState() {
-  if (!confirm("Clear all rounds, findings and log history?")) return;
+  if (!confirm("Clear all assessments, findings and log history?")) return;
   await fetch("/api/reset", { method: "POST" });
   poll();
 }
 
+populateTargetOptions();
+populateLabTemplates();
+renderGuideTargets();
+updateMode();
+document.addEventListener("keydown", e => { if (e.key === "Escape") toggleGuide(false); });
 poll();
 setInterval(poll, 1500);
 </script>

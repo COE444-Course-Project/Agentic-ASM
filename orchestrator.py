@@ -7,27 +7,30 @@ alternation or attacker-defender loop is implemented.
 """
 from __future__ import annotations
 
+from typing import Callable, Optional
+
 from agents import operator, planner, scout
 from core import state_store as store
 
 
-async def run_attacker_round(base: str, model: str) -> dict:
+async def run_attacker_round(base: str, model: str, should_stop: Optional[Callable[[], bool]] = None) -> dict:
     round_id = store.start_round(base)
     store.log_event("orchestrator", f"round {round_id} started against {base}", round_id)
 
     surface = scout.run(base, round_id)
     findings_so_far = store.get_findings()
     queue = planner.plan(surface, operator.MODULES, round_id, findings_so_far)
-    findings = await operator.run_queue(base, queue, model, round_id)
+    findings = await operator.run_queue(base, queue, model, round_id, should_stop=should_stop)
 
     summary = {
         "vulnerable": sum(1 for f in findings if f["verdict"] is True),
         "defended": sum(1 for f in findings if f["verdict"] is False),
         "inconclusive": sum(1 for f in findings if f["verdict"] is None),
     }
-    store.finish_round(round_id, summary)
-    store.log_event("orchestrator", f"round {round_id} finished: {summary}", round_id)
-    return {"round": round_id, "surface": surface, "findings": findings, "summary": summary}
+    status = "stopped" if should_stop and should_stop() else "done"
+    store.finish_round(round_id, summary, status=status)
+    store.log_event("orchestrator", f"round {round_id} {status}: {summary}", round_id)
+    return {"round": round_id, "surface": surface, "findings": findings, "summary": summary, "status": status}
 
 
 async def run_defender_round(base: str, policy_file=None, client=None) -> dict:

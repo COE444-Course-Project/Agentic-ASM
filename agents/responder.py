@@ -1,6 +1,6 @@
 """Defender responder: dry-run proposals or a verified lab policy remediation.
 
-Only the lab-bola adapter is executable. It reads no evaluator ground truth.
+Legacy ownership and B1–B7/V1 adapters are executable. It reads no evaluator ground truth.
 An advisory file lock serializes policy writers through verification/rollback.
 """
 import copy
@@ -11,6 +11,7 @@ from pathlib import Path
 from core import state_store as store
 from core.lab_checks import probe
 from core.lab_policy import COLLECTION, read_policy, write_policy
+from core.template_catalog import TEMPLATES
 
 
 def settled_probe(client, name: str, *, expect_secure=False) -> dict:
@@ -40,7 +41,8 @@ def apply_lab(plans: list[dict], client, policy_file: Path) -> list[dict]:
     for plan in plans:
         result = {**plan, "execution": "apply", "applied": False, "verified": False}
         name = plan.get("collection")
-        if plan.get("module_id") != "lab-bola" or not isinstance(name, str) or not COLLECTION.fullmatch(name):
+        supported = plan.get("module_id") == "lab-bola" or (plan.get("template") in TEMPLATES and plan.get("module_id") == f"lab-{plan['template']}")
+        if not supported or not isinstance(name, str) or not COLLECTION.fullmatch(name):
             result.update(status="unsupported", blocked_by="No executable adapter for this finding")
             results.append(result)
             continue
@@ -58,7 +60,16 @@ def apply_lab(plans: list[dict], client, policy_file: Path) -> list[dict]:
                 else:
                     previous = read_policy(policy_file)
                     policy = copy.deepcopy(previous)
-                    policy["collections"][name] = True
+                    template = before.get("template", "legacy")
+                    if template != plan.get("template", "legacy") and not (template == "legacy" and plan.get("template") is None):
+                        raise RuntimeError("Finding template does not match the live operation")
+                    if template == "legacy":
+                        policy["collections"][name] = True
+                    else:
+                        existing = policy["collections"].get(name, {})
+                        if not isinstance(existing, dict):
+                            raise ValueError("Legacy policy cannot be reused for a typed scenario")
+                        policy["collections"][name] = {**existing, template: True}
                     write_policy(policy_file, policy)
                     wrote = True
                     result["applied"] = True

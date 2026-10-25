@@ -180,13 +180,13 @@ def start_round(target: str) -> int:
     return round_id
 
 
-def finish_round(round_id: int, summary: dict) -> None:
+def finish_round(round_id: int, summary: dict, status: str = "done") -> None:
     with _lock:
         rounds = _read_json(ROUNDS_PATH, [])
         for r in rounds:
             if r["round"] == round_id:
                 r["finished_at"] = time.time()
-                r["status"] = "done"
+                r["status"] = status
                 r.update(summary)
         _write_json(ROUNDS_PATH, rounds)
 

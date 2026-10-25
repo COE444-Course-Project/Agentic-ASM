@@ -18,11 +18,12 @@ one concrete way that goes wrong).
 from __future__ import annotations
 
 import os
+import json
 import re
 import sys
 import time
 from pathlib import Path
-from typing import Optional
+from typing import Callable, Optional
 
 import httpx
 import jwt
@@ -35,6 +36,33 @@ RECURSION_LIMIT = 25
 
 
 # --------------------------------------------------------------------- utils
+
+def validate_response(response):
+    """Infrastructure errors are not evidence of a working defense."""
+    if response.status_code not in (200, 201, 204, 400, 401, 403, 404, 405, 422):
+        raise ValueError(f"Unusable HTTP {response.status_code} from {response.request.url}")
+    if "An error occurred!" in response.text or "OperationalError" in response.text:
+        raise ValueError("Target returned an internal/database error")
+
+
+def tool_payload(content):
+    if isinstance(content, str):
+        content = json.loads(content)
+    if isinstance(content, list):
+        content = json.loads(next(b["text"] for b in content if b.get("type") == "text"))
+    if not isinstance(content, dict) or not isinstance(content.get("status_code"), int):
+        raise ValueError("Tool returned no usable HTTP response")
+    return content
+
+
+def validate_records(records):
+    for record in records:
+        payload = tool_payload(record["content"])
+        status = payload["status_code"]
+        body = str(payload.get("body", ""))
+        if status not in (200, 201, 204, 400, 401, 403, 404, 405, 422) or "An error occurred!" in body or "OperationalError" in body:
+            raise ValueError(f"Tool received unusable HTTP {status} or an internal/database error")
+
 
 def _status_ok(content: str) -> bool:
     return re.search(r'status_code["\']?\s*:\s*200', content) is not None
@@ -52,6 +80,7 @@ def _login(base: str, username: str, password: str) -> Optional[str]:
     try:
         with httpx.Client(timeout=10) as client:
             r = client.post(f"{base}/users/v1/login", json={"username": username, "password": password})
+            validate_response(r)
             return r.json().get("auth_token")
     except Exception:
         return None
@@ -76,7 +105,16 @@ def _pick_victim_book(base: str) -> tuple[Optional[str], Optional[str]]:
 def _extract_tool_calls(messages) -> list[dict]:
     """Pair each ToolMessage with the args of the AIMessage tool_call that
     produced it, so a check() can look at exactly which request produced
-    which response instead of grepping one big blob of transcript text."""
+    which response instead of grepping one big blob of transcript text.
+
+    A small local model sometimes calls http_request with a field missing
+    (e.g. no `method`); the MCP server rejects that *before* it ever reaches
+    our tool, returning a plain-text validation error instead of a JSON HTTP
+    response. The model typically notices and retries correctly a message
+    or two later. That one malformed attempt carries no evidence either
+    way -- skip it rather than letting tool_payload's JSONDecodeError on
+    non-JSON error text abort the whole module and throw away a real,
+    successful retry sitting right after it in the same transcript."""
     args_by_id: dict[str, dict] = {}
     for m in messages:
         for call in getattr(m, "tool_calls", None) or []:
@@ -84,9 +122,13 @@ def _extract_tool_calls(messages) -> list[dict]:
     records = []
     for m in messages:
         if type(m).__name__ == "ToolMessage":
+            try:
+                payload = tool_payload(m.content)
+            except (ValueError, StopIteration):
+                continue
             records.append({
                 "args": args_by_id.get(getattr(m, "tool_call_id", None), {}),
-                "content": str(m.content),
+                "content": json.dumps(payload),
             })
     return records
 
@@ -124,6 +166,7 @@ async def build_agent(model: str):
 def check_debug(records, base, ctx):
     with httpx.Client(timeout=10) as client:
         r = client.get(f"{base}/users/v1/_debug")
+    validate_response(r)
     ok = r.status_code == 200 and re.search(r'"password"\s*:\s*"[^"]+"', r.text) is not None
     return ok, r.text[:300]
 
@@ -131,6 +174,7 @@ def check_debug(records, base, ctx):
 def check_book_listing(records, base, ctx):
     with httpx.Client(timeout=10) as client:
         r = client.get(f"{base}/books/v1")
+    validate_response(r)
     ok = r.status_code == 200 and '"book_title"' in r.text
     return ok, r.text[:300]
 
@@ -141,6 +185,7 @@ def check_forged_jwt(records, base, ctx):
         forged = forged.decode()
     with httpx.Client(timeout=10) as client:
         r = client.get(f"{base}/me", headers={"Authorization": f"Bearer {forged}"})
+    validate_response(r)
     ok = r.status_code == 200 and re.search(r'"admin"\s*:\s*true', r.text, re.I) is not None
     return ok, r.text[:300]
 
@@ -154,6 +199,7 @@ def check_mass_assignment(records, base, ctx):
         return None, "attacker account was registered but could not log back in to verify"
     with httpx.Client(timeout=10) as client:
         r = client.get(f"{base}/me", headers={"Authorization": f"Bearer {token}"})
+    validate_response(r)
     ok = r.status_code == 200 and re.search(r'"admin"\s*:\s*true', r.text, re.I) is not None
     return ok, r.text[:400]
 
@@ -196,6 +242,7 @@ def check_bola_password(records, base, ctx):
         return None, f"agent's PUT never carried a real bearer token, headers were: {put_headers[:200]}"
     with httpx.Client(timeout=10) as client:
         r = client.post(f"{base}/users/v1/login", json={"username": "name2", "password": "hacked123"})
+    validate_response(r)
     ok = r.status_code == 200 and "auth_token" in r.text
     return ok, f"PUT headers: {put_headers[:200]} | verify login: {r.text[:300]}"
 
@@ -341,10 +388,16 @@ def _label(verdict: Optional[bool]) -> str:
 
 # --------------------------------------------------------------- execution
 
-async def run_queue(base: str, queue: list[dict], model: str, round_id: int) -> list[dict]:
+async def run_queue(base: str, queue: list[dict], model: str, round_id: int,
+                     should_stop: Optional[Callable[[], bool]] = None) -> list[dict]:
     """Execute a Planner-ordered queue of modules. Each Finding is written
     to the state store the moment its module finishes, so the GUI sees
-    them appear one at a time instead of all at the end."""
+    them appear one at a time instead of all at the end.
+
+    `should_stop` is checked between modules only (cooperative cancellation):
+    a module already mid-flight -- in particular an in-progress Ollama/MCP
+    call -- always finishes before the queue stops, there is no mid-request
+    preemption."""
     findings = []
     agent = None
     if any(m["kind"] == "llm" for m in queue):
@@ -352,6 +405,9 @@ async def run_queue(base: str, queue: list[dict], model: str, round_id: int) -> 
         agent = await build_agent(model)
 
     for module in queue:
+        if should_stop and should_stop():
+            store.log_event("operator", "round stopped by user before next module", round_id)
+            break
         store.log_event("operator", f"running module: {module['title']}", round_id, data={"module": module["id"]})
         try:
             if module["kind"] == "deterministic":
@@ -373,6 +429,7 @@ async def run_queue(base: str, queue: list[dict], model: str, round_id: int) -> 
                             f"tool call: {rec['args'].get('method', '?')} {rec['args'].get('url', '?')}",
                             round_id, data=rec,
                         )
+                    validate_records(records)
                     verdict, evidence = module["check"](records, base, ctx)
         except Exception as exc:
             verdict, evidence = None, f"module run failed: {exc}"

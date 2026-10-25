@@ -1,11 +1,14 @@
 """Fixture-based HTTP assessment. No access to scenario labels or policy files.
 
 This is a deterministic lab adapter, not general autonomous discovery. It uses
-two supplied lab identities and validates both directions of object ownership.
+supplied lab identities and validates supported operation effects and cleanup.
 """
 import re
+from typing import Callable, Optional
 
 from core import state_store as store
+from core.template_catalog import TEMPLATES
+from core.template_checks import template_for, probe_template
 
 PATH = re.compile(r"/api/(collection_[0-9]{4,})/items/\{item_id\}")
 
@@ -17,7 +20,19 @@ def discover(client) -> list[str]:
                    if (match := PATH.fullmatch(path)) and "get" in operations})
 
 
-def probe(client, collection: str) -> dict:
+def probe(client, collection: str, template=None) -> dict:
+    if not re.fullmatch(r"collection_[0-9]{4,}", collection):
+        raise ValueError("Unsupported collection name")
+    if template is None:
+        response = client.get("/openapi.json")
+        response.raise_for_status()
+        template = template_for(response.json()["paths"], collection)
+    if template != "legacy":
+        return probe_template(client, collection, template)
+    return probe_legacy(client, collection)
+
+
+def probe_legacy(client, collection: str) -> dict:
     if not re.fullmatch(r"collection_[0-9]{4,}", collection):
         raise ValueError("Unsupported collection name")
     prefix = f"/api/{collection}/items"
@@ -47,15 +62,27 @@ def probe(client, collection: str) -> dict:
             "verified_secure": healthy and blocked}
 
 
-def assess(client, target: str) -> dict:
-    """One assessment pass; save endpoint-scoped findings for the defender."""
+def assess(client, target: str, should_stop: Optional[Callable[[], bool]] = None) -> dict:
+    """One assessment pass; save endpoint-scoped findings for the defender.
+
+    `should_stop` is checked between collections only: the probe already in
+    flight for the current collection always finishes first."""
     target = target.rstrip("/")
     names = discover(client)
+    spec = client.get("/openapi.json")
+    spec.raise_for_status()
+    paths = spec.json()["paths"]
     round_id = store.start_round(target)
     findings = []
+    stopped = False
     for name in names:
+        if should_stop and should_stop():
+            store.log_event("operator", "round stopped by user before next collection", round_id)
+            stopped = True
+            break
+        template = template_for(paths, name)
         try:
-            evidence = probe(client, name)
+            evidence = probe(client, name, template)
         except Exception as exc:
             evidence = {"collection": name, "verdict": None, "error": str(exc)}
         finding = {"id": store.finding_id(target, f"lab-bola:{name}"), "module_id": "lab-bola",
@@ -63,11 +90,18 @@ def assess(client, target: str) -> dict:
                    "method": "GET", "kind": "deterministic", "title": f"Object ownership: {name}",
                    "owasp": "API1:2023 Broken Object Level Authorization",
                    "verdict": evidence["verdict"], "evidence": evidence}
+        if template != "legacy":
+            method, suffix, title = TEMPLATES[template]
+            finding.update(id=store.finding_id(target, f"lab-{template}:{name}"),
+                           module_id=f"lab-{template}", template=template,
+                           endpoint=f"/api/{name}{suffix}", method=method, title=f"{template}: {title} ({name})",
+                           owasp="API5:2023 Broken Function Level Authorization" if template == "V1" else finding["owasp"])
         store.upsert_finding(finding, round_id)
         store.log_event("operator", f"lab assessment {name}: {finding['verdict']}", round_id)
         findings.append(finding)
     summary = {"vulnerable": sum(f["verdict"] is True for f in findings),
                "defended": sum(f["verdict"] is False for f in findings),
                "inconclusive": sum(f["verdict"] is None for f in findings)}
-    store.finish_round(round_id, summary)
-    return {"round": round_id, "target": target, "findings": findings, "summary": summary}
+    status = "stopped" if stopped else "done"
+    store.finish_round(round_id, summary, status=status)
+    return {"round": round_id, "target": target, "findings": findings, "summary": summary, "status": status}

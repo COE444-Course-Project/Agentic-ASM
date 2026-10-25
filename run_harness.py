@@ -19,12 +19,12 @@ from lab.app import Settings, create_app
 from orchestrator import run_defender_round
 
 
-def evaluate(collections=6, growth_seconds=.05, timeout=10, seed=444) -> dict:
+def evaluate(collections=32, growth_seconds=.05, timeout=10, seed=444) -> dict:
     if (collections < 4 or not math.isfinite(growth_seconds) or not math.isfinite(timeout)
             or growth_seconds <= 0 or timeout <= 0):
         raise ValueError("Need at least 4 collections and positive interval/timeout")
     report = {"version": 1, "transport": "ASGI TestClient", "seed": seed,
-              "scope": "one ownership template, two fixed identities, one defender pass",
+              "scope": "random B1-B7/V1 templates, fixed lab identities, one defender pass",
               "checks": {}, "failures": []}
 
     def check(name, condition):
@@ -55,7 +55,7 @@ def evaluate(collections=6, growth_seconds=.05, timeout=10, seed=444) -> dict:
                 check("timed_growth", len(names) == collections)
                 check("existing_routes_retained", set(initial) <= set(names))
                 schema = client.get("/openapi.json").json()
-                check("two_routes_per_collection", len(schema["paths"]) == 2 + 2 * collections)
+                check("all_collections_have_fixture_routes", all(f"/api/{name}/items" in schema["paths"] for name in names))
                 check("no_ground_truth_endpoint", client.get("/scenario.json").status_code == 404)
                 check("no_labels_in_schema", "vulnerable" not in json.dumps(schema))
                 # Only the evaluator knows labels, after black-box assessment.
@@ -74,6 +74,12 @@ def evaluate(collections=6, growth_seconds=.05, timeout=10, seed=444) -> dict:
                         key = ("true_" if actual == expected else "false_") + ("positives" if actual else "negatives")
                         counts[key] += 1
                 report["classification"] = counts
+                report["per_template"] = {}
+                for finding in baseline["findings"]:
+                    template = finding.get("template", "legacy")
+                    row = report["per_template"].setdefault(template, {"tested": 0, "vulnerable": 0, "secure": 0, "inconclusive": 0})
+                    row["tested"] += 1
+                    row["vulnerable" if finding["verdict"] is True else "secure" if finding["verdict"] is False else "inconclusive"] += 1
                 check("baseline_matches_ground_truth", counts["false_positives"] == counts["false_negatives"] == counts["inconclusive"] == 0)
                 report["discovery_delay_seconds"] = {
                     e["name"]: max(0, seen[e["name"]] - e["introduced_at"])
@@ -93,6 +99,8 @@ def evaluate(collections=6, growth_seconds=.05, timeout=10, seed=444) -> dict:
                         owner = client.get(f"{prefix}/{owned}", headers=headers)
                         check(f"{name}.{user}.owner_preserved", owner.status_code == 200 and owner.json().get("owner") == user)
                         check(f"{name}.{user}.cross_blocked", client.get(f"{prefix}/{other}", headers=headers).status_code == 403)
+                for name in names:
+                    check(f"{name}.operation_verified", probe(client, name)["verified_secure"])
                 report["remediation_rate"] = defender["verified"] / expected_patches if expected_patches else None
                 check("ground_truth_unchanged", json.loads(settings.state_file.read_text()) == manifest_before)
             # New app process state, same files: routes and authorization survive.
@@ -111,7 +119,7 @@ def evaluate(collections=6, growth_seconds=.05, timeout=10, seed=444) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=Path("reports/lab-validation.json"))
-    parser.add_argument("--collections", type=int, default=6)
+    parser.add_argument("--collections", type=int, default=32)
     parser.add_argument("--growth-seconds", type=float, default=.05)
     parser.add_argument("--timeout", type=float, default=10)
     parser.add_argument("--seed", type=int, default=444)

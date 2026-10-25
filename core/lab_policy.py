@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import re
 import time
+from core.template_catalog import TEMPLATES
 
 COLLECTION = re.compile(r"collection_[0-9]{4,}")
 
@@ -25,7 +26,8 @@ def read_policy(path: Path, *, allow_missing: bool = True) -> dict:
         time.sleep(.05)
     if (not isinstance(data, dict) or data.get("version") != 1
             or not isinstance(data.get("collections"), dict)
-            or any(not COLLECTION.fullmatch(k) or v is not True
+            or any(not COLLECTION.fullmatch(k) or not (v is True or (
+                       isinstance(v, dict) and all(t in TEMPLATES and enabled is True for t, enabled in v.items())))
                    for k, v in data["collections"].items())):
         raise ValueError("Invalid lab policy")
     return data

@@ -1,0 +1,503 @@
+{
+  "round": 1,
+  "target": "http://localhost:18001",
+  "findings": [
+    {
+      "id": "http://localhost:18001::lab-B1:collection_0001",
+      "module_id": "lab-B1",
+      "target": "http://localhost:18001",
+      "collection": "collection_0001",
+      "endpoint": "/api/collection_0001/documents/{id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B1: Direct document read (collection_0001)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0001",
+        "template": "B1",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B1"
+    },
+    {
+      "id": "http://localhost:18001::lab-B1:collection_0002",
+      "module_id": "lab-B1",
+      "target": "http://localhost:18001",
+      "collection": "collection_0002",
+      "endpoint": "/api/collection_0002/documents/{id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B1: Direct document read (collection_0002)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0002",
+        "template": "B1",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B1"
+    },
+    {
+      "id": "http://localhost:18001::lab-B2:collection_0003",
+      "module_id": "lab-B2",
+      "target": "http://localhost:18001",
+      "collection": "collection_0003",
+      "endpoint": "/api/collection_0003/exports",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B2: Document export (collection_0003)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0003",
+        "template": "B2",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B2"
+    },
+    {
+      "id": "http://localhost:18001::lab-B2:collection_0004",
+      "module_id": "lab-B2",
+      "target": "http://localhost:18001",
+      "collection": "collection_0004",
+      "endpoint": "/api/collection_0004/exports",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B2: Document export (collection_0004)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0004",
+        "template": "B2",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B2"
+    },
+    {
+      "id": "http://localhost:18001::lab-B3:collection_0005",
+      "module_id": "lab-B3",
+      "target": "http://localhost:18001",
+      "collection": "collection_0005",
+      "endpoint": "/api/collection_0005/projects/{project_id}/files/{file_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B3: Nested project file (collection_0005)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0005",
+        "template": "B3",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B3"
+    },
+    {
+      "id": "http://localhost:18001::lab-B3:collection_0006",
+      "module_id": "lab-B3",
+      "target": "http://localhost:18001",
+      "collection": "collection_0006",
+      "endpoint": "/api/collection_0006/projects/{project_id}/files/{file_id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B3: Nested project file (collection_0006)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0006",
+        "template": "B3",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B3"
+    },
+    {
+      "id": "http://localhost:18001::lab-B4:collection_0007",
+      "module_id": "lab-B4",
+      "target": "http://localhost:18001",
+      "collection": "collection_0007",
+      "endpoint": "/api/collection_0007/documents/batch",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B4: Batch document read (collection_0007)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0007",
+        "template": "B4",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B4"
+    },
+    {
+      "id": "http://localhost:18001::lab-B4:collection_0008",
+      "module_id": "lab-B4",
+      "target": "http://localhost:18001",
+      "collection": "collection_0008",
+      "endpoint": "/api/collection_0008/documents/batch",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B4: Batch document read (collection_0008)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0008",
+        "template": "B4",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B4"
+    },
+    {
+      "id": "http://localhost:18001::lab-B5:collection_0009",
+      "module_id": "lab-B5",
+      "target": "http://localhost:18001",
+      "collection": "collection_0009",
+      "endpoint": "/api/collection_0009/documents/{id}",
+      "method": "PATCH",
+      "kind": "deterministic",
+      "title": "B5: Document modification (collection_0009)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0009",
+        "template": "B5",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B5"
+    },
+    {
+      "id": "http://localhost:18001::lab-B5:collection_0010",
+      "module_id": "lab-B5",
+      "target": "http://localhost:18001",
+      "collection": "collection_0010",
+      "endpoint": "/api/collection_0010/documents/{id}",
+      "method": "PATCH",
+      "kind": "deterministic",
+      "title": "B5: Document modification (collection_0010)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0010",
+        "template": "B5",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B5"
+    },
+    {
+      "id": "http://localhost:18001::lab-B6:collection_0011",
+      "module_id": "lab-B6",
+      "target": "http://localhost:18001",
+      "collection": "collection_0011",
+      "endpoint": "/api/collection_0011/documents/{id}/share",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B6: Document sharing (collection_0011)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0011",
+        "template": "B6",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B6"
+    },
+    {
+      "id": "http://localhost:18001::lab-B6:collection_0012",
+      "module_id": "lab-B6",
+      "target": "http://localhost:18001",
+      "collection": "collection_0012",
+      "endpoint": "/api/collection_0012/documents/{id}/share",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "B6: Document sharing (collection_0012)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0012",
+        "template": "B6",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B6"
+    },
+    {
+      "id": "http://localhost:18001::lab-B7:collection_0013",
+      "module_id": "lab-B7",
+      "target": "http://localhost:18001",
+      "collection": "collection_0013",
+      "endpoint": "/api/collection_0013/organisations/{org_id}/invoices/{id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B7: Tenant invoice access (collection_0013)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0013",
+        "template": "B7",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_foreign_scope_status": 200,
+          "alice_foreign_scope_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_foreign_scope_status": 200,
+          "bob_foreign_scope_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "B7"
+    },
+    {
+      "id": "http://localhost:18001::lab-B7:collection_0014",
+      "module_id": "lab-B7",
+      "target": "http://localhost:18001",
+      "collection": "collection_0014",
+      "endpoint": "/api/collection_0014/organisations/{org_id}/invoices/{id}",
+      "method": "GET",
+      "kind": "deterministic",
+      "title": "B7: Tenant invoice access (collection_0014)",
+      "owasp": "API1:2023 Broken Object Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0014",
+        "template": "B7",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "B7"
+    },
+    {
+      "id": "http://localhost:18001::lab-V1:collection_0015",
+      "module_id": "lab-V1",
+      "target": "http://localhost:18001",
+      "collection": "collection_0015",
+      "endpoint": "/api/collection_0015/admin/users/{id}/disable",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "V1: Administrator account disable (collection_0015)",
+      "owasp": "API5:2023 Broken Function Level Authorization",
+      "verdict": true,
+      "evidence": {
+        "collection": "collection_0015",
+        "template": "V1",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "template": "V1"
+    },
+    {
+      "id": "http://localhost:18001::lab-V1:collection_0016",
+      "module_id": "lab-V1",
+      "target": "http://localhost:18001",
+      "collection": "collection_0016",
+      "endpoint": "/api/collection_0016/admin/users/{id}/disable",
+      "method": "POST",
+      "kind": "deterministic",
+      "title": "V1: Administrator account disable (collection_0016)",
+      "owasp": "API5:2023 Broken Function Level Authorization",
+      "verdict": false,
+      "evidence": {
+        "collection": "collection_0016",
+        "template": "V1",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      },
+      "template": "V1"
+    }
+  ],
+  "summary": {
+    "vulnerable": 8,
+    "defended": 8,
+    "inconclusive": 0
+  }
+}

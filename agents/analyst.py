@@ -1,5 +1,6 @@
 """Rule-based triage draft. Proposals are not independently verified findings."""
 from core import state_store as store
+from core.template_catalog import TEMPLATES
 
 PROPOSALS = {
     "lab-bola": "Enforce object ownership for this lab collection using its policy overlay",
@@ -19,10 +20,13 @@ def triage(findings: list[dict]) -> list[dict]:
     for finding in findings:
         module = finding.get("module_id", finding["id"])
         proposal = PROPOSALS.get(module)
+        template = finding.get("template")
+        if module == f"lab-{template}" and template in TEMPLATES:
+            proposal = f"Enforce {template} authorization on this scenario operation"
         plans.append({
             "finding_id": finding["id"], "target": finding["target"],
             "observed_round": finding.get("last_round"),
-            "module_id": module, "collection": finding.get("collection"),
+            "module_id": module, "collection": finding.get("collection"), "template": template,
             "proposal": proposal or "Manual investigation required: no remediation recipe",
             "status": "proposed" if proposal else "needs_review",
             "verification": ["Replay the original exploit and confirm it is blocked",

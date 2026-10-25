@@ -20,7 +20,7 @@ class PolicyPropagationTests(unittest.TestCase):
             root = Path(folder)
             policy = root / "policy.json"
             write_policy(policy, {"version": 1, "collections": {"collection_0001": True}})
-            app = create_app(Settings(state_file=root / "scenario.json", policy_file=policy, growth_seconds=0))
+            app = create_app(Settings(template_ids=("legacy",), state_file=root / "scenario.json", policy_file=policy, growth_seconds=0))
             with TestClient(app) as client:
                 policy.unlink()
                 with patch("core.lab_policy.time.sleep"):

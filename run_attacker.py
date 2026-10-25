@@ -81,15 +81,9 @@ async def main() -> None:
     if args.skip_llm:
         operator.MODULES = [m for m in operator.MODULES if m["kind"] == "deterministic"]
 
-    if not args.no_reset:
-        try:
-            with httpx.Client(timeout=10) as client:
-                client.get(f"{base}/createdb")
-            print(f"reset {base} to its seeded state via /createdb")
-        except Exception as exc:
-            print(f"warning: could not reset {base} via /createdb ({exc}); results may be stale")
-
+    from core.vampi_setup import prepare_vampi
     for i in range(args.rounds):
+        prepare_vampi(base, reset=not args.no_reset)
         print(f"\n--- attacker round {i + 1}/{args.rounds} ---")
         result = await orchestrator.run_attacker_round(base, args.model)
         _print_round(result)

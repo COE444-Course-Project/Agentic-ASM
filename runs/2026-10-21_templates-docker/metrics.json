@@ -1,0 +1,136 @@
+{
+  "started_at": "2026-10-21T13:19:51.961725+04:00",
+  "target": "http://localhost:18001",
+  "durations_seconds": {
+    "growth_observation": 1.0530060000000958,
+    "assessment": 0.7252473749995261,
+    "defense_and_verification": 0.8253407089996472,
+    "independent_reassessment": 0.48279399999955785
+  },
+  "growth_before": {
+    "observed_at": "2026-10-21T13:19:52.053718+04:00",
+    "collections": [
+      "collection_0001",
+      "collection_0002",
+      "collection_0003",
+      "collection_0004",
+      "collection_0005",
+      "collection_0006",
+      "collection_0007",
+      "collection_0008",
+      "collection_0009",
+      "collection_0010",
+      "collection_0011",
+      "collection_0012",
+      "collection_0013",
+      "collection_0014",
+      "collection_0015",
+      "collection_0016"
+    ],
+    "endpoint_method_pairs": 64
+  },
+  "growth_after": {
+    "observed_at": "2026-10-21T13:19:53.065699+04:00",
+    "collections": [
+      "collection_0001",
+      "collection_0002",
+      "collection_0003",
+      "collection_0004",
+      "collection_0005",
+      "collection_0006",
+      "collection_0007",
+      "collection_0008",
+      "collection_0009",
+      "collection_0010",
+      "collection_0011",
+      "collection_0012",
+      "collection_0013",
+      "collection_0014",
+      "collection_0015",
+      "collection_0016"
+    ],
+    "endpoint_method_pairs": 64
+  },
+  "new_collections_observed": 0,
+  "endpoint_additions_per_minute": 0.0,
+  "metrics": {
+    "per_template": {
+      "B1": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B2": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B3": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B4": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B5": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B6": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "B7": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      },
+      "V1": {
+        "tested": 2,
+        "initially_vulnerable": 1,
+        "verified_repairs_still_secure": 1,
+        "remediation_rate": 1.0
+      }
+    },
+    "assessed_collections_before": 16,
+    "assessed_collections_after": 16,
+    "before": {
+      "vulnerable": 8,
+      "defended": 8,
+      "inconclusive": 0
+    },
+    "after": {
+      "vulnerable": 0,
+      "defended": 16,
+      "inconclusive": 0
+    },
+    "initially_vulnerable": 8,
+    "verified_repairs_still_secure": 8,
+    "remediation_rate": 1.0,
+    "defender_plans": 8,
+    "defender_applied": 8,
+    "defender_verified": 8,
+    "defender_failed": 0,
+    "defender_rolled_back": 0,
+    "original_vulnerabilities_remaining": 0,
+    "original_vulnerabilities_unresolved": 0,
+    "new_collections_during_agents": 0,
+    "new_vulnerabilities_during_agents": 0,
+    "regressions": 0,
+    "owner_checks_passed": 32,
+    "owner_checks_total": 32,
+    "owner_access_preservation_rate": 1.0
+  }
+}

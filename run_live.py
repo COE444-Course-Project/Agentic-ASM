@@ -37,7 +37,15 @@ def metrics(before, defense, after):
     repaired = {fid for fid in vulnerable & verified if final.get(fid, {}).get("verdict") is False}
     owner_checks = [f.get("evidence", {}).get("checks", {}).get(key) is True
                     for f in final.values() for key in ("alice_owner_ok", "bob_owner_ok")]
+    per_template = {}
+    for template in sorted({f.get("template", "legacy") for f in original.values()}):
+        ids = {fid for fid, f in original.items() if f.get("template", "legacy") == template}
+        eligible = ids & vulnerable
+        per_template[template] = {"tested": len(ids), "initially_vulnerable": len(eligible),
+                                  "verified_repairs_still_secure": len(ids & repaired),
+                                  "remediation_rate": len(ids & repaired) / len(eligible) if eligible else None}
     return {
+        "per_template": per_template,
         "assessed_collections_before": len(original), "assessed_collections_after": len(final),
         "before": before["summary"], "after": after["summary"],
         "initially_vulnerable": len(vulnerable), "verified_repairs_still_secure": len(repaired),
@@ -69,7 +77,7 @@ def write_summary(folder, data):
         "Verified repairs still secure": f"{m['verified_repairs_still_secure']} / {m['initially_vulnerable']}",
         "Remediation rate": percent(m["remediation_rate"]),
         "Defender applied / verified / failed / rolled back": f"{m['defender_applied']} / {m['defender_verified']} / {m['defender_failed']} / {m['defender_rolled_back']}",
-        "Owner access preservation": f"{m['owner_checks_passed']} / {m['owner_checks_total']} ({percent(m['owner_access_preservation_rate'])})",
+        "Legitimate-operation preservation": f"{m['owner_checks_passed']} / {m['owner_checks_total']} ({percent(m['owner_access_preservation_rate'])})",
         "Original vulnerabilities remaining / unresolved": f"{m['original_vulnerabilities_remaining']} / {m['original_vulnerabilities_unresolved']}",
         "New collections / vulnerabilities during agent execution": f"{m['new_collections_during_agents']} / {m['new_vulnerabilities_during_agents']}",
         "Previously defended collections that regressed": m["regressions"],
@@ -77,10 +85,12 @@ def write_summary(folder, data):
     lines = ["# Live growing API run", "", f"Started: {data['started_at']} (Asia/Dubai)", "",
              f"Target: `{data['target']}`", "", "## Procedure", "",
              "Observed a running API's growth, performed one deterministic two-user assessment, "
-             "applied the supported ownership policies, and independently reassessed. No repeating "
+             "applied the supported operation-specific authorization policies, and independently reassessed. No repeating "
              "agent loop was started. Existing policies and scenario history were retained.", "",
              "## Results", "", "| Metric | Observed value |", "|---|---|"]
     lines.extend(f"| {name} | {value} |" for name, value in rows.items())
+    lines.extend(["", "## Results by template", "", "| Type | Tested | Initially vulnerable | Verified repairs |", "|---|---|---|---|"])
+    lines.extend(f"| {template} | {row['tested']} | {row['initially_vulnerable']} | {row['verified_repairs_still_secure']} |" for template, row in m["per_template"].items())
     lines.extend(["", "## Timings", "", "| Phase | Seconds |", "|---|---|"])
     lines.extend(f"| {name} | {seconds:.3f} |" for name, seconds in data["durations_seconds"].items())
     lines.extend(["", "## Interpretation and limits", "",
@@ -88,7 +98,7 @@ def write_summary(folder, data):
                   "and the independent reassessment still found secure, divided by initially vulnerable "
                   "collections. Missing/inconclusive results are not repairs. Newly introduced collections "
                   "are reported separately so ongoing growth cannot distort that denominator.", "",
-                  "This validates a known object-ownership template with fixed Alice/Bob identities, "
+                  "This validates supported B1–B7/V1 scenarios with fixed Alice/Bob/admin identities, "
                   "not general LLM reasoning, all API vulnerability classes, or code-patch generation. "
                   "Live precision/recall and introduction-to-detection latency are not claimed: this run "
                   "does not read private ground truth. Timings are phase durations, not per-finding MTTR.", "",
