@@ -10,9 +10,13 @@ services:
       LAB_STATE_FILE: /data/scenario.json
       LAB_POLICY_FILE: /policy/policy.json
       LAB_SEED: ${LAB_SEED:-444}
-      LAB_INITIAL_COLLECTIONS: ${LAB_INITIAL_COLLECTIONS:-2}
-      LAB_GROWTH_SECONDS: ${LAB_GROWTH_SECONDS:-60}
-      LAB_MAX_COLLECTIONS: ${LAB_MAX_COLLECTIONS:-100}
+      # Start empty and auto-grow one collection per second up to the max
+      # below, then stop. Set the interval to 0 for manual-only growth (grow
+      # with the dashboard's "Grow to limit" button). Override any of these
+      # per `docker compose` run.
+      LAB_INITIAL_COLLECTIONS: ${LAB_INITIAL_COLLECTIONS:-0}
+      LAB_GROWTH_SECONDS: ${LAB_GROWTH_SECONDS:-1}
+      LAB_MAX_COLLECTIONS: ${LAB_MAX_COLLECTIONS:-15}
       LAB_TEMPLATES: ${LAB_TEMPLATES:-B1,B2,B3,B4,B5,B6,B7,V1}
       LAB_VULNERABILITY_PROBABILITY: ${LAB_VULNERABILITY_PROBABILITY:-0.5}
     volumes:

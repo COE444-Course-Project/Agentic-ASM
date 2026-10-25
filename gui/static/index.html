@@ -318,18 +318,19 @@
     <div class="lab-body">
       <div class="lab-meta" id="labMeta"><span class="empty" style="padding:0;">not loaded yet</span></div>
       <div class="lab-grid">
-        <div class="field"><label for="labGrowthSeconds">Growth interval (s)</label><input id="labGrowthSeconds" type="number" min="0" step="any" value="3"><div class="desc">How often a new scenario appears. 0 freezes growth.</div></div>
-        <div class="field"><label for="labMaxCollections">Max collections</label><input id="labMaxCollections" type="number" min="0" step="1" value="15"><div class="desc">Ceiling on total scenarios. 0 = unlimited.</div></div>
+        <div class="field"><label for="labMaxCollections">Max collections</label><input id="labMaxCollections" type="number" min="0" step="1" value="15"><div class="desc">The lab grows to this many, then stops. 0 = unlimited.</div></div>
         <div class="field"><label for="labVulnProb">Vulnerability probability</label><input id="labVulnProb" type="number" min="0" max="1" step="0.05" value="0.5"><div class="desc">Odds each new scenario is left vulnerable (0–1).</div></div>
-        <div class="field"><label>Paused</label><label class="check"><input type="checkbox" id="labPaused"> Stop growth, keep settings</label></div>
+        <div class="field"><label for="labGrowthSeconds">Auto-grow interval (s)</label><input id="labGrowthSeconds" type="number" min="0" step="any" value="1"><div class="desc">Adds one collection every N seconds up to the max, then stops. 0 = manual only (grow with the button).</div></div>
+        <div class="field"><label>Paused</label><label class="check"><input type="checkbox" id="labPaused"> Pause auto-grow, keep settings</label></div>
       </div>
       <div class="field"><label>Templates for future collections</label>
         <div class="lab-templates" id="labTemplates"></div>
       </div>
       <div class="lab-actions">
+        <button onclick="growLab()" title="Create collections now, up to the max above, then stop">Grow to limit</button>
+        <button class="secondary" onclick="applyLabGrowth()">Apply settings</button>
         <button class="secondary" onclick="refreshLabGrowth()">Refresh</button>
-        <button onclick="applyLabGrowth()">Apply to lab</button>
-        <button id="resetLabBtn" class="secondary danger" onclick="resetLab()" title="Clears every collection and reseeds to the lab's initial count — no Docker restart needed">Reset lab</button>
+        <button id="resetLabBtn" class="secondary danger" onclick="resetLab()" title="Clears every collection back to 0 — no Docker restart needed">Reset to 0</button>
         <span class="hint" id="labStatus"></span>
       </div>
     </div>
@@ -380,17 +381,22 @@
 
     <section>
       <h3>Custom API lab growth controls</h3>
+      <p class="sub">The lab starts empty and <b>only grows when you tell it to</b>. Set a max, click <b>Grow to limit</b>, and it creates exactly that many collections and stops — those are the ones assessed.</p>
       <dl class="guide-dl">
-        <dt>Growth interval (s)</dt>
-        <dd>How often, in seconds, the lab adds one new scenario. Smaller grows faster; <code>0</code> freezes growth.</dd>
         <dt>Max collections</dt>
-        <dd>A ceiling on total scenarios. Growth pauses at this many; <code>0</code> means no ceiling. Raising it later resumes growth live, no restart.</dd>
+        <dd>The lab grows up to this many, then stops. Write <code>15</code> and Grow to limit → 15 collections, no more. <code>0</code> means no ceiling (then grow with an auto-grow interval instead).</dd>
+        <dt>Grow to limit</dt>
+        <dd>Applies your settings, then creates collections now up to the max and stops. This is how collections are made — nothing grows on its own unless you set an auto-grow interval.</dd>
+        <dt>Reset to 0</dt>
+        <dd>Clears every collection back to 0, live. Grow again whenever you want.</dd>
         <dt>Vulnerability probability</dt>
-        <dd><code>0</code>–<code>1</code>: the odds each <i>new</i> scenario is left vulnerable rather than already secure. Only affects future scenarios.</dd>
+        <dd><code>0</code>–<code>1</code>: the odds each <i>new</i> scenario is left vulnerable rather than already secure. Only affects scenarios created after the change.</dd>
         <dt>Templates</dt>
         <dd>Which of the 8 shapes new scenarios may use. Unchecking one only stops it being chosen going forward.</dd>
+        <dt>Auto-grow interval (s)</dt>
+        <dd>Background growth: the lab adds one new scenario every N seconds up to the max, then stops. Default <code>1</code> (one per second). Set it to <code>0</code> for manual-only growth (grow with the button instead).</dd>
         <dt>Paused</dt>
-        <dd>Stops growth immediately without losing your other settings.</dd>
+        <dd>Stops the auto-grow timer immediately without losing your other settings (no effect when the interval is already 0).</dd>
       </dl>
     </section>
 
@@ -813,10 +819,40 @@ async function applyLabGrowth() {
   } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
 }
 
+// Apply the current settings (so the lab's cap matches the field), then grow
+// up to that cap in one go and stop. The lab never grows on its own unless an
+// auto-grow interval is set, so this button is how collections are created.
+async function growLab() {
+  const target = document.getElementById("target").value.trim();
+  const templates = [...document.querySelectorAll("#labTemplates input:checked")].map(cb => cb.value);
+  if (!templates.length) { setLabStatus("select at least one template", true); return; }
+  const max = Number(document.getElementById("labMaxCollections").value);
+  if (!max) { setLabStatus("set a max collections limit first (0 = unlimited has no limit to grow to)", true); return; }
+  const settings = {
+    target,
+    growth_seconds: Number(document.getElementById("labGrowthSeconds").value),
+    max_collections: max,
+    vulnerability_probability: Number(document.getElementById("labVulnProb").value),
+    paused: document.getElementById("labPaused").checked,
+    template_ids: templates,
+  };
+  setLabStatus("growing…", false);
+  try {
+    let res = await fetch("/api/lab-growth", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(settings) });
+    let resBody = await res.json();
+    if (!res.ok) { setLabStatus(resBody.error || "could not apply settings", true); return; }
+    res = await fetch("/api/lab-grow", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({target}) });
+    resBody = await res.json();
+    if (!res.ok) { setLabStatus(resBody.error || "could not grow", true); return; }
+    renderLabGrowth(resBody);
+    setLabStatus(`grew to ${resBody.collections} collection(s) (+${resBody.added ?? 0})`, false);
+  } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
+}
+
 async function resetLab() {
   const target = document.getElementById("target").value.trim();
   if (!confirm(
-    "Clear every collection on this lab and reseed to its initial count?\n\n" +
+    "Clear every collection on this lab and reset it to 0?\n\n" +
     "Irreversible, no Docker restart needed. Growth settings are kept. It does NOT clear the " +
     "applied remediation policy (lab-policy/policy.json) — since collections are renumbered from 1, " +
     "a stale policy entry for an old collection would re-apply to the new one with the same name. " +
@@ -828,7 +864,7 @@ async function resetLab() {
     const resBody = await res.json();
     if (!res.ok) { setLabStatus(resBody.error || "could not reset", true); return; }
     renderLabGrowth(resBody);
-    setLabStatus("reset — back to " + resBody.collections + " collection(s)", false);
+    setLabStatus("reset — now " + resBody.collections + " collection(s)", false);
   } catch (e) { setLabStatus("could not reach the dashboard backend", true); }
 }
 

@@ -37,8 +37,8 @@ class Settings:
     vulnerability_probability: float = .5
 
     def __post_init__(self):
-        if self.initial_collections < 1 or not math.isfinite(self.growth_seconds) or self.growth_seconds < 0 or self.max_collections < 0:
-            raise ValueError("initial must be >= 1; interval and maximum must be >= 0")
+        if self.initial_collections < 0 or not math.isfinite(self.growth_seconds) or self.growth_seconds < 0 or self.max_collections < 0:
+            raise ValueError("initial, interval and maximum must be >= 0")
         if self.max_collections and self.initial_collections > self.max_collections:
             raise ValueError("initial collections exceed maximum")
         if not self.template_ids or any(t not in (*TEMPLATES, "legacy") for t in self.template_ids):
@@ -93,6 +93,10 @@ class GrowthUpdate(BaseModel):
     vulnerability_probability: float | None = None
     template_ids: list[str] | None = None
     paused: bool | None = None
+
+
+class GrowRequest(BaseModel):
+    count: int | None = None
 
 
 class Item(BaseModel):
@@ -155,6 +159,22 @@ class Scenario:
         self.register(app, entry)
         LOG.info("Lab stage %s: added %s", index, entry["name"])
         return True
+
+    def grow_on_demand(self, app: FastAPI, count: int | None = None) -> int:
+        """Add collections now, on request, instead of on the timer. With a
+        `count`, adds up to that many; without one, grows up to the configured
+        max_collections. Returns how many were actually added (fewer if the
+        cap is reached first). This is the manual counterpart to the grow()
+        timer in create_app: a lab left at growth_seconds=0 never grows on its
+        own, so the dashboard's "Grow" button calls here to grow it to the
+        user's chosen limit and stop. The caller guarantees a bound (a count,
+        or a non-zero max_collections) so this never loops unbounded."""
+        added = 0
+        while count is None or added < count:
+            if not self.add_collection(app):
+                break  # hit max_collections
+            added += 1
+        return added
 
     def register(self, app: FastAPI, entry: dict):
         name = entry["name"]
@@ -322,6 +342,25 @@ def create_app(settings: Settings | None = None) -> FastAPI:
             raise HTTPException(400, str(exc))
         wake.set()
         return _growth_snapshot(scenario)
+
+    @app.post("/admin/grow")
+    async def grow_now(body: GrowRequest):
+        """Grow the lab on demand (manual counterpart to the timer). With a
+        `count`, add that many; without one, grow up to max_collections and
+        stop. Refuses an unbounded request (no count and no cap) so it can
+        never run away. Growth odds, templates and cap are whatever
+        /admin/growth currently holds."""
+        count = body.count
+        if count is not None:
+            if count < 1 or count > 10000:
+                raise HTTPException(400, "count must be between 1 and 10000")
+        elif not scenario.controls.max_collections:
+            raise HTTPException(400, "Set a max collections limit (or pass a count) to grow on demand")
+        try:
+            added = scenario.grow_on_demand(app, count)
+        except Exception as exc:
+            raise HTTPException(503, f"Growth failed: {exc}")
+        return {**_growth_snapshot(scenario), "added": added}
 
     @app.post("/admin/reset")
     async def reset_scenario():

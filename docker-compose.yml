@@ -40,9 +40,12 @@ services:
       # README's setup step already ensures.
       - ./lab-policy:/app/lab-policy:ro
       # Serve the dashboard UI straight from the working tree so http://localhost:8765
-      # reflects the current gui/static/index.html without an image rebuild
-      # (gui/server.py re-reads the file on every request). Read-only.
-      - ./gui/static/index.html:/app/gui/static/index.html:ro
+      # reflects the current gui/static/ without an image rebuild (gui/server.py
+      # re-reads the file on every request). The whole directory is mounted (not
+      # the single file): on macOS a single-file bind mount pins one inode, so an
+      # atomic save (write-temp-then-rename) leaves the container on a stale or
+      # missing inode; mounting the directory survives file replacement. Read-only.
+      - ./gui/static:/app/gui/static:ro
     environment:
       # Internal service names on the shared compose network -- NOT the
       # host-mapped localhost:5001/5002 used when running natively.

@@ -291,6 +291,42 @@ def api_lab_growth_set():
     return jsonify({"ok": True, **response.json()})
 
 
+@app.post("/api/lab-grow")
+def api_lab_grow():
+    """Proxy to the custom API lab's /admin/grow: grow the lab on demand up to
+    its configured max (or by an explicit count), instead of waiting on the
+    timer. Lets the lab default to no automatic growth and still be grown
+    deliberately from the dashboard. Refused while an assessment is running,
+    same as reset, so the surface doesn't move mid-assessment."""
+    body = request.get_json(silent=True) or {}
+    if not isinstance(body, dict):
+        return jsonify({"ok": False, "error": "Expected a JSON object"}), 400
+    target = _valid_target(body.get("target"))
+    if target is None:
+        return jsonify({"ok": False, "error": "Enter a valid HTTP or HTTPS target URL"}), 400
+    payload = {}
+    if body.get("count") is not None:
+        payload["count"] = body["count"]
+    with _run_lock:
+        if _running["active"]:
+            return jsonify({"ok": False, "error": "an assessment is currently running"}), 409
+    try:
+        with httpx.Client(timeout=30) as client:
+            response = client.post(f"{target}/admin/grow", json=payload)
+    except httpx.HTTPError as exc:
+        return jsonify({"ok": False, "error": f"Could not reach {target}: {exc}"}), 502
+    if response.status_code == 404:
+        return jsonify({"ok": False, "error": "This target has no grow endpoint (not the custom API lab?)"}), 404
+    if response.is_error:
+        detail = response.text[:300]
+        try:
+            detail = response.json().get("detail", detail)
+        except ValueError:
+            pass
+        return jsonify({"ok": False, "error": detail}), response.status_code
+    return jsonify({"ok": True, **response.json()})
+
+
 @app.post("/api/lab-reset")
 def api_lab_reset():
     """Proxy to the custom API lab's /admin/reset: clears every collection
