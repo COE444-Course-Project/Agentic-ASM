@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "gui/static/index.html"
+        ],
+        "createdAt": "2026-10-25T08:36:38.648Z",
+        "reason": "Claude: remaining side-tab match is .panel h2::before, a 4x13px inline rounded accent dot before panel heading text (background-color, no border property), not attached to any card edge — distinct from the actual side-tab border-left pattern on .evidence already fixed in commit 7ac4d31"
+      }
+    ]
+  }
+}
