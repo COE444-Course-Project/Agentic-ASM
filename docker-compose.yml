@@ -39,6 +39,10 @@ services:
       # just needs the directory to exist, which `mkdir -p lab-policy` in the
       # README's setup step already ensures.
       - ./lab-policy:/app/lab-policy:ro
+      # Serve the dashboard UI straight from the working tree so http://localhost:8765
+      # reflects the current gui/static/index.html without an image rebuild
+      # (gui/server.py re-reads the file on every request). Read-only.
+      - ./gui/static/index.html:/app/gui/static/index.html:ro
     environment:
       # Internal service names on the shared compose network -- NOT the
       # host-mapped localhost:5001/5002 used when running natively.
