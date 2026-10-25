@@ -71,19 +71,28 @@ class LabLLMCheckTests(unittest.TestCase):
 
 
 class RunLlmSampleTests(unittest.TestCase):
-    def _run(self, candidates, sample_size, transcript_for, should_stop=None):
+    def _run(self, candidates, sample_size, transcript_for, should_stop=None,
+             policy_file=None, upsert_side_effect=None):
         agent = AsyncMock()
         agent.ainvoke.side_effect = lambda messages, config: {
             "messages": transcript_for(messages["messages"][0][1])
         }
+        # Mirror store.upsert_finding's status rule: a positive verdict is
+        # always "open"; a blocked one is "patched" only when the policy says
+        # a defender patch is in effect, else it stays "open" (always-secure).
+        upsert_default = lambda finding, round_id, policy_patched=False: {
+            **finding,
+            "status": "open" if finding.get("verdict") is True
+                      else "patched" if policy_patched else "open"}
         with patch.object(lab_operator, "_login_bob", return_value="bob-token"), \
              patch.object(lab_operator, "build_agent", new_callable=AsyncMock, return_value=agent), \
              patch.object(store, "log_event"), \
-             patch.object(store, "upsert_finding") as upsert, \
+             patch.object(store, "upsert_finding",
+                          side_effect=upsert_side_effect or upsert_default) as upsert, \
              patch.object(store, "finding_id", side_effect=lambda target, mod: f"{target}::{mod}"):
             findings = asyncio.run(lab_operator.run_llm_sample(
                 "http://lab", "qwen2.5", candidates, round_id=1, sample_size=sample_size,
-                rng_seed=1, should_stop=should_stop))
+                rng_seed=1, should_stop=should_stop, policy_file=policy_file))
         return findings, upsert
 
     def test_samples_at_most_sample_size_and_saves_distinct_finding_ids(self):
@@ -104,6 +113,43 @@ class RunLlmSampleTests(unittest.TestCase):
         names = [f["collection"] for f in findings]
         self.assertEqual(len(set(names)), len(names))
         self.assertTrue(set(names) <= {c[0] for c in candidates})
+
+    def test_blocked_attack_is_patched_only_when_the_policy_enforces_it(self):
+        # Two collections the LLM attack can't exploit (both come back 403).
+        # Without the policy they're indistinguishable; with it, only the one
+        # the defender actually patched carries status "patched" -- the other
+        # was never vulnerable ("always secure"). This is the whole reason the
+        # LLM summary can report "N defended (P patched, M always secure)"
+        # instead of a flat "defended" for every secure collection.
+        candidates = [("collection_0001", "B1"), ("collection_0002", "B1")]
+        policy = {"version": 1, "collections": {"collection_0001": {"B1": True}}}
+
+        def transcript(prompt):
+            method, url = re.search(r"\n(GET|POST|PATCH) (\S+)\n", prompt).groups()
+            return _transcript(method, url, 403, '{"detail":"Resource belongs to another user"}')
+
+        with patch.object(lab_operator, "read_policy", return_value=policy):
+            findings, _ = self._run(candidates, sample_size=2, transcript_for=transcript,
+                                    policy_file="policy.json")
+        by_name = {f["collection"]: f for f in findings}
+        self.assertEqual(by_name["collection_0001"]["verdict"], False)
+        self.assertEqual(by_name["collection_0001"]["status"], "patched")
+        self.assertEqual(by_name["collection_0002"]["verdict"], False)
+        self.assertEqual(by_name["collection_0002"]["status"], "open")  # always secure, not patched
+
+    def test_no_policy_file_leaves_blocked_attacks_unpatched(self):
+        # With no policy to consult, a blocked attack can't be proven to be a
+        # defender patch, so it stays "open" (always-secure) -- the documented
+        # fallback, same as the deterministic path without --policy-file.
+        candidates = [("collection_0001", "B1")]
+
+        def transcript(prompt):
+            method, url = re.search(r"\n(GET|POST|PATCH) (\S+)\n", prompt).groups()
+            return _transcript(method, url, 403, '{"detail":"Resource belongs to another user"}')
+
+        findings, _ = self._run(candidates, sample_size=1, transcript_for=transcript, policy_file=None)
+        self.assertEqual(findings[0]["verdict"], False)
+        self.assertEqual(findings[0]["status"], "open")
 
     def test_zero_sample_or_no_candidates_is_a_noop(self):
         findings, upsert = self._run([("collection_0001", "B1")], sample_size=0, transcript_for=lambda p: [])

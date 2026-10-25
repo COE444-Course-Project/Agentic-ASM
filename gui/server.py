@@ -150,9 +150,15 @@ async def run_dashboard_round(target: str, model: str, mode: str = "auto", shoul
                                     llm_sample_size=sample_size, llm_sample_status="running")
                 store.log_event("orchestrator", f"Running {sample_size} LLM-sampled cross-check(s) via {model}")
                 llm_findings = await run_llm_sample(target, model, candidates, result["round"], llm_sample,
-                                                     should_stop=should_stop)
+                                                     should_stop=should_stop,
+                                                     policy_file=LAB_POLICY_FILE if LAB_POLICY_FILE.exists() else None)
+                # "patched" mirrors the deterministic chip: verdict False AND a
+                # verified defender patch is in effect, as opposed to a collection
+                # that was simply never exploitable. "defended" keeps its broad
+                # meaning (any non-exploitable collection); "patched" is a subset.
                 llm_summary = {
                     "vulnerable": sum(f["verdict"] is True for f in llm_findings),
+                    "patched": sum(f["verdict"] is False and f.get("status") == "patched" for f in llm_findings),
                     "defended": sum(f["verdict"] is False for f in llm_findings),
                     "inconclusive": sum(f["verdict"] is None for f in llm_findings),
                 }

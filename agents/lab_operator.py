@@ -23,12 +23,14 @@ from __future__ import annotations
 
 import json
 import random
+from pathlib import Path
 from typing import Callable, Optional
 
 import httpx
 
 from agents.operator import RECURSION_LIMIT, _extract_tool_calls, _find, build_agent, validate_records
 from core import state_store as store
+from core.lab_policy import is_patched, read_policy
 from core.template_catalog import TEMPLATES
 
 # For each template: the concrete attack a non-owner ("bob") should attempt
@@ -99,16 +101,32 @@ def _check(records: list[dict], name: str, template: str) -> tuple[Optional[bool
 
 async def run_llm_sample(base: str, model: str, candidates: list[tuple[str, str]], round_id: int,
                           sample_size: int, rng_seed: Optional[int] = None,
-                          should_stop: Optional[Callable[[], bool]] = None) -> list[dict]:
+                          should_stop: Optional[Callable[[], bool]] = None,
+                          policy_file: Optional[Path] = None) -> list[dict]:
     """`candidates` is [(collection_name, template), ...] -- typically every
     templated collection from the round's deterministic pass (core/lab_checks
     .assess), excluding "legacy" ones which predate the template catalog.
     Picks up to `sample_size` at random and runs one independent LLM mission
     per pick. `should_stop` is checked between collections only, same
-    cooperative-cancellation contract as operator.run_queue."""
+    cooperative-cancellation contract as operator.run_queue.
+
+    `policy_file`, when given, is the defender's live authorization policy --
+    the same ground truth core/lab_checks.assess() uses. A blocked attack
+    (verdict False) against a collection the policy actually enforces is a
+    *patched* defense; one that was simply never exploitable is not. Without
+    this the two are indistinguishable (both just "verdict False"), so the
+    LLM summary would report every secure collection as a flat "defended" --
+    see run_dashboard_round's llm_summary and state_store.upsert_finding's
+    `policy_patched`. LLM findings live under their own `lab-llm:{name}` id,
+    which the defender's mark_verified_patch never touches, so the policy
+    file is the *only* way this path can tell patched from always-secure."""
     base = base.rstrip("/")
     if sample_size <= 0 or not candidates:
         return []
+    try:
+        policy = read_policy(policy_file) if policy_file is not None else None
+    except (OSError, ValueError):
+        policy = None
     sample = random.Random(rng_seed).sample(candidates, k=min(sample_size, len(candidates)))
     token = _login_bob(base)
     if not token:
@@ -141,7 +159,9 @@ async def run_llm_sample(base: str, model: str, candidates: list[tuple[str, str]
             "owasp": "API5:2023 Broken Function Level Authorization" if template == "V1" else "API1:2023 Broken Object Level Authorization",
             "verdict": verdict, "evidence": evidence,
         }
-        store.upsert_finding(finding, round_id)
+        policy_patched = policy is not None and is_patched(policy, name, template)
+        merged = store.upsert_finding(finding, round_id, policy_patched=policy_patched)
+        finding["status"] = merged["status"]
         store.log_event("operator", f"LLM check '{name}' ({template}) verdict: {verdict}", round_id,
                          data={"verdict": verdict, "evidence": (evidence or "")[:300]})
         findings.append(finding)

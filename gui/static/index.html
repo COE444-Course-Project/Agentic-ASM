@@ -267,7 +267,7 @@
         <dt>Ollama model</dt>
         <dd>Which local LLM drives VAmPI's reasoning-based checks (SQL injection, mass assignment, enumeration, BOLA) and, if set above 0, the custom API lab's "LLM-sampled checks" too. Disabled when neither applies.</dd>
         <dt>LLM-sampled checks</dt>
-        <dd>Custom API lab only. <code>0</code> (default) keeps the assessment fully deterministic. Above <code>0</code>, that many randomly chosen collections also get an independent LLM-driven cross-check — see "How LLM-sampled checks works" above. The assessment chip reads "done" the moment the fast deterministic pass finishes, before those LLM calls start; its own "LLM-sampled checks running (N)…" line (and then a result once they finish) is how you tell they're genuinely in progress, not skipped.</dd>
+        <dd>Custom API lab only. <code>0</code> (default) keeps the assessment fully deterministic. Above <code>0</code>, that many randomly chosen collections also get an independent LLM-driven cross-check — see "How LLM-sampled checks works" above. The assessment chip reads "done" the moment the fast deterministic pass finishes, before those LLM calls start; its own "LLM-sampled checks running (N)…" line (and then a result once they finish) is how you tell they're genuinely in progress, not skipped. Its "defended" count splits into "(P patched, M always secure)" the same way the deterministic chip does — a blocked attack against a collection the defender actually patched versus one that was never exploitable.</dd>
         <dt>Run assessment</dt>
         <dd>Starts one assessment against the Target URL in the background. VAmPI assessments reset its demo database first; custom API ones do not.</dd>
         <dt>Stop</dt>
@@ -412,7 +412,7 @@ function renderAssessments(rounds) {
       : r.llm_sample_status === "stopped"
       ? ` · LLM-sampled checks stopped before finishing`
       : r.llm_sample_status === "done" && r.llm_summary
-      ? ` · LLM-sampled (${r.llm_sample_size ?? r.llm_sample_requested}): ${r.llm_summary.vulnerable} vulnerable, ${r.llm_summary.defended} defended, ${r.llm_summary.inconclusive} inconclusive`
+      ? ` · LLM-sampled (${r.llm_sample_size ?? r.llm_sample_requested}): ${r.llm_summary.vulnerable} vulnerable, ${r.llm_summary.defended} defended${r.llm_summary.patched ? ` (${r.llm_summary.patched} patched, ${r.llm_summary.defended - r.llm_summary.patched} always secure)` : ""}, ${r.llm_summary.inconclusive} inconclusive`
       : "";
     return `
     <div class="assessment-chip">

@@ -1,5 +1,6 @@
 import asyncio
 import unittest
+from pathlib import Path
 from unittest.mock import patch, MagicMock, AsyncMock
 from gui import server
 
@@ -10,6 +11,7 @@ class DashboardTests(unittest.TestCase):
         client.__enter__.return_value = client
         client.get.return_value.json.return_value = {'paths': paths}
         with patch.object(server.httpx, 'Client', return_value=client), \
+             patch.object(server, 'LAB_POLICY_FILE', Path('/nonexistent/policy.json')), \
              patch.object(server.orchestrator, 'run_attacker_round', new_callable=AsyncMock) as attacker, \
              patch.object(server.orchestrator.scout, 'run') as scout, \
              patch.object(server, 'assess', return_value=assess_return or {'summary': {}, 'round': 1, 'findings': []}) as assess, \
@@ -53,9 +55,9 @@ class DashboardTests(unittest.TestCase):
             llm_sample=5, assess_return={'summary': {}, 'round': 7, 'findings': findings})
         llm.assert_awaited_once_with('http://localhost:8001', 'qwen2.5',
                                       [('collection_0001', 'B1'), ('collection_0003', 'B2')],
-                                      7, 5, should_stop=None)
+                                      7, 5, should_stop=None, policy_file=None)
         self.assertEqual(result['llm_findings'], [])
-        self.assertEqual(result['llm_summary'], {'vulnerable': 0, 'defended': 0, 'inconclusive': 0})
+        self.assertEqual(result['llm_summary'], {'vulnerable': 0, 'patched': 0, 'defended': 0, 'inconclusive': 0})
         # Marked "running" (with the actual sample size, capped by the 2
         # candidates found, not the raw llm_sample=5 requested) before the
         # LLM calls happen, then "done" with their outcome once they return --
@@ -63,7 +65,7 @@ class DashboardTests(unittest.TestCase):
         # the round looking instantly finished.
         update_round.assert_any_call(7, llm_sample_requested=5, llm_sample_size=2, llm_sample_status='running')
         update_round.assert_any_call(7, llm_sample_status='done',
-                                      llm_summary={'vulnerable': 0, 'defended': 0, 'inconclusive': 0})
+                                      llm_summary={'vulnerable': 0, 'patched': 0, 'defended': 0, 'inconclusive': 0})
 
     def test_llm_sample_zero_never_calls_run_llm_sample(self):
         _, _, _, llm, result, update_round = self.run_mode({'/auth/login': {}, '/api/collection_0001/items/{item_id}': {}}, llm_sample=0)
