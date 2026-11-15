@@ -122,8 +122,11 @@ class Scenario:
             self.manifest = json.loads(settings.state_file.read_text())
             if self.manifest.get("version") != 1 or self.manifest.get("seed") != settings.seed:
                 raise ValueError("Existing scenario version/seed differs; use a new state file or volume")
-            if settings.max_collections and len(self.manifest["collections"]) > settings.max_collections:
-                raise ValueError("Saved scenario exceeds configured maximum")
+            saved = len(self.manifest["collections"])
+            if settings.max_collections and saved > settings.max_collections:
+                # The cap may have been raised live (dashboard or closed loop); keep the saved scenario and stop there.
+                LOG.warning("Saved scenario has %s collections; raising max_collections from %s", saved, settings.max_collections)
+                self.controls = replace(self.controls, max_collections=saved)
         else:
             self.manifest = {"version": 1, "seed": settings.seed, "collections": []}
 

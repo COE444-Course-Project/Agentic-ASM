@@ -24,7 +24,7 @@ from urllib.parse import urlparse
 
 import httpx
 
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, jsonify, request, send_from_directory
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -230,6 +230,11 @@ def index():
     return Response(html, mimetype="text/html")
 
 
+@app.get("/fonts/<path:name>")
+def fonts(name):
+    return send_from_directory(Path(__file__).parent / "static" / "fonts", name, max_age=86400)
+
+
 @app.get("/api/state")
 def api_state():
     snap = store.snapshot()
@@ -425,7 +430,21 @@ def api_lab_reset():
         except ValueError:
             pass
         return jsonify({"ok": False, "error": detail}), response.status_code
-    return jsonify({"ok": True, **response.json()})
+    cleared = False
+    if body.get("clear_policy") is True:
+        # Collections are renumbered from 1, so stale entries would silently pre-patch the new ones.
+        import fcntl
+        from core.lab_policy import write_policy
+        LAB_POLICY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with LAB_POLICY_FILE.with_suffix(".lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            try:
+                write_policy(LAB_POLICY_FILE, {"version": 1, "collections": {}})
+            finally:
+                fcntl.flock(lock, fcntl.LOCK_UN)
+        cleared = True
+        store.log_event("orchestrator", "lab reset to 0 and its applied fixes cleared")
+    return jsonify({"ok": True, **response.json(), "policy_cleared": cleared})
 
 
 @app.post("/api/reset")

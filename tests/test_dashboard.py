@@ -164,7 +164,7 @@ class DashboardTests(unittest.TestCase):
                 post.return_value = response
                 res = client.post('/api/lab-reset', json={'target': 'http://localhost:8000'})
             self.assertEqual(res.status_code, 200)
-            self.assertEqual(res.get_json(), {'ok': True, 'collections': 2, 'seed': 444})
+            self.assertEqual(res.get_json(), {'ok': True, 'collections': 2, 'seed': 444, 'policy_cleared': False})
             post.assert_called_once_with('http://localhost:8000/admin/reset')
 
     def test_lab_reset_404_for_a_non_lab_target(self):
@@ -211,3 +211,24 @@ class LoopEndpointTests(unittest.TestCase):
                 asyncio.run(server.run_dashboard_defense("http://localhost:5002"))
             with self.assertRaises(ValueError):
                 asyncio.run(server.run_dashboard_loop("http://localhost:5002", "qwen2.5", rounds=1))
+
+
+class LabResetPolicyTests(unittest.TestCase):
+    def test_reset_can_clear_policy(self):
+        import tempfile, json
+        with tempfile.TemporaryDirectory() as d:
+            policy = Path(d) / "policy.json"
+            policy.write_text(json.dumps({"version": 1, "collections": {"collection_0001": {"B1": True}}}))
+            response = MagicMock(status_code=200, is_error=False)
+            response.json.return_value = {"collections": 0}
+            client = MagicMock()
+            client.__enter__.return_value = client
+            client.post.return_value = response
+            with patch.object(server.httpx, "Client", return_value=client), patch.object(server, "LAB_POLICY_FILE", policy), \
+                 patch.object(server.store, "log_event"):
+                kept = server.app.test_client().post("/api/lab-reset", json={"target": "http://localhost:8000"})
+                self.assertFalse(kept.get_json()["policy_cleared"])
+                self.assertIn("collection_0001", policy.read_text())
+                cleared = server.app.test_client().post("/api/lab-reset", json={"target": "http://localhost:8000", "clear_policy": True})
+            self.assertTrue(cleared.get_json()["policy_cleared"])
+            self.assertEqual(json.loads(policy.read_text())["collections"], {})

@@ -1,0 +1,15 @@
+{
+  "detector": "detect.mjs",
+  "version": 1,
+  "attribution": "Rule subset ported from Impeccable (pbakaus/impeccable), Apache-2.0, with modifications — see file header. Catalog: references/visual/ai-tells.md.",
+  "status": "ran",
+  "sources": [
+    "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.design-foundations/mocks/dashboard.html"
+  ],
+  "rules": 16,
+  "findings": [],
+  "counts": {
+    "total": 0,
+    "byRule": {}
+  }
+}

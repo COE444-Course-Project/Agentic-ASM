@@ -79,6 +79,15 @@ class ClosedLoopTests(unittest.TestCase):
             self.assertIn("Closed attacker-defender loop", (folder / "SUMMARY.md").read_text())
             self.assertTrue((folder / "round-1-defender.json").exists())
 
+    def test_lab_restarts_after_loop_grew_past_configured_cap(self):
+        with self.lab() as client:
+            self.loop(client, rounds=2, grow_per_round=3)
+            self.assertEqual(client.get("/admin/growth").json()["collections"], 8)
+        with self.lab() as client:
+            status = client.get("/admin/growth").json()
+            self.assertEqual((status["collections"], status["max_collections"]), (8, 8))
+
 
 if __name__ == "__main__":
     unittest.main()
+
