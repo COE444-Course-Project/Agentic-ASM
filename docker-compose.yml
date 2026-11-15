@@ -31,14 +31,13 @@ services:
       # same rounds/findings instead of each writing to their own
       # ephemeral container filesystem, and (b) state survives a rebuild.
       - ./state:/app/state
-      # Read-only: lets the dashboard tell "patched" (a verified defender fix
-      # still in effect, per lab-policy/policy.json) apart from "always
-      # secure" even after this dashboard's own findings.json is cleared --
-      # see gui/server.py's LAB_POLICY_FILE and core/lab_checks.assess().
-      # Absent is fine (e.g. before run_defender.py has ever run); the mount
-      # just needs the directory to exist, which `mkdir -p lab-policy` in the
-      # README's setup step already ensures.
-      - ./lab-policy:/app/lab-policy:ro
+      # Writable: the dashboard's defender pass and closed loop apply and roll
+      # back authorization policies here; the lab container reads the same
+      # host directory (read-only) at /policy. Also lets the dashboard tell
+      # "patched" apart from "always secure" after findings.json is cleared.
+      - ./lab-policy:/app/lab-policy
+      # Loop run reports (SUMMARY.md, metrics.json, raw evidence).
+      - ./runs:/app/runs
       # Serve the dashboard UI straight from the working tree so http://localhost:8765
       # reflects the current gui/static/ without an image rebuild (gui/server.py
       # re-reads the file on every request). The whole directory is mounted (not

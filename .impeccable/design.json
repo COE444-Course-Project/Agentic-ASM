@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-15T00:00:00Z",
+  "title": "Design System: Agentic ASM",
+  "extensions": {
+    "colorMeta": {
+      "background": {
+        "role": "neutral",
+        "displayName": "Enamel White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Enamel White (surface)",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.4% 0.000 89.9)",
+          "oklch(37.9% 0.000 89.9)",
+          "oklch(49.3% 0.000 89.9)",
+          "oklch(60.7% 0.000 89.9)",
+          "oklch(72.1% 0.000 89.9)",
+          "oklch(83.6% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "fascia": {
+        "role": "neutral",
+        "displayName": "Lavender Fascia",
+        "canonical": "#f1ecfd",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 299.4)",
+          "oklch(26.4% 0.023 299.4)",
+          "oklch(37.9% 0.023 299.4)",
+          "oklch(49.3% 0.023 299.4)",
+          "oklch(60.7% 0.023 299.4)",
+          "oklch(72.1% 0.023 299.4)",
+          "oklch(83.6% 0.023 299.4)",
+          "oklch(95.0% 0.023 299.4)"
+        ]
+      },
+      "fascia-strong": {
+        "role": "neutral",
+        "displayName": "Pressed Lavender",
+        "canonical": "#e4dbfa",
+        "tonalRamp": [
+          "oklch(15.0% 0.043 298.8)",
+          "oklch(26.4% 0.043 298.8)",
+          "oklch(37.9% 0.043 298.8)",
+          "oklch(49.3% 0.043 298.8)",
+          "oklch(60.7% 0.043 298.8)",
+          "oklch(72.1% 0.043 298.8)",
+          "oklch(83.6% 0.043 298.8)",
+          "oklch(95.0% 0.043 298.8)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline Lilac",
+        "canonical": "#e6e0f5",
+        "tonalRamp": [
+          "oklch(15.0% 0.029 298.9)",
+          "oklch(26.4% 0.029 298.9)",
+          "oklch(37.9% 0.029 298.9)",
+          "oklch(49.3% 0.029 298.9)",
+          "oklch(60.7% 0.029 298.9)",
+          "oklch(72.1% 0.029 298.9)",
+          "oklch(83.6% 0.029 298.9)",
+          "oklch(95.0% 0.029 298.9)"
+        ]
+      },
+      "lamp-edge": {
+        "role": "neutral",
+        "displayName": "Lamp Edge Lilac",
+        "canonical": "#8269d8",
+        "tonalRamp": [
+          "oklch(15.0% 0.141 292.2)",
+          "oklch(26.4% 0.141 292.2)",
+          "oklch(37.9% 0.141 292.2)",
+          "oklch(49.3% 0.141 292.2)",
+          "oklch(60.7% 0.141 292.2)",
+          "oklch(72.1% 0.141 292.2)",
+          "oklch(83.6% 0.141 292.2)",
+          "oklch(95.0% 0.141 292.2)"
+        ]
+      },
+      "lamp-idle": {
+        "role": "neutral",
+        "displayName": "Idle Grey-Violet",
+        "canonical": "#8a83a3",
+        "tonalRamp": [
+          "oklch(15.0% 0.048 295.0)",
+          "oklch(26.4% 0.048 295.0)",
+          "oklch(37.9% 0.048 295.0)",
+          "oklch(49.3% 0.048 295.0)",
+          "oklch(60.7% 0.048 295.0)",
+          "oklch(72.1% 0.048 295.0)",
+          "oklch(83.6% 0.048 295.0)",
+          "oklch(95.0% 0.048 295.0)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "#1e1830",
+        "tonalRamp": [
+          "oklch(15.0% 0.046 294.0)",
+          "oklch(26.4% 0.046 294.0)",
+          "oklch(37.9% 0.046 294.0)",
+          "oklch(49.3% 0.046 294.0)",
+          "oklch(60.7% 0.046 294.0)",
+          "oklch(72.1% 0.046 294.0)",
+          "oklch(83.6% 0.046 294.0)",
+          "oklch(95.0% 0.046 294.0)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#5c5573",
+        "tonalRamp": [
+          "oklch(15.0% 0.049 295.2)",
+          "oklch(26.4% 0.049 295.2)",
+          "oklch(37.9% 0.049 295.2)",
+          "oklch(49.3% 0.049 295.2)",
+          "oklch(60.7% 0.049 295.2)",
+          "oklch(72.1% 0.049 295.2)",
+          "oklch(83.6% 0.049 295.2)",
+          "oklch(95.0% 0.049 295.2)"
+        ]
+      },
+      "accent-solid": {
+        "role": "primary",
+        "displayName": "Annunciator Violet",
+        "canonical": "#5b3fc0",
+        "tonalRamp": [
+          "oklch(15.0% 0.191 286.7)",
+          "oklch(26.4% 0.191 286.7)",
+          "oklch(37.9% 0.191 286.7)",
+          "oklch(49.3% 0.191 286.7)",
+          "oklch(60.7% 0.191 286.7)",
+          "oklch(72.1% 0.191 286.7)",
+          "oklch(83.6% 0.191 286.7)",
+          "oklch(95.0% 0.191 286.7)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Annunciator Violet, pressed",
+        "canonical": "#4a31a6",
+        "tonalRamp": [
+          "oklch(15.0% 0.177 285.7)",
+          "oklch(26.4% 0.177 285.7)",
+          "oklch(37.9% 0.177 285.7)",
+          "oklch(49.3% 0.177 285.7)",
+          "oklch(60.7% 0.177 285.7)",
+          "oklch(72.1% 0.177 285.7)",
+          "oklch(83.6% 0.177 285.7)",
+          "oklch(95.0% 0.177 285.7)"
+        ]
+      },
+      "accent-text": {
+        "role": "primary",
+        "displayName": "Annunciator Violet (text)",
+        "canonical": "#5b3fc0",
+        "tonalRamp": [
+          "oklch(15.0% 0.191 286.7)",
+          "oklch(26.4% 0.191 286.7)",
+          "oklch(37.9% 0.191 286.7)",
+          "oklch(49.3% 0.191 286.7)",
+          "oklch(60.7% 0.191 286.7)",
+          "oklch(72.1% 0.191 286.7)",
+          "oklch(83.6% 0.191 286.7)",
+          "oklch(95.0% 0.191 286.7)"
+        ]
+      },
+      "accent-mark": {
+        "role": "primary",
+        "displayName": "Soft Violet Mark",
+        "canonical": "#8b6fe0",
+        "tonalRamp": [
+          "oklch(15.0% 0.165 292.3)",
+          "oklch(26.4% 0.165 292.3)",
+          "oklch(37.9% 0.165 292.3)",
+          "oklch(49.3% 0.165 292.3)",
+          "oklch(60.7% 0.165 292.3)",
+          "oklch(72.1% 0.165 292.3)",
+          "oklch(83.6% 0.165 292.3)",
+          "oklch(95.0% 0.165 292.3)"
+        ]
+      },
+      "error-text": {
+        "role": "functional",
+        "displayName": "Breach Red",
+        "canonical": "#b8302a",
+        "tonalRamp": [
+          "oklch(15.0% 0.174 27.6)",
+          "oklch(26.4% 0.174 27.6)",
+          "oklch(37.9% 0.174 27.6)",
+          "oklch(49.3% 0.174 27.6)",
+          "oklch(60.7% 0.174 27.6)",
+          "oklch(72.1% 0.174 27.6)",
+          "oklch(83.6% 0.174 27.6)",
+          "oklch(95.0% 0.174 27.6)"
+        ]
+      },
+      "error-fill": {
+        "role": "functional",
+        "displayName": "Breach Red fill",
+        "canonical": "#fde8e6",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 24.1)",
+          "oklch(26.4% 0.023 24.1)",
+          "oklch(37.9% 0.023 24.1)",
+          "oklch(49.3% 0.023 24.1)",
+          "oklch(60.7% 0.023 24.1)",
+          "oklch(72.1% 0.023 24.1)",
+          "oklch(83.6% 0.023 24.1)",
+          "oklch(95.0% 0.023 24.1)"
+        ]
+      },
+      "error-ink": {
+        "role": "functional",
+        "displayName": "Breach Red ink",
+        "canonical": "#8f211c",
+        "tonalRamp": [
+          "oklch(15.0% 0.147 27.9)",
+          "oklch(26.4% 0.147 27.9)",
+          "oklch(37.9% 0.147 27.9)",
+          "oklch(49.3% 0.147 27.9)",
+          "oklch(60.7% 0.147 27.9)",
+          "oklch(72.1% 0.147 27.9)",
+          "oklch(83.6% 0.147 27.9)",
+          "oklch(95.0% 0.147 27.9)"
+        ]
+      },
+      "success-text": {
+        "role": "functional",
+        "displayName": "Repair Green",
+        "canonical": "#1f7247",
+        "tonalRamp": [
+          "oklch(15.0% 0.105 156.1)",
+          "oklch(26.4% 0.105 156.1)",
+          "oklch(37.9% 0.105 156.1)",
+          "oklch(49.3% 0.105 156.1)",
+          "oklch(60.7% 0.105 156.1)",
+          "oklch(72.1% 0.105 156.1)",
+          "oklch(83.6% 0.105 156.1)",
+          "oklch(95.0% 0.105 156.1)"
+        ]
+      },
+      "success-fill": {
+        "role": "functional",
+        "displayName": "Repair Green fill",
+        "canonical": "#e2f4ea",
+        "tonalRamp": [
+          "oklch(15.0% 0.023 161.7)",
+          "oklch(26.4% 0.023 161.7)",
+          "oklch(37.9% 0.023 161.7)",
+          "oklch(49.3% 0.023 161.7)",
+          "oklch(60.7% 0.023 161.7)",
+          "oklch(72.1% 0.023 161.7)",
+          "oklch(83.6% 0.023 161.7)",
+          "oklch(95.0% 0.023 161.7)"
+        ]
+      },
+      "success-ink": {
+        "role": "functional",
+        "displayName": "Repair Green ink",
+        "canonical": "#17583a",
+        "tonalRamp": [
+          "oklch(15.0% 0.082 159.0)",
+          "oklch(26.4% 0.082 159.0)",
+          "oklch(37.9% 0.082 159.0)",
+          "oklch(49.3% 0.082 159.0)",
+          "oklch(60.7% 0.082 159.0)",
+          "oklch(72.1% 0.082 159.0)",
+          "oklch(83.6% 0.082 159.0)",
+          "oklch(95.0% 0.082 159.0)"
+        ]
+      },
+      "warning-text": {
+        "role": "functional",
+        "displayName": "Caution Amber",
+        "canonical": "#94600a",
+        "tonalRamp": [
+          "oklch(15.0% 0.111 71.5)",
+          "oklch(26.4% 0.111 71.5)",
+          "oklch(37.9% 0.111 71.5)",
+          "oklch(49.3% 0.111 71.5)",
+          "oklch(60.7% 0.111 71.5)",
+          "oklch(72.1% 0.111 71.5)",
+          "oklch(83.6% 0.111 71.5)",
+          "oklch(95.0% 0.111 71.5)"
+        ]
+      },
+      "warning-fill": {
+        "role": "functional",
+        "displayName": "Caution Amber fill",
+        "canonical": "#fdf3dc",
+        "tonalRamp": [
+          "oklch(15.0% 0.032 87.3)",
+          "oklch(26.4% 0.032 87.3)",
+          "oklch(37.9% 0.032 87.3)",
+          "oklch(49.3% 0.032 87.3)",
+          "oklch(60.7% 0.032 87.3)",
+          "oklch(72.1% 0.032 87.3)",
+          "oklch(83.6% 0.032 87.3)",
+          "oklch(95.0% 0.032 87.3)"
+        ]
+      },
+      "info-text": {
+        "role": "functional",
+        "displayName": "Info Violet",
+        "canonical": "#5b3fc0",
+        "tonalRamp": [
+          "oklch(15.0% 0.191 286.7)",
+          "oklch(26.4% 0.191 286.7)",
+          "oklch(37.9% 0.191 286.7)",
+          "oklch(49.3% 0.191 286.7)",
+          "oklch(60.7% 0.191 286.7)",
+          "oklch(72.1% 0.191 286.7)",
+          "oklch(83.6% 0.191 286.7)",
+          "oklch(95.0% 0.191 286.7)"
+        ]
+      },
+      "info-fill": {
+        "role": "functional",
+        "displayName": "Info Violet fill",
+        "canonical": "#efe9fd",
+        "tonalRamp": [
+          "oklch(15.0% 0.027 299.5)",
+          "oklch(26.4% 0.027 299.5)",
+          "oklch(37.9% 0.027 299.5)",
+          "oklch(49.3% 0.027 299.5)",
+          "oklch(60.7% 0.027 299.5)",
+          "oklch(72.1% 0.027 299.5)",
+          "oklch(83.6% 0.027 299.5)",
+          "oklch(95.0% 0.027 299.5)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Round number on the loop stage."
+      },
+      "stat": {
+        "displayName": "Stat",
+        "purpose": "Scoreboard totals (fix rate, real users OK)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Live phase name."
+      },
+      "number": {
+        "displayName": "Number",
+        "purpose": "Lamp collection numbers, scoreboard row figures, brand wordmark."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Panel and findings-group headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and buttons (500)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, column heads, legend, notes, sentence case."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Lamp state words, notches, LLM tag."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Endpoints, evidence, URLs, log timestamps only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "drawer-lift",
+        "value": "-12px 0 32px color-mix(in srgb, var(--text) 16%, transparent)",
+        "purpose": "Only on an open right-side drawer; the single shadow in the system."
+      },
+      {
+        "name": "scrim",
+        "value": "color-mix(in srgb, var(--text) 35%, transparent)",
+        "purpose": "Backdrop behind an open drawer."
+      }
+    ],
+    "motion": [
+      {
+        "name": "dur-fast",
+        "value": "160ms",
+        "purpose": "Hover background changes."
+      },
+      {
+        "name": "dur-state",
+        "value": "320ms",
+        "purpose": "Lamp colour/border transition and settle, drawer slide, scrim fade."
+      },
+      {
+        "name": "dur-travel",
+        "value": "900ms",
+        "purpose": "Train dot travel between stations (cubic in-out in JS)."
+      },
+      {
+        "name": "stagger",
+        "value": "40ms",
+        "purpose": "Per-lamp delay in collection order, capped at 1200ms / lamp count."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.2,.7,.2,1)",
+        "purpose": "State transitions, settle, stamp, drawer."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(.6,0,.3,1)",
+        "purpose": "Status-dot pulse, probing sweep."
+      },
+      {
+        "name": "settle",
+        "value": "scale 1.06 -> 1 over dur-state",
+        "purpose": "Lamp state change."
+      },
+      {
+        "name": "enter",
+        "value": "opacity 0, scale .9 -> 1 over dur-state",
+        "purpose": "New lamp appearing."
+      },
+      {
+        "name": "ring",
+        "value": "scale 1 -> 2.1, opacity .7 -> 0, 1.6s loop",
+        "purpose": "Live station; static halo (opacity .6, scale 1.6) under reduced motion."
+      },
+      {
+        "name": "pulse",
+        "value": "opacity 1 -> .35, 1.6s loop",
+        "purpose": "Running status dot."
+      },
+      {
+        "name": "sweep",
+        "value": "scaleX 0 -> 1, 700ms loop",
+        "purpose": "Probing lamp bottom bar."
+      },
+      {
+        "name": "stamp",
+        "value": "scale 1.15 -> 1, 220ms",
+        "purpose": "Scoreboard row arriving, once per round."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide",
+        "value": "1100px"
+      },
+      {
+        "name": "compact",
+        "value": "760px"
+      },
+      {
+        "name": "narrow",
+        "value": "420px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled violet pill per pane (Start loop, Run assessment, Defend once).",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Start loop</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-5); border-radius: var(--radius-control); white-space: nowrap; font-family: var(--font); font-weight: 500; font-size: var(--text-base); cursor: pointer; border: 2px solid var(--accent-solid); background: var(--surface); color: var(--accent-text); transition: background var(--dur-fast) var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-btn:disabled { cursor: not-allowed; opacity: .45; } .ds-btn-primary { background: var(--accent-solid); color: var(--surface); } .ds-btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline violet pill for secondary actions (Stop, Guide, Close, Apply).",
+      "html": "<button class=\"ds-btn\">Stop</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-5); border-radius: var(--radius-control); white-space: nowrap; font-family: var(--font); font-weight: 500; font-size: var(--text-base); cursor: pointer; border: 2px solid var(--accent-solid); background: var(--surface); color: var(--accent-text); transition: background var(--dur-fast) var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-btn:disabled { cursor: not-allowed; opacity: .45; } .ds-btn:hover { background: var(--fascia); }"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Borderless tertiary action (Reset results, Lab controls).",
+      "html": "<button class=\"ds-btn ds-btn-text\">Reset results</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-5); border-radius: var(--radius-control); white-space: nowrap; font-family: var(--font); font-weight: 500; font-size: var(--text-base); cursor: pointer; border: 2px solid var(--accent-solid); background: var(--surface); color: var(--accent-text); transition: background var(--dur-fast) var(--ease-out); } .ds-btn:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-btn:disabled { cursor: not-allowed; opacity: .45; } .ds-btn-text { border-color: transparent; background: transparent; padding: 0 var(--space-3); } .ds-btn-text:hover { background: var(--fascia-strong); }"
+    },
+    {
+      "name": "Target Chip",
+      "kind": "chip",
+      "refersTo": "chip-target",
+      "description": "Lavender pill showing run status, target name and URL; opens the target popover.",
+      "html": "<button class=\"ds-chip\"><span class=\"ds-dot\" aria-hidden=\"true\"></span><b>Custom API lab</b><span class=\"ds-mono\">http://localhost:8000</span></button>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-4); border-radius: var(--radius-control); background: var(--fascia); border: 0; cursor: pointer; font-family: var(--font); font-size: var(--text-base); color: var(--text); } .ds-chip:hover { background: var(--fascia-strong); } .ds-chip:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-chip b { font-weight: 500; } .ds-mono { font-family: var(--mono); font-size: var(--text-sm); color: var(--text-muted); } .ds-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--success-text); animation: ds-pulse 1.6s var(--ease-in-out) infinite; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } } @media (prefers-reduced-motion: reduce) { .ds-dot { animation: none; } }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Labelled numeric or text input in the run console and lab drawer.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-rounds\">Rounds</label><input id=\"ds-rounds\" type=\"number\" value=\"4\"></div>",
+      "css": ".ds-field { display: grid; gap: var(--space-1); font-family: var(--font); color: var(--text); font-variant-numeric: tabular-nums; } .ds-field label { font-size: var(--text-sm); font-weight: 500; } .ds-field input { min-height: 40px; width: 112px; border: 1px solid var(--lamp-edge); background: var(--surface); border-radius: var(--radius-lamp); padding: 0 var(--space-3); font: inherit; color: inherit; } .ds-field input:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; }"
+    },
+    {
+      "name": "Underline Tabs",
+      "kind": "nav",
+      "refersTo": "tabs",
+      "description": "Run-mode and detail-view tabs: muted at rest, ink 700 with a 2px violet underline when selected.",
+      "html": "<div class=\"ds-tabs\" role=\"tablist\"><button class=\"ds-tab\" role=\"tab\" aria-selected=\"true\">Findings<span class=\"ds-count\"> 5</span></button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Attack surface</button><button class=\"ds-tab\" role=\"tab\" aria-selected=\"false\">Live log</button></div>",
+      "css": ".ds-tabs { display: flex; gap: var(--space-5); border-bottom: 1px solid var(--border); font-family: var(--font); } .ds-tab { border: 0; background: none; padding: var(--space-3) 0; min-height: 44px; font: inherit; font-weight: 500; color: var(--text-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; } .ds-tab:hover { color: var(--text); } .ds-tab:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-tab[aria-selected=\"true\"] { color: var(--text); border-bottom-color: var(--accent-solid); font-weight: 700; } .ds-count { font-weight: 500; color: var(--text-muted); }"
+    },
+    {
+      "name": "Lamp Wall",
+      "kind": "custom",
+      "refersTo": "lamp-waiting",
+      "description": "Signature component: white enamel lamp windows in a lavender fascia, one per collection, six states each with fill, edge, SVG mark and state word.",
+      "html": "<div class=\"ds-lamps\"><button class=\"ds-lamp \"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">B1</span><span class=\"ds-mk\" aria-hidden=\"true\"></span><span class=\"ds-num\">01</span><span class=\"ds-state\">Waiting</span></button><button class=\"ds-lamp ds-probing\"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">B2</span><span class=\"ds-mk\" aria-hidden=\"true\"></span><span class=\"ds-num\">02</span><span class=\"ds-state\">Probing</span></button><button class=\"ds-lamp ds-breached\"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">B3</span><span class=\"ds-mk\" aria-hidden=\"true\"><svg viewBox=\"0 0 18 18\" aria-hidden=\"true\"><path d=\"M9 2.2 16.4 15.4H1.6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"M9 7v3.8\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"/><circle cx=\"9\" cy=\"13\" r=\"1.05\" fill=\"currentColor\"/></svg></span><span class=\"ds-num\">03</span><span class=\"ds-state\">Breached</span><span class=\"ds-notch\">new</span></button><button class=\"ds-lamp ds-fixed\"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">B4</span><span class=\"ds-mk\" aria-hidden=\"true\"><svg viewBox=\"0 0 18 18\" aria-hidden=\"true\"><path d=\"M9 1.8 15 4.3v4.2c0 3.6-2.5 6.1-6 7.7-3.5-1.6-6-4.1-6-7.7V4.3Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/><path d=\"m6.2 9 2 2 3.8-4.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-num\">04</span><span class=\"ds-state\">Fixed by defender</span><span class=\"ds-notch ds-reverted\">reverted</span></button><button class=\"ds-lamp ds-secure\"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">B5</span><span class=\"ds-mk\" aria-hidden=\"true\"></span><span class=\"ds-num\">05</span><span class=\"ds-state\">Secure</span></button><button class=\"ds-lamp ds-unclear\"><span class=\"ds-hatch\" aria-hidden=\"true\"></span><span class=\"ds-code\">V1</span><span class=\"ds-mk\" aria-hidden=\"true\"><svg viewBox=\"0 0 18 18\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"9\" r=\"7.2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-dasharray=\"3 2.2\"/><path d=\"M6.9 7.1a2.2 2.2 0 1 1 3.1 2c-.7.3-1 .8-1 1.5v.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\"/><circle cx=\"9\" cy=\"13.1\" r=\"1\" fill=\"currentColor\"/></svg></span><span class=\"ds-num\">06</span><span class=\"ds-state\">Unclear</span></button></div>",
+      "css": ".ds-lamps { display: grid; grid-template-columns: repeat(3, 108px); gap: var(--space-2); padding: var(--space-5); background: var(--fascia); border-radius: var(--radius-panel); font-family: var(--font); font-variant-numeric: tabular-nums; color: var(--text); } .ds-lamp { position: relative; display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr auto; min-height: 84px; padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3); border-radius: var(--radius-lamp); border: 2px solid var(--lamp-idle); background: var(--surface); text-align: left; font: inherit; color: inherit; cursor: pointer; transition: background-color var(--dur-state) var(--ease-out), border-color var(--dur-state) var(--ease-out); } .ds-lamp:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; } .ds-lamp .ds-code { font-size: var(--text-sm); font-weight: 700; } .ds-lamp .ds-mk { width: 18px; height: 18px; display: grid; place-items: center; } .ds-lamp .ds-mk svg { width: 18px; height: 18px; } .ds-lamp .ds-num { grid-column: 1 / -1; font-size: var(--text-xl); font-weight: 700; line-height: 1.2; align-self: center; } .ds-lamp .ds-state { grid-column: 1 / -1; font-size: var(--text-xs); font-weight: 500; color: var(--text-muted); line-height: 1.3; } .ds-lamp .ds-hatch { position: absolute; inset: 0; border-radius: 4px; pointer-events: none; opacity: 0; background: var(--error-text); -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 12 -2M-2 2 2 -2M8 12 12 8' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E\"); mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Cpath d='M-2 12 12 -2M-2 2 2 -2M8 12 12 8' stroke='black' stroke-width='1.6'/%3E%3C/svg%3E\"); } .ds-lamp > :not(.ds-hatch):not(.ds-notch) { position: relative; } .ds-notch { position: absolute; top: -9px; right: 8px; font-size: var(--text-xs); font-weight: 500; line-height: 1; padding: 2px 6px; background: var(--surface); border: 1px solid var(--lamp-edge); border-radius: var(--radius-control); color: var(--text-muted); } .ds-notch.ds-reverted { border-color: var(--error-text); color: var(--error-ink); left: 8px; right: auto; } .ds-probing { background: var(--info-fill); border-color: var(--accent-mark); } .ds-probing::after { content: \"\"; position: absolute; left: 6px; right: 6px; bottom: 4px; height: 3px; border-radius: 2px; background: var(--accent-mark); transform-origin: left; animation: ds-sweep 700ms var(--ease-in-out) infinite; } .ds-breached { background: var(--error-fill); border-color: var(--error-text); } .ds-breached .ds-hatch { opacity: .16; } .ds-breached .ds-state, .ds-breached .ds-mk { color: var(--error-ink); } .ds-fixed { background: var(--success-fill); border-color: var(--success-text); } .ds-fixed .ds-state, .ds-fixed .ds-mk { color: var(--success-ink); } .ds-secure { border: 1px solid var(--success-text); padding: 9px 9px 9px 13px; } .ds-secure .ds-state { color: var(--success-ink); } .ds-unclear { background: var(--warning-fill); border: 2px dashed var(--warning-text); } .ds-unclear .ds-state, .ds-unclear .ds-mk { color: var(--warning-text); } @keyframes ds-sweep { 0% { transform: scaleX(0); } 60% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-probing::after { animation: none; } }"
+    },
+    {
+      "name": "Scoreboard Row",
+      "kind": "card",
+      "refersTo": "scoreboard-row",
+      "description": "One stamped round in the scoreboard: round label, collection and legit-check summary, four tabular figures.",
+      "html": "<ol class=\"ds-rows\"><li class=\"ds-row ds-stamp\"><div class=\"ds-row-top\"><b>Round 2</b><span class=\"ds-muted\">12 collections · real users OK 24/24</span></div><div class=\"ds-nums\"><span>4</span><span>4</span><span>2</span><span class=\"ds-bad\">1</span></div></li><li class=\"ds-row ds-progress\"><div class=\"ds-row-top\"><b>Round 3</b><span>In progress · Attack</span></div></li><li class=\"ds-row ds-waiting\"><div class=\"ds-row-top\"><b>Round 4</b><span>Waiting</span></div></li></ol>",
+      "css": ".ds-rows { list-style: none; display: grid; gap: var(--space-2); margin: 0; padding: var(--space-5); background: var(--fascia); border-radius: var(--radius-panel); font-family: var(--font); color: var(--text); font-variant-numeric: tabular-nums; } .ds-row { background: var(--surface); border-radius: var(--radius-lamp); padding: var(--space-3); border: 1px solid transparent; } .ds-row-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-2); font-size: var(--text-sm); margin-bottom: var(--space-1); } .ds-row-top b { font-size: var(--text-base); } .ds-muted { color: var(--text-muted); } .ds-nums { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-2); } .ds-nums span { font-size: var(--text-xl); font-weight: 700; line-height: 1.2; } .ds-nums .ds-bad { color: var(--error-text); } .ds-progress { border-color: var(--accent-mark); } .ds-waiting { background: transparent; border: 1px dashed var(--lamp-edge); color: var(--text-muted); } .ds-stamp { animation: ds-stamp 220ms var(--ease-out); } @keyframes ds-stamp { 0% { transform: scale(1.15); } 100% { transform: scale(1); } } @media (prefers-reduced-motion: reduce) { .ds-stamp { animation: none; } }"
+    },
+    {
+      "name": "Evidence Pair",
+      "kind": "card",
+      "refersTo": "evidence-before",
+      "description": "Before and after evidence for a fixed finding, real responses in mono.",
+      "html": "<div class=\"ds-ba\"><div class=\"ds-ev\"><h4>Before: the attack worked</h4><pre>GET /api/collection_3/documents/17\n200 OK  owner: alice  caller: bob</pre></div><div class=\"ds-ev ds-after\"><h4>After: blocked, real users still work</h4><pre>bob: 403 Forbidden\nalice: 200 OK</pre></div></div>",
+      "css": ".ds-ba { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); font-family: var(--font); } .ds-ev { background: var(--error-fill); border: 1px solid var(--error-text); border-radius: var(--radius-lamp); padding: var(--space-4); min-width: 0; } .ds-ev h4 { margin: 0 0 var(--space-2); font-size: var(--text-sm); font-weight: 700; color: var(--error-ink); } .ds-ev pre { margin: 0; font-family: var(--mono); font-size: var(--text-sm); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; color: var(--text); } .ds-after { background: var(--success-fill); border-color: var(--success-text); } .ds-after h4 { color: var(--success-ink); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Annunciator Panel",
+    "overview": "A control-room annunciator. Collections are white enamel lamp windows set into a lavender fascia; the loop is one circle line with five stations. Colour lives on lamps and data, the purple fascia frames them, everything else is ink on white.\n\nThe page is read from the back of a classroom, so density is moderate and every state is spelled out: a lamp carries its template code, collection number, a drawn mark and its state in words, never colour alone. The surface is flat. Lavender panels sit on a white ground without borders or shadows; the only lifted object is the right-hand drawer. Motion exists only to report a change of state (a lamp flipping, the train moving to the live station, a round row stamping in) and disappears under reduced motion.",
+    "keyCharacteristics": [
+      "White ground, lavender fascia panels (14px corners), white enamel lamps (6px corners), pill controls.",
+      "One workhorse sans (self-hosted Figtree, variable 400–700) with tabular figures everywhere; monospace only for real code.",
+      "Six lamp states, each with fill, edge, drawn SVG mark and printed state word.",
+      "One filled purple button per pane; everything else outline or text.",
+      "Flat at rest; the drawer is the only shadowed element."
+    ],
+    "rules": [
+      {
+        "name": "The Derived-Only Rule",
+        "body": "No colour exists outside the token block. New needs are met with `color-mix()` of existing tokens (the scrim at 35% ink, the drawer shadow at 16% ink), never a new hex.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lamp-Owns-Colour Rule",
+        "body": "Red, green and amber appear only where they report a verdict (lamps, station tints, evidence, counts, status). Chrome stays violet, lavender and ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every figure is tabular (`font-variant-numeric: tabular-nums` on body). Never switch numbers to proportional.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sentence-Case Rule",
+        "body": "Labels, tabs and buttons are sentence case at 500. No uppercase tracking, no small caps.",
+        "section": "typography"
+      },
+      {
+        "name": "The One-Lift Rule",
+        "body": "The drawer is the only shadowed element. Nothing else casts a shadow, at rest or on hover.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do give every lamp state its fill, edge, drawn SVG mark and printed word together.",
+      "Do keep one filled violet button per pane; secondary actions are outline, tertiary are text.",
+      "Do set every figure tabular and every label in sentence case at 500.",
+      "Do derive any new tint with `color-mix()` from the token block.",
+      "Do label the fix-rate unit as repairs and the lamp-wall unit as collections.",
+      "Do keep 40px minimum control height (44px under 760px) and the 2px violet focus ring."
+    ],
+    "donts": [
+      "Don't shadow anything except an open drawer.",
+      "Don't put borders on fascia panels.",
+      "Don't use red, green or amber for chrome; they belong to verdicts.",
+      "Don't render an unclear result as safe or blend patched (fixed by defender) with secure.",
+      "Don't use monospace for anything that is not real code, URLs or timestamps.",
+      "Don't use glyph or emoji icons; marks are inline SVG drawn in `currentColor`."
+    ]
+  }
+}

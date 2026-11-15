@@ -1,0 +1,2574 @@
+{
+ "url": "http://localhost:8765/",
+ "at": "2026-11-15T10:12:39.804Z",
+ "allow": [
+  "palette-purple"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 3,
+   "filled": [
+    0.84,
+    0.18,
+    0.3
+   ],
+   "motion": {
+    "elements": 29,
+    "css": 24,
+    "transitions": 5,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 2058,
+     "screens": 2.3,
+     "words": 454,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 19,
+     "sections": 16,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 20,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "Figtree"
+    },
+    "headings": [
+     {
+      "text": "Round 4 / 4",
+      "words": 4,
+      "chars": 11,
+      "lines": 1,
+      "size": 56,
+      "vw": 3.9,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.39,
+      "top": 260,
+      "tag": "p",
+      "kind": "heading"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.14,
+      "top": 319,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "168 / 168",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.14,
+      "top": 319,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "Loop finished",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 28,
+      "vw": 1.9,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.39,
+      "top": 332,
+      "tag": "p",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.72,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.28,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      22,
+      28,
+      40,
+      56
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Figtree",
+      "size": 18,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.8
+     },
+     "measureChars": 56,
+     "max": {
+      "size": 56,
+      "vw": 3.9,
+      "font": "Figtree",
+      "text": "Round 4"
+     },
+     "monoShare": 0.28,
+     "monoProseShare": 0.01,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "localhost:8000"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.12,
+     "smallText": 14
+    },
+    "eyebrows": [
+     {
+      "text": "Fix rate",
+      "above": "100%",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 298
+     },
+     {
+      "text": "Real users OK",
+      "above": "168 / 168",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 298
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 22,
+      "top": 569
+     },
+     {
+      "text": "02",
+      "size": 22,
+      "top": 569
+     },
+     {
+      "text": "03",
+      "size": 22,
+      "top": 577
+     },
+     {
+      "text": "04",
+      "size": 22,
+      "top": 577
+     },
+     {
+      "text": "05",
+      "size": 22,
+      "top": 569
+     },
+     {
+      "text": "06",
+      "size": 22,
+      "top": 577
+     },
+     {
+      "text": "07",
+      "size": 22,
+      "top": 569
+     },
+     {
+      "text": "08",
+      "size": 22,
+      "top": 569
+     },
+     {
+      "text": "09",
+      "size": 22,
+      "top": 676
+     }
+    ],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f1ecfd",
+       "top": 475,
+       "hsl": {
+        "h": 258,
+        "s": 0.81,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1e1830",
+       "share": 0.45
+      },
+      {
+       "color": "#5c5573",
+       "share": 0.35
+      },
+      {
+       "color": "#17583a",
+       "share": 0.11
+      },
+      {
+       "color": "#5b3fc0",
+       "share": 0.08
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#5b3fc0"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 12,
+     "inHero": 12,
+     "radius": "pill",
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Custom API lab localhost:8000",
+      "Guide",
+      "Start loop",
+      "Stop",
+      "Reset results"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 17,
+     "hairlineSamples": [
+      "div.tabs 1344px",
+      "div.totals 411px",
+      "div.tabs 1392px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjc6Y29sbGVjdG 1392px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjI6Y29sbGVjdG 1392px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 2058,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section.panel.console",
+      "tag": "section",
+      "top": 72,
+      "height": 147,
+      "words": 25,
+      "media": 0,
+      "middle": 189,
+      "heading": null,
+      "left": 48,
+      "right": 48,
+      "textLeft": 48,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.main",
+      "tag": "div",
+      "top": 235,
+      "height": 682,
+      "words": 218,
+      "media": 1,
+      "middle": 64,
+      "heading": {
+       "text": "Round 4",
+       "size": 56,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 57,
+      "textLeft": 48,
+      "textRight": 57,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.details",
+      "tag": "section",
+      "top": 965,
+      "height": 1045,
+      "words": 188,
+      "media": 0,
+      "middle": 474,
+      "heading": {
+       "text": "Breached now",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Agentic ASM",
+      "size": 22,
+      "top": 20,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 3
+     },
+     {
+      "x": 48,
+      "n": 1
+     },
+     {
+      "x": 70,
+      "n": 1
+     },
+     {
+      "x": 181,
+      "n": 1
+     },
+     {
+      "x": 352,
+      "n": 1
+     },
+     {
+      "x": 981,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 8,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.04,
+    "voidBox": {
+     "x": 1140,
+     "y": 120,
+     "w": 300,
+     "h": 180
+    }
+   },
+   "app": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": null,
+    "canvas": {
+     "left": 24,
+     "right": 24
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 1.5,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 20,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 4,
+     "firstScreen": 4,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 8,
+     "radii": [
+      [
+       14,
+       4
+      ],
+      [
+       6,
+       4
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 28,
+     "tabularShare": 1,
+     "kpiMax": 40
+    },
+    "rows": null,
+    "chartHues": 2,
+    "placeholders": [],
+    "type": {
+     "under13": 0.01,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      14,
+      15,
+      16,
+      18,
+      22,
+      28,
+      40,
+      56
+     ]
+    },
+    "title": {
+     "text": "Agentic ASM",
+     "size": 22,
+     "top": 20
+    },
+    "colourShare": 0.007
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 4,
+   "filled": [
+    0.78,
+    0.54,
+    0.53,
+    0.17
+   ],
+   "motion": {
+    "elements": 29,
+    "css": 24,
+    "transitions": 5,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 3260,
+     "screens": 3.2,
+     "words": 454,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 19,
+     "sections": 16,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 20,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "Figtree"
+    },
+    "headings": [
+     {
+      "text": "Round 4 / 4",
+      "words": 4,
+      "chars": 11,
+      "lines": 1,
+      "size": 56,
+      "vw": 7.3,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.47,
+      "top": 311,
+      "tag": "p",
+      "kind": "heading"
+     },
+     {
+      "text": "Loop finished",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.47,
+      "top": 383,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 40,
+      "vw": 5.2,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 1234,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "168 / 168",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 40,
+      "vw": 5.2,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.43,
+      "top": 1234,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 4,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 2,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.72,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.28,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      22,
+      28,
+      40,
+      56
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Figtree",
+      "size": 18,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.8
+     },
+     "measureChars": 40,
+     "max": {
+      "size": 56,
+      "vw": 7.3,
+      "font": "Figtree",
+      "text": "Round 4"
+     },
+     "monoShare": 0.28,
+     "monoProseShare": 0.01,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "localhost:8000"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.12,
+     "smallText": 14
+    },
+    "eyebrows": [
+     {
+      "text": "Fix rate",
+      "above": "100%",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 1213
+     },
+     {
+      "text": "Real users OK",
+      "above": "168 / 168",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 1213
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 22,
+      "top": 656
+     },
+     {
+      "text": "02",
+      "size": 22,
+      "top": 656
+     },
+     {
+      "text": "03",
+      "size": 22,
+      "top": 664
+     },
+     {
+      "text": "04",
+      "size": 22,
+      "top": 664
+     },
+     {
+      "text": "05",
+      "size": 22,
+      "top": 656
+     },
+     {
+      "text": "06",
+      "size": 22,
+      "top": 664
+     },
+     {
+      "text": "07",
+      "size": 22,
+      "top": 763
+     },
+     {
+      "text": "08",
+      "size": 22,
+      "top": 763
+     },
+     {
+      "text": "09",
+      "size": 22,
+      "top": 763
+     }
+    ],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f1ecfd",
+       "top": 562,
+       "hsl": {
+        "h": 258,
+        "s": 0.81,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1e1830",
+       "share": 0.45
+      },
+      {
+       "color": "#5c5573",
+       "share": 0.35
+      },
+      {
+       "color": "#17583a",
+       "share": 0.11
+      },
+      {
+       "color": "#5b3fc0",
+       "share": 0.08
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#5b3fc0"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 12,
+     "inHero": 12,
+     "radius": "pill",
+     "height": 40,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Custom API lab localhost:8000",
+      "Guide",
+      "Start loop",
+      "Stop",
+      "Reset results"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 17,
+     "hairlineSamples": [
+      "div.tabs 672px",
+      "div.totals 672px",
+      "div.tabs 720px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjc6Y29sbGVjdG 720px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjI6Y29sbGVjdG 720px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 72,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 3260,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section.panel.console",
+      "tag": "section",
+      "top": 72,
+      "height": 211,
+      "words": 25,
+      "media": 0,
+      "middle": 14,
+      "heading": null,
+      "left": 48,
+      "right": 48,
+      "textLeft": 48,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "div.main",
+      "tag": "div",
+      "top": 299,
+      "height": 1515,
+      "words": 218,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Round 4",
+       "size": 56,
+       "tag": "p"
+      },
+      "left": 40,
+      "right": 48,
+      "textLeft": 48,
+      "textRight": 48,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.details",
+      "tag": "section",
+      "top": 1862,
+      "height": 1350,
+      "words": 188,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Breached now",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Agentic ASM",
+      "size": 22,
+      "top": 20,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 3
+     },
+     {
+      "x": 48,
+      "n": 2
+     },
+     {
+      "x": 70,
+      "n": 1
+     },
+     {
+      "x": 181,
+      "n": 1
+     },
+     {
+      "x": 352,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 8,
+    "bodySize": 14,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": null,
+    "canvas": {
+     "left": 24,
+     "right": 24
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 2.9,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 20,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 14,
+     "firstScreen": 3,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 18,
+     "radii": [
+      [
+       0,
+       10
+      ],
+      [
+       14,
+       4
+      ],
+      [
+       6,
+       4
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 28,
+     "tabularShare": 1,
+     "kpiMax": 40
+    },
+    "rows": null,
+    "chartHues": 2,
+    "placeholders": [],
+    "type": {
+     "under13": 0.01,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      14,
+      15,
+      16,
+      18,
+      22,
+      28,
+      40,
+      56
+     ]
+    },
+    "title": {
+     "text": "Agentic ASM",
+     "size": 22,
+     "top": 20
+    },
+    "colourShare": 0.015
+   },
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    0.71,
+    0.77,
+    0.73,
+    0.31,
+    0.37,
+    0.23,
+    0.33
+   ],
+   "motion": {
+    "elements": 29,
+    "css": 24,
+    "transitions": 5,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5128,
+     "screens": 6.1,
+     "words": 454,
+     "img": 0,
+     "video": 0,
+     "canvas": 0,
+     "svg": 19,
+     "sections": 16,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 22,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "h1": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "lines": 1,
+     "size": 22,
+     "font": "Figtree"
+    },
+    "headings": [
+     {
+      "text": "Agentic ASM",
+      "words": 2,
+      "chars": 11,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.34,
+      "top": 22,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "Round 4 / 4",
+      "words": 4,
+      "chars": 11,
+      "lines": 1,
+      "size": 40,
+      "vw": 10.3,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 937,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "Loop finished",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.84,
+      "top": 985,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "01",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1254,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "02",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1254,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "03",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1262,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "05",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1361,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "04",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1368,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "06",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1368,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "07",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1467,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "08",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1467,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "09",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1467,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "10",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1574,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "11",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1582,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "12",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1582,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "14",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1680,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "15",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1680,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "13",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1688,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "16",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1787,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "18",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1787,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "17",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1795,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "19",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 1894,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "20",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 1894,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "21",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 1901,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "24",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.2,
+      "top": 2000,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "22",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.2,
+      "top": 2008,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "23",
+      "words": 1,
+      "chars": 2,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.2,
+      "top": 2008,
+      "tag": "span",
+      "kind": "statement"
+     },
+     {
+      "text": "100%",
+      "words": 1,
+      "chars": 4,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 2271,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "168 / 168",
+      "words": 3,
+      "chars": 9,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.1,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.4,
+      "top": 2271,
+      "tag": "div",
+      "kind": "heading"
+     },
+     {
+      "text": "1 1 1 0",
+      "words": 4,
+      "chars": 7,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2490,
+      "tag": "div",
+      "kind": "statement"
+     },
+     {
+      "text": "3 3 2 1",
+      "words": 4,
+      "chars": 7,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2578,
+      "tag": "div",
+      "kind": "statement"
+     },
+     {
+      "text": "1 1 0 1",
+      "words": 4,
+      "chars": 7,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2667,
+      "tag": "div",
+      "kind": "statement"
+     },
+     {
+      "text": "2 2 1 1",
+      "words": 4,
+      "chars": 7,
+      "lines": 1,
+      "size": 22,
+      "vw": 5.6,
+      "font": "Figtree",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 2755,
+      "tag": "div",
+      "kind": "statement"
+     }
+    ],
+    "headingSummary": {
+     "count": 33,
+     "maxLines": 1,
+     "over2Lines": 0,
+     "statements": 30,
+     "centered": 0,
+     "medianWords": 1,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Figtree",
+       "share": 0.72,
+       "mono": false
+      },
+      {
+       "family": "ui-monospace",
+       "share": 0.28,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      12,
+      14,
+      16,
+      18,
+      22,
+      28,
+      40
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "Figtree",
+      "size": 18,
+      "leading": 1.5,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 14.8
+     },
+     "measureChars": 36,
+     "max": {
+      "size": 40,
+      "vw": 10.3,
+      "font": "Figtree",
+      "text": "Round 4"
+     },
+     "monoShare": 0.28,
+     "monoProseShare": 0.01,
+     "monoFamilies": [
+      "ui-monospace"
+     ],
+     "monoSamples": [
+      "localhost:8000"
+     ],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.12,
+     "smallText": 14
+    },
+    "eyebrows": [
+     {
+      "text": "Fix rate",
+      "above": "100%",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 2250
+     },
+     {
+      "text": "Real users OK",
+      "above": "168 / 168",
+      "upper": false,
+      "tracked": false,
+      "mono": false,
+      "pill": false,
+      "size": 14,
+      "top": 2250
+     }
+    ],
+    "numbered": [
+     {
+      "text": "01",
+      "size": 22,
+      "top": 1254
+     },
+     {
+      "text": "02",
+      "size": 22,
+      "top": 1254
+     },
+     {
+      "text": "03",
+      "size": 22,
+      "top": 1262
+     },
+     {
+      "text": "04",
+      "size": 22,
+      "top": 1368
+     },
+     {
+      "text": "05",
+      "size": 22,
+      "top": 1361
+     },
+     {
+      "text": "06",
+      "size": 22,
+      "top": 1368
+     },
+     {
+      "text": "07",
+      "size": 22,
+      "top": 1467
+     },
+     {
+      "text": "08",
+      "size": 22,
+      "top": 1467
+     },
+     {
+      "text": "09",
+      "size": 22,
+      "top": 1467
+     }
+    ],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f1ecfd",
+       "top": 128,
+       "hsl": {
+        "h": 258,
+        "s": 0.81,
+        "l": 0.96
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#1e1830",
+       "share": 0.45
+      },
+      {
+       "color": "#5c5573",
+       "share": 0.35
+      },
+      {
+       "color": "#17583a",
+       "share": 0.11
+      },
+      {
+       "color": "#5b3fc0",
+       "share": 0.08
+      },
+      {
+       "color": "#ffffff",
+       "share": 0
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#5b3fc0"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 11,
+     "inHero": 11,
+     "radius": "pill",
+     "height": 44,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Custom API lab localhost:8000",
+      "Guide",
+      "Start loop",
+      "Reset results",
+      "Lab controls"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 17,
+     "hairlineSamples": [
+      "div.tabs 326px",
+      "div.totals 326px",
+      "div.tabs 358px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjc6Y29sbGVjdG 358px",
+      "article#f-aHR0cDovL2xvY2FsaG9zdDo4MDAwOjpsYWItQjI6Y29sbGVjdG 358px"
+     ],
+     "outlinedBoxes": 0,
+     "dashed": 0,
+     "blurred": 0,
+     "roundedBoxes": 8,
+     "boxRadius": 14,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "svg",
+      "ratio": 0.12
+     }
+    ],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 128,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "figtree"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5128,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "header#topbar.topbar",
+      "tag": "header",
+      "top": 0,
+      "height": 128,
+      "words": 7,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Agentic ASM",
+       "size": 22,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 50,
+      "textRight": 42,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.panel.console",
+      "tag": "section",
+      "top": 128,
+      "height": 555,
+      "words": 25,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 58,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.panel.stage",
+      "tag": "section",
+      "top": 699,
+      "height": 453,
+      "words": 23,
+      "media": 1,
+      "middle": 0,
+      "heading": {
+       "text": "Round 4",
+       "size": 40,
+       "tag": "p"
+      },
+      "left": 32,
+      "right": 35,
+      "textLeft": 32,
+      "textRight": 35,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.panel",
+      "tag": "section",
+      "top": 1168,
+      "height": 1011,
+      "words": 116,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "01",
+       "size": 22,
+       "tag": "span"
+      },
+      "left": 32,
+      "right": 32,
+      "textLeft": 32,
+      "textRight": 32,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "aside.panel.score",
+      "tag": "aside",
+      "top": 2195,
+      "height": 674,
+      "words": 79,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "100%",
+       "size": 28,
+       "tag": "div"
+      },
+      "left": 32,
+      "right": 37,
+      "textLeft": 32,
+      "textRight": 37,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.details",
+      "tag": "section",
+      "top": 2916,
+      "height": 2164,
+      "words": 188,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Breached now",
+       "size": 18,
+       "tag": "h3"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 16,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "Agentic ASM",
+      "size": 22,
+      "top": 22,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 3
+     },
+     {
+      "x": 32,
+      "n": 3
+     },
+     {
+      "x": 62,
+      "n": 1
+     },
+     {
+      "x": 173,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 8,
+    "bodySize": 14,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "dark": false,
+    "ground": "#ffffff",
+    "sidebar": null,
+    "topbar": null,
+    "canvas": {
+     "left": 16,
+     "right": 16
+    },
+    "hero": {
+     "text": "Agentic ASM",
+     "words": 2,
+     "chars": 11,
+     "lines": 1,
+     "size": 22,
+     "vw": 5.6,
+     "font": "Figtree",
+     "weight": 700,
+     "tracking": 0,
+     "leading": 1.5,
+     "top": 22,
+     "tag": "h1",
+     "kind": "heading",
+     "align": "left",
+     "position": "left"
+    },
+    "charts": 1,
+    "layout": {
+     "panels": 18,
+     "firstScreen": 2,
+     "ragged": [],
+     "voids": []
+    },
+    "tiles": 0,
+    "panels": {
+     "count": 22,
+     "radii": [
+      [
+       0,
+       14
+      ],
+      [
+       14,
+       4
+      ],
+      [
+       6,
+       4
+      ]
+     ],
+     "heavyBorders": 0,
+     "borderSamples": [],
+     "heavyShadows": 0,
+     "softShadows": 0,
+     "shadowSamples": [],
+     "glass": 0
+    },
+    "chips": {
+     "count": 0,
+     "hues": 0,
+     "samples": []
+    },
+    "numbers": {
+     "cells": 0,
+     "leftAligned": 0,
+     "figures": 28,
+     "tabularShare": 1,
+     "kpiMax": 28
+    },
+    "rows": null,
+    "chartHues": 2,
+    "placeholders": [],
+    "type": {
+     "under13": 0.01,
+     "tiny": 0,
+     "tinySamples": [],
+     "sizes": [
+      12,
+      14,
+      15,
+      16,
+      18,
+      22,
+      28,
+      40
+     ]
+    },
+    "title": {
+     "text": "Agentic ASM",
+     "size": 22,
+     "top": 22
+    },
+    "colourShare": 0.049
+   },
+   "consoleErrors": []
+  }
+ ],
+ "findings": [],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/desktop-fold.jpg",
+   "pages": [
+    "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/desktop-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/tablet-fold.jpg",
+   "pages": [
+    "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/mobile-fold.jpg",
+   "pages": [
+    "/Users/ahmed/University/Computer Security/CS Project/agentic-asm/.taste-skill/after/mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

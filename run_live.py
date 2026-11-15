@@ -1,6 +1,6 @@
 """Record one live growth observation, assessment, defense and reassessment.
 
-No background agent loop. The target's existing growth timer remains untouched.
+A single pass; run_loop.py repeats rounds. The target's growth timer remains untouched.
 """
 import argparse
 import asyncio
@@ -15,6 +15,7 @@ import httpx
 
 from agents import scout
 from core.lab_checks import assess, PATH
+from core.metrics import metrics
 from orchestrator import run_defender_round
 from run_attacker import _guard_target
 
@@ -27,41 +28,6 @@ def snapshot(client):
             "collections": sorted(match[1] for path in paths if (match := PATH.fullmatch(path))),
             "endpoint_method_pairs": sum(method.lower() in {"get", "post", "put", "patch", "delete", "head", "options"}
                                          for methods in paths.values() for method in methods)}
-
-
-def metrics(before, defense, after):
-    original = {f["id"]: f for f in before["findings"]}
-    final = {f["id"]: f for f in after["findings"]}
-    vulnerable = {fid for fid, f in original.items() if f["verdict"] is True}
-    verified = {p["finding_id"] for p in defense["plans"] if p.get("applied") and p.get("verified")}
-    repaired = {fid for fid in vulnerable & verified if final.get(fid, {}).get("verdict") is False}
-    owner_checks = [f.get("evidence", {}).get("checks", {}).get(key) is True
-                    for f in final.values() for key in ("alice_owner_ok", "bob_owner_ok")]
-    per_template = {}
-    for template in sorted({f.get("template", "legacy") for f in original.values()}):
-        ids = {fid for fid, f in original.items() if f.get("template", "legacy") == template}
-        eligible = ids & vulnerable
-        per_template[template] = {"tested": len(ids), "initially_vulnerable": len(eligible),
-                                  "verified_repairs_still_secure": len(ids & repaired),
-                                  "remediation_rate": len(ids & repaired) / len(eligible) if eligible else None}
-    return {
-        "per_template": per_template,
-        "assessed_collections_before": len(original), "assessed_collections_after": len(final),
-        "before": before["summary"], "after": after["summary"],
-        "initially_vulnerable": len(vulnerable), "verified_repairs_still_secure": len(repaired),
-        "remediation_rate": len(repaired) / len(vulnerable) if vulnerable else None,
-        "defender_plans": len(defense["plans"]), "defender_applied": defense["applied"],
-        "defender_verified": defense["verified"],
-        "defender_failed": sum(p["status"] == "failed" for p in defense["plans"]),
-        "defender_rolled_back": sum(p.get("rolled_back") is True for p in defense["plans"]),
-        "original_vulnerabilities_remaining": sum(final.get(fid, {}).get("verdict") is True for fid in vulnerable),
-        "original_vulnerabilities_unresolved": sum(fid not in final or final[fid]["verdict"] is None for fid in vulnerable),
-        "new_collections_during_agents": len(final.keys() - original.keys()),
-        "new_vulnerabilities_during_agents": sum(final[fid]["verdict"] is True for fid in final.keys() - original.keys()),
-        "regressions": sum(f["verdict"] is False and final.get(fid, {}).get("verdict") is True for fid, f in original.items()),
-        "owner_checks_passed": sum(owner_checks), "owner_checks_total": len(owner_checks),
-        "owner_access_preservation_rate": sum(owner_checks) / len(owner_checks) if owner_checks else None,
-    }
 
 
 def write_summary(folder, data):
@@ -85,8 +51,8 @@ def write_summary(folder, data):
     lines = ["# Live growing API run", "", f"Started: {data['started_at']} (Asia/Dubai)", "",
              f"Target: `{data['target']}`", "", "## Procedure", "",
              "Observed a running API's growth, performed one deterministic two-user assessment, "
-             "applied the supported operation-specific authorization policies, and independently reassessed. No repeating "
-             "agent loop was started. Existing policies and scenario history were retained.", "",
+             "applied the supported operation-specific authorization policies, and independently reassessed. This is a "
+             "single pass (see run_loop.py for repeated rounds). Existing policies and scenario history were retained.", "",
              "## Results", "", "| Metric | Observed value |", "|---|---|"]
     lines.extend(f"| {name} | {value} |" for name, value in rows.items())
     lines.extend(["", "## Results by template", "", "| Type | Tested | Initially vulnerable | Verified repairs |", "|---|---|---|---|"])

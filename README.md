@@ -7,7 +7,67 @@ round, with no LLM involved -- that stays the fast, exhaustive baseline. An
 optional, sampled LLM-driven cross-check is also available for the lab (see
 "LLM-sampled checks" below); VAmPI's reasoning-based modules remain the only
 *exhaustive* LLM attacker. The defender supports preview mode and explicit, verified remediation of the
-lab ownership vulnerability. There is no automatic attacker–defender loop.
+lab ownership vulnerability, and a **bounded closed attacker–defender loop**
+(`run_loop.py`, or **Start loop** in the dashboard) repeats grow → discover →
+attack → defend → verify for as many rounds as you ask.
+
+## Closed attacker–defender loop
+
+```bash
+docker compose -f compose.lab.yml up -d --build        # the growing lab
+.venv/bin/python run_loop.py --rounds 5 --grow 5 --drift 1 --seed 444
+```
+
+Each round:
+
+1. **Grow** — the lab adds `--grow` new scenarios at the round boundary (lab timer
+   growth is paused for the run and restored afterwards, so every change is
+   reproducible). With `--drift N`, from round 2 on N verified patches are
+   reverted to simulate a configuration regression.
+2. **Discover** — Scout rereads the OpenAPI schema.
+3. **Attack** — the deterministic two-user assessment probes every collection
+   (plus `--llm-sample` LLM missions via Ollama, if requested).
+4. **Defend** — Watcher → Analyst → Responder: reproduce, apply the
+   operation-specific policy, replay the exploit, check legitimate users,
+   roll back on failure.
+5. **Verify** — an independent reassessment confirms what held.
+
+Per round the loop records new collections, **new exposure** (vulnerable on
+first appearance), **regressions** (secure last round, vulnerable now),
+found / verified-fixed / still-open counts, legitimate-operation checks and
+phase durations. Results go to `runs/<timestamp>_loop/` (`SUMMARY.md`,
+`metrics.json`, raw per-round assessment and defender evidence) and live into
+`state/loop.json`, which the dashboard animates. Bounds: 1–20 rounds, 0–50
+scenarios per round, 0–20 drift. The dashboard's **Stop** ends the loop
+cooperatively between collections. If `--policy-file` does not exist the loop
+starts it empty: never *delete* the policy file under a running lab — a lab that
+has seen a policy fails closed (503) when it disappears; empty it instead.
+
+Recorded: [15 November 2026 loop](runs/2026-11-15_09-31-04_loop/SUMMARY.md) —
+5 rounds, 0 → 25 collections, 19/19 vulnerabilities (15 new exposure + 4 drift
+regressions) fixed with verified repairs, 150/150 legitimate checks, 0
+rollbacks, about 1.1 s per round.
+
+The dashboard (`gui/server.py`) exposes the same loop at `POST /api/loop`
+(`rounds`, `grow_per_round`, `drift`, `llm_sample`, `phase_delay`, `seed`) and
+a single verified defender pass at `POST /api/defend`; both refuse non-lab
+targets. In Docker the agent container mounts `lab-policy/` read-write for this.
+
+### Live dashboard
+
+`.venv/bin/python gui/server.py` (or the `agent` Compose service) serves
+http://localhost:8765. Pick the target from the chip in the top bar, then use
+the run console's tabs: **Closed loop** (rounds, new scenarios per round, drift,
+phase pacing), **Assess once**, or **Defend once**. The loop ring lights
+Grow → Discover → Attack → Defend → Verify as the server reports each phase
+(pacing holds each phase on screen so an audience can follow; it is excluded
+from measured durations). Each collection is a lamp: Waiting, Probing,
+Breached (red, hatched, "!"), Fixed by defender (green, shield), Secure (green
+outline) or Unclear (amber, dashed, "?"), with "new" and "reverted" notches.
+The round scoreboard stamps Found / Fixed / New exposure / Regressions and the
+totals; click any lamp for its before/after HTTP evidence. **Lab controls**
+holds the growth settings and **Guide** explains every term. Design records:
+`PRODUCT.md`, `JOURNEY.md`, `DESIGN.md`.
 
 ## Run growth, assessment, defense, and metrics
 
@@ -40,7 +100,7 @@ Ollama. The separate VAmPI pipeline still provides the LLM-driven benchmark.
    `LAB_MAX_COLLECTIONS=0` removes the cap for a genuinely unbounded, long-running
    experiment, but expect proportionally more memory/CPU use the longer it runs
    -- see "Memory requirements" further below. Use the dashboard's growth
-   controls panel (or its **Reset lab** button) to change the pace or start
+   **Lab controls** drawer (or its **Reset to 0** button) to change the pace or start
    over live, without a restart. Refresh Swagger to see new routes. Do not
    remove "orphan" containers: the two Compose files intentionally manage
    different services under the same project.
@@ -56,7 +116,7 @@ Ollama. The separate VAmPI pipeline still provides the LLM-driven benchmark.
    defender pass, and independently reassesses. It saves a timestamped folder
    under `runs/` (Asia/Dubai time), including `SUMMARY.md`, `metrics.json`, and
    raw assessment/defender evidence. It also writes the usual dashboard state.
-   It exits after this sequence; it does not start an unattended agent loop.
+   It exits after this single sequence; use `run_loop.py` for repeated rounds.
    Run only one assessment/defender writer at a time and stop any scout watcher
    before starting this command. Growth continues during and after the experiment.
 
@@ -73,14 +133,14 @@ Ollama. The separate VAmPI pipeline still provides the LLM-driven benchmark.
    The second command previews proposals. The third applies supported policies
    and verifies them. These individual commands save shared state, but only
    `run_live.py` creates the consolidated run folder and Markdown summary.
-   The dashboard's **Run round** button supports both VAmPI and the custom API.
+   The dashboard's **Run assessment** (Assess once tab) button supports both VAmPI and the custom API.
    Choose **Auto-detect API**, **VAmPI attacker**, or **Custom API assessment**.
    Custom API rounds refresh discovery and run deterministic checks on every
    collection, with no Ollama involved, by default. Setting the dashboard's
    **LLM-sampled checks** field above `0` additionally runs that many
    independent, model-driven cross-checks against randomly chosen collections
    -- see "LLM-sampled checks on the custom API lab" below. Defender
-   application remains a separate CLI step. Current findings update after
+   application is the dashboard's **Defend once** tab or the CLI. Current findings update after
    defense; previous round totals remain historical snapshots.
 
 5. To observe discovery alone, run the following and stop it with Ctrl+C before
@@ -101,17 +161,16 @@ Ollama. The separate VAmPI pipeline still provides the LLM-driven benchmark.
    down` stops the lab while retaining its scenario volume and host policy file.
 
 7. Reset the lab's collections from the dashboard instead of deleting the
-   scenario volume. The dashboard's **Reset lab** button (in the Custom API
-   lab controls panel) calls the lab's `POST /admin/reset`: it clears every
+   scenario volume. The dashboard's **Reset to 0** button (in the **Lab
+   controls** drawer) calls the lab's `POST /admin/reset`: it clears every
    collection and its routes, then reseeds to `LAB_INITIAL_COLLECTIONS`, live,
    with no Docker command or restart. Growth settings (interval, cap,
-   templates, odds) are kept as currently configured. It does **not** touch
-   `lab-policy/policy.json` -- that file is mounted read-only into the lab
-   container, and collections are renumbered from 1 again after a reset, so a
-   stale policy entry for an old `collection_0001` would otherwise silently
-   re-apply to the *new* `collection_0001`. Clear or move the policy file
-   yourself first (same as before a volume reset) if you also want a clean
-   remediation slate:
+   templates, odds) are kept as currently configured. Because collections are
+   renumbered from 1, a stale policy entry for an old `collection_0001` would
+   silently re-apply to the *new* `collection_0001`, so the dashboard button
+   also empties `lab-policy/policy.json` (`"clear_policy": true`). The plain
+   API call below leaves the policy alone; empty the file yourself (never
+   delete it under a running lab) if you also want a clean remediation slate:
 
    ```bash
    curl -X POST http://localhost:8765/api/lab-reset \
@@ -212,7 +271,7 @@ piece of the roadmap's "general attacker" step (below), scoped down to
 something that actually finishes against an unbounded, still-growing lab.
 
 Set the dashboard's **LLM-sampled checks** field above `0` (and pick an
-**Ollama model**) before clicking **Run round** against the custom API. After
+**Ollama model**) before clicking **Run assessment** (Assess once tab) against the custom API. After
 the deterministic pass, that many randomly chosen collections also get an
 independent mission: the same two lab users and the same documented operation
 (`core/template_catalog.py`'s public B1-V1 contracts), but the request is
@@ -231,7 +290,7 @@ in a lab with hundreds or thousands of them would take hours to re-prove the
 same 8 vulnerability shapes repeatedly, which is why this is sampled rather
 than exhaustive, and why there's a dashboard cap (50) on the sample size. See
 `agents/lab_operator.py` for the per-template attack specs, and the dashboard's
-**Guide** sidebar ("How LLM-sampled checks works") for the same explanation
+**Guide** drawer ("LLM-sampled checks") for the same explanation
 in place.
 
 ```bash
@@ -268,8 +327,8 @@ by continued growth. Full raw evidence is stored alongside the summary.
    Analyst selects a supported recipe, and Responder applies an ownership policy.
    Closure requires fresh exploit replay and legitimate-user checks. VAmPI recipes
    remain proposals; source-code patch generation and broader adapters are future work.
-4. **Closed loop:** alternate assessment, remediation, and verification with
-   scenario changes at reproducible boundaries. Add permission changes, removals,
+4. **Closed loop (implemented):** alternate assessment, remediation, and verification with
+   scenario changes and simulated drift at reproducible round boundaries (`run_loop.py`). Add permission changes, removals,
    and regressions as well as new endpoints.
 5. **Evaluation (initial harness implemented):** validate timed growth, classify
    ownership failures against private ground truth, and evaluate one defender pass.
@@ -286,8 +345,7 @@ from the catalog; it does not generate arbitrary business logic.
 
 
 The executable attack pipeline still implements M4 against VAmPI. The new
-lab, defender and evaluation harness establish the next stages without claiming a completed
-attacker–defender loop.
+lab, defender, closed loop and evaluation harness run against the growing custom API.
 
 ## Growing FastAPI lab
 
@@ -375,11 +433,11 @@ repository with the same project name (do not use different `-p` names).
 Open http://localhost:8765 to see the Attack Surface table and scout events
 update. This only refreshes discovery; it creates no attack round or findings.
 Stop the watcher before running benchmark attacks because the dashboard has
-one current surface snapshot. The **Run round** button detects the target type from its public OpenAPI schema.
+one current surface snapshot. The **Run assessment** (Assess once tab) button detects the target type from its public OpenAPI schema.
 Choose **Custom API assessment** to run discovery and supported deterministic checks
 on the growing lab. A mismatched explicit type produces an error before assessment.
 
-## Standalone assessment and defender (no loop)
+## Standalone assessment and defender (single passes)
 
 The supported lab actions are real per-collection, per-operation authorization policies. The API reads
 `lab-policy/policy.json` on each item request, so changes take effect without a
@@ -425,8 +483,8 @@ The assessment uses OpenAPI to enumerate collection routes and select the matchi
 operation adapter. It checks both users and uses an administrator positive control
 for V1. Mutating probes verify effects and clean up their changes. It saves one finding per collection.
 It does not read the private manifest. This is a known-fixture test adapter, not
-an autonomous general-purpose attacker. The dashboard's Run round button still
-runs the VAmPI pipeline; use the CLI above for lab assessment.
+an autonomous general-purpose attacker. The dashboard's **Assess once** tab runs the
+same assessment.
 
 The defender reproduces the issue before applying the matching policy. It checks
 unauthorized operations are blocked, legitimate operations still work, anonymous
@@ -435,7 +493,7 @@ verdict updated. Verification failure restores the previous policy and leaves
 the finding open. Unsupported modules are not applied. The draft VAmPI recipes
 remain available in preview mode. A positive reassessment reopens a previously
 patched finding. Newly grown collections get their own policy entries only when
-explicitly assessed and remediated; there is no background remediation loop.
+explicitly assessed and remediated, by these commands or by the closed loop.
 
 Policy writes use an advisory lock and atomic replacement. Docker Desktop can
 briefly hide a bind-mounted file during replacement: policy reads retry transient
@@ -459,8 +517,8 @@ and exposed in `/api/state`; the dashboard displays findings and defender logs.
 The harness creates a disposable lab and isolated agent state. It does not alter
 running Docker services, existing scenarios, or dashboard history. It uses actual
 FastAPI routing and lifespan timers through ASGI TestClient, rather than network
-sockets, and performs **one assessment followed by one defender pass**, never an
-alternating loop. JSON output records checks, evidence, classification counts,
+sockets, and performs **one assessment followed by one defender pass**; the
+closed loop is covered by `tests/test_loop.py`. JSON output records checks, evidence, classification counts,
 discovery delays, defender duration, and remediation rate. Failures exit nonzero.
 
 Default experiment: start with two collections, grow to 32 at 50 ms intervals,
@@ -602,7 +660,7 @@ native Ollama with `qwen2.5` pulled.
 cd agentic-asm
 docker compose up -d --build               # VAmPI (5001/5002) + GUI (8765)
 curl localhost:5001/createdb && curl localhost:5002/createdb   # once, after first boot
-open http://localhost:8765                  # click "Run round"
+open http://localhost:8765                  # Assess once → Run assessment, or Closed loop → Start loop
 
 # or run the CLI instead of/alongside the GUI, same shared state/:
 docker compose run --rm agent python3 run_attacker.py --target http://vampi-vulnerable:5000 --rounds 3

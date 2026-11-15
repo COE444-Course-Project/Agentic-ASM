@@ -1,14 +1,11 @@
 """
-Minimal live dashboard for the attacker agent -- exists so M4 ("attacker
-agent discovers and reports findings") is something you can watch happen,
-not just a Markdown file after the fact.
+Live dashboard for the attacker/defender agents.
 
-Reads the exact state/ files that orchestrator.py and run_attacker.py
-write, so this process and the CLI are independent: leave the GUI open in
-a browser tab while a round runs from a terminal, or click "Run a round"
-here and it drives the same orchestrator in a background thread. When a
-Defender agent exists, this same page is where its side of the loop shows
-up too -- it reads the same state_store.snapshot().
+Reads the exact state/ files that orchestrator.py and the CLIs write, so this
+process and the CLI are independent: leave the page open while a run happens
+from a terminal, or start one here and it drives the same orchestrator in a
+background thread. Runs: a single assessment, a single defender pass, or the
+bounded closed loop (orchestrator.run_closed_loop).
 
     .venv/bin/python3 gui/server.py [--port 8765]
 """
@@ -20,12 +17,14 @@ import json
 import os
 import sys
 import threading
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from urllib.parse import urlparse
 
 import httpx
 
-from flask import Flask, Response, jsonify, request
+from flask import Flask, Response, jsonify, request, send_from_directory
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -35,8 +34,10 @@ from agents.lab_operator import run_llm_sample  # noqa: E402
 from core.vampi_setup import prepare_vampi
 from core import state_store as store  # noqa: E402
 from core.lab_checks import assess, PATH as LAB_PATH  # noqa: E402
+from core.metrics import write_loop_report  # noqa: E402
 
 MAX_LLM_SAMPLE = 50  # a hard ceiling on the dashboard's "LLM-sampled checks" field -- see run_dashboard_round
+LOOP_LIMITS = {"rounds": (1, 20), "grow_per_round": (0, 50), "drift": (0, 20), "llm_sample": (0, MAX_LLM_SAMPLE)}
 
 app = Flask(__name__, static_folder=None)
 
@@ -172,7 +173,32 @@ async def run_dashboard_round(target: str, model: str, mode: str = "auto", shoul
     return await orchestrator.run_attacker_round(target, model, should_stop=should_stop)
 
 
-def _run_round_in_background(target: str, model: str, mode: str = "auto", llm_sample: int = 0) -> bool:
+def _require_lab(client) -> None:
+    response = client.get("/openapi.json")
+    response.raise_for_status()
+    paths = response.json().get("paths", {})
+    if "/auth/login" not in paths or "/admin/growth" not in paths:
+        raise ValueError("The defender and closed loop only support the custom API lab target.")
+
+
+async def run_dashboard_defense(target: str):
+    with httpx.Client(base_url=target, timeout=30) as client:
+        _require_lab(client)
+        return await orchestrator.run_defender_round(target, LAB_POLICY_FILE, client)
+
+
+async def run_dashboard_loop(target: str, model: str, should_stop=None, **config):
+    with httpx.Client(base_url=target, timeout=30) as client:
+        _require_lab(client)
+        result = await orchestrator.run_closed_loop(target, LAB_POLICY_FILE, client, model=model,
+                                                    should_stop=should_stop, **config)
+    folder = ROOT / "runs" / (datetime.now(ZoneInfo("Asia/Dubai")).strftime("%Y-%m-%d_%H-%M-%S") + "_loop")
+    write_loop_report(folder, result)
+    store.log_event("orchestrator", f"loop report saved to runs/{folder.name}")
+    return result
+
+
+def _run_round_in_background(target: str, model: str, mode: str = "auto", llm_sample: int = 0, job=None) -> bool:
     with _run_lock:
         if _running["active"]:
             return False
@@ -182,7 +208,8 @@ def _run_round_in_background(target: str, model: str, mode: str = "auto", llm_sa
 
     def _worker():
         try:
-            asyncio.run(run_dashboard_round(target, model, mode, should_stop=_cancel_event.is_set, llm_sample=llm_sample))
+            asyncio.run(job() if job else run_dashboard_round(target, model, mode, should_stop=_cancel_event.is_set,
+                                                              llm_sample=llm_sample))
         except Exception as exc:
             _running["error"] = str(exc)
         finally:
@@ -201,6 +228,11 @@ def index():
                 .replace("__DEFAULT_MODEL__", DEFAULT_MODEL)
                 .replace("__KNOWN_TARGETS_JSON__", json.dumps(KNOWN_TARGETS)))
     return Response(html, mimetype="text/html")
+
+
+@app.get("/fonts/<path:name>")
+def fonts(name):
+    return send_from_directory(Path(__file__).parent / "static" / "fonts", name, max_age=86400)
 
 
 @app.get("/api/state")
@@ -230,6 +262,47 @@ def api_run():
     if not _run_round_in_background(target, model, mode, llm_sample):
         return jsonify({"ok": False, "error": "a round is already running"}), 409
     return jsonify({"ok": True, "target": target, "model": model, "mode": mode, "llm_sample": llm_sample})
+
+
+@app.post("/api/defend")
+def api_defend():
+    body = request.get_json(silent=True) or {}
+    target = _valid_target(body.get("target", DEFAULT_TARGET)) if isinstance(body, dict) else None
+    if target is None:
+        return jsonify({"ok": False, "error": "Enter a valid HTTP or HTTPS target URL"}), 400
+    if not _run_round_in_background(target, DEFAULT_MODEL, "defend", job=lambda: run_dashboard_defense(target)):
+        return jsonify({"ok": False, "error": "a run is already in progress"}), 409
+    return jsonify({"ok": True, "target": target})
+
+
+@app.post("/api/loop")
+def api_loop():
+    body = request.get_json(silent=True)
+    if not isinstance(body, dict):
+        return jsonify({"ok": False, "error": "Expected a JSON object"}), 400
+    target = _valid_target(body.get("target", DEFAULT_TARGET))
+    if target is None:
+        return jsonify({"ok": False, "error": "Enter a valid HTTP or HTTPS target URL"}), 400
+    model = body.get("model", DEFAULT_MODEL)
+    if not isinstance(model, str):
+        return jsonify({"ok": False, "error": "Invalid model"}), 400
+    config = {}
+    for key, (low, high) in LOOP_LIMITS.items():
+        value = body.get(key, low if key != "rounds" else 3)
+        if not isinstance(value, int) or isinstance(value, bool) or not low <= value <= high:
+            return jsonify({"ok": False, "error": f"{key} must be an integer from {low} to {high}"}), 400
+        config[key] = value
+    delay = body.get("phase_delay", 1.0)
+    if not isinstance(delay, (int, float)) or isinstance(delay, bool) or not 0 <= delay <= 5:
+        return jsonify({"ok": False, "error": "phase_delay must be between 0 and 5 seconds"}), 400
+    seed = body.get("seed")
+    if seed is not None and (not isinstance(seed, int) or isinstance(seed, bool)):
+        return jsonify({"ok": False, "error": "seed must be an integer"}), 400
+    job = lambda: run_dashboard_loop(target, model, should_stop=_cancel_event.is_set, phase_delay=float(delay),
+                                     seed=seed, **config)
+    if not _run_round_in_background(target, model, "loop", config["llm_sample"], job=job):
+        return jsonify({"ok": False, "error": "a run is already in progress"}), 409
+    return jsonify({"ok": True, "target": target, **config})
 
 
 @app.post("/api/stop")
@@ -357,7 +430,21 @@ def api_lab_reset():
         except ValueError:
             pass
         return jsonify({"ok": False, "error": detail}), response.status_code
-    return jsonify({"ok": True, **response.json()})
+    cleared = False
+    if body.get("clear_policy") is True:
+        # Collections are renumbered from 1, so stale entries would silently pre-patch the new ones.
+        import fcntl
+        from core.lab_policy import write_policy
+        LAB_POLICY_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with LAB_POLICY_FILE.with_suffix(".lock").open("a") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            try:
+                write_policy(LAB_POLICY_FILE, {"version": 1, "collections": {}})
+            finally:
+                fcntl.flock(lock, fcntl.LOCK_UN)
+        cleared = True
+        store.log_event("orchestrator", "lab reset to 0 and its applied fixes cleared")
+    return jsonify({"ok": True, **response.json(), "policy_cleared": cleared})
 
 
 @app.post("/api/reset")

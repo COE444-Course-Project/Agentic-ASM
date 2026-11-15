@@ -164,7 +164,7 @@ class DashboardTests(unittest.TestCase):
                 post.return_value = response
                 res = client.post('/api/lab-reset', json={'target': 'http://localhost:8000'})
             self.assertEqual(res.status_code, 200)
-            self.assertEqual(res.get_json(), {'ok': True, 'collections': 2, 'seed': 444})
+            self.assertEqual(res.get_json(), {'ok': True, 'collections': 2, 'seed': 444, 'policy_cleared': False})
             post.assert_called_once_with('http://localhost:8000/admin/reset')
 
     def test_lab_reset_404_for_a_non_lab_target(self):
@@ -177,3 +177,58 @@ class DashboardTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class LoopEndpointTests(unittest.TestCase):
+    def setUp(self):
+        self.client = server.app.test_client()
+
+    def test_loop_validates_bounds(self):
+        for body in ({"rounds": 0}, {"rounds": 21}, {"grow_per_round": -1}, {"drift": True}, {"phase_delay": 9}, {"seed": "x"}):
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000", **body})
+            self.assertEqual(response.status_code, 400, body)
+
+    def test_loop_starts_background_job_with_config(self):
+        with patch.object(server, "_run_round_in_background", return_value=True) as start:
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000", "rounds": 4,
+                                                           "grow_per_round": 2, "drift": 1})
+        self.assertEqual(response.status_code, 200)
+        args, kwargs = start.call_args
+        self.assertEqual(args[:3], ("http://localhost:8000", server.DEFAULT_MODEL, "loop"))
+        self.assertIn("job", kwargs)
+
+    def test_loop_conflict_when_busy(self):
+        with patch.object(server, "_run_round_in_background", return_value=False):
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000"})
+        self.assertEqual(response.status_code, 409)
+
+    def test_defense_and_loop_refuse_non_lab_targets(self):
+        client = MagicMock()
+        client.__enter__.return_value = client
+        client.get.return_value.json.return_value = {"paths": {"/users/v1/login": {}}}
+        with patch.object(server.httpx, "Client", return_value=client):
+            with self.assertRaises(ValueError):
+                asyncio.run(server.run_dashboard_defense("http://localhost:5002"))
+            with self.assertRaises(ValueError):
+                asyncio.run(server.run_dashboard_loop("http://localhost:5002", "qwen2.5", rounds=1))
+
+
+class LabResetPolicyTests(unittest.TestCase):
+    def test_reset_can_clear_policy(self):
+        import tempfile, json
+        with tempfile.TemporaryDirectory() as d:
+            policy = Path(d) / "policy.json"
+            policy.write_text(json.dumps({"version": 1, "collections": {"collection_0001": {"B1": True}}}))
+            response = MagicMock(status_code=200, is_error=False)
+            response.json.return_value = {"collections": 0}
+            client = MagicMock()
+            client.__enter__.return_value = client
+            client.post.return_value = response
+            with patch.object(server.httpx, "Client", return_value=client), patch.object(server, "LAB_POLICY_FILE", policy), \
+                 patch.object(server.store, "log_event"):
+                kept = server.app.test_client().post("/api/lab-reset", json={"target": "http://localhost:8000"})
+                self.assertFalse(kept.get_json()["policy_cleared"])
+                self.assertIn("collection_0001", policy.read_text())
+                cleared = server.app.test_client().post("/api/lab-reset", json={"target": "http://localhost:8000", "clear_policy": True})
+            self.assertTrue(cleared.get_json()["policy_cleared"])
+            self.assertEqual(json.loads(policy.read_text())["collections"], {})

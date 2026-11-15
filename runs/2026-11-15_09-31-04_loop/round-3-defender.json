@@ -1,0 +1,167 @@
+{
+  "target": "http://localhost:8000",
+  "mode": "apply",
+  "plans": [
+    {
+      "finding_id": "http://localhost:8000::lab-B6:collection_0005",
+      "target": "http://localhost:8000",
+      "observed_round": 16,
+      "module_id": "lab-B6",
+      "collection": "collection_0005",
+      "template": "B6",
+      "proposal": "Enforce B6 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0005",
+        "template": "B6",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0005",
+        "template": "B6",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B6:collection_0014",
+      "target": "http://localhost:8000",
+      "observed_round": 16,
+      "module_id": "lab-B6",
+      "collection": "collection_0014",
+      "template": "B6",
+      "proposal": "Enforce B6 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0014",
+        "template": "B6",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0014",
+        "template": "B6",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B5:collection_0015",
+      "target": "http://localhost:8000",
+      "observed_round": 16,
+      "module_id": "lab-B5",
+      "collection": "collection_0015",
+      "template": "B5",
+      "proposal": "Enforce B5 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0015",
+        "template": "B5",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0015",
+        "template": "B5",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    }
+  ],
+  "applied": 3,
+  "verified": 3
+}
