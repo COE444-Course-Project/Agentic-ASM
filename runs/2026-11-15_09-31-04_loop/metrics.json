@@ -1,0 +1,1332 @@
+{
+  "id": "loop-1794720664090",
+  "target": "http://localhost:8000",
+  "status": "done",
+  "started_at": 1794720664.090218,
+  "finished_at": 1794720669.787843,
+  "error": null,
+  "config": {
+    "rounds": 5,
+    "grow_per_round": 5,
+    "drift": 1,
+    "llm_sample": 0,
+    "model": null,
+    "seed": 444
+  },
+  "current": {
+    "round": 5,
+    "phase": "finished",
+    "since": 1794720669.787842
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "started_at": 1794720664.0986838,
+      "finished_at": 1794720664.7155762,
+      "durations": {
+        "grow": 0.015166666998993605,
+        "discover": 0.010316125000827014,
+        "attack": 0.09276908400352113,
+        "defend": 0.3338844169920776,
+        "verify": 0.16028041698154993
+      },
+      "grown": 5,
+      "drifted": [],
+      "new_collections": [
+        "collection_0001",
+        "collection_0002",
+        "collection_0003",
+        "collection_0004",
+        "collection_0005"
+      ],
+      "new_exposure": [
+        "collection_0001",
+        "collection_0002",
+        "collection_0005"
+      ],
+      "regressions": [],
+      "tiles": [
+        {
+          "collection": "collection_0001",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0002",
+          "template": "B2",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0003",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0004",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0005",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        }
+      ],
+      "metrics": {
+        "per_template": {
+          "B2": {
+            "tested": 1,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B6": {
+            "tested": 3,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B7": {
+            "tested": 1,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          }
+        },
+        "assessed_collections_before": 5,
+        "assessed_collections_after": 5,
+        "before": {
+          "vulnerable": 3,
+          "patched": 0,
+          "defended": 2,
+          "inconclusive": 0
+        },
+        "after": {
+          "vulnerable": 0,
+          "patched": 3,
+          "defended": 5,
+          "inconclusive": 0
+        },
+        "initially_vulnerable": 3,
+        "verified_repairs_still_secure": 3,
+        "remediation_rate": 1.0,
+        "defender_plans": 3,
+        "defender_applied": 3,
+        "defender_verified": 3,
+        "defender_failed": 0,
+        "defender_rolled_back": 0,
+        "original_vulnerabilities_remaining": 0,
+        "original_vulnerabilities_unresolved": 0,
+        "new_collections_during_agents": 0,
+        "new_vulnerabilities_during_agents": 0,
+        "regressions": 0,
+        "owner_checks_passed": 10,
+        "owner_checks_total": 10,
+        "owner_access_preservation_rate": 1.0
+      },
+      "surface": {
+        "collections": 5,
+        "endpoints": 31
+      },
+      "attack_round": 12,
+      "verify_round": 13
+    },
+    {
+      "round": 2,
+      "started_at": 1794720664.716234,
+      "finished_at": 1794720665.77553,
+      "durations": {
+        "grow": 0.012541833013528958,
+        "discover": 0.01581583300139755,
+        "attack": 0.2096840830054134,
+        "defend": 0.5537776659766678,
+        "verify": 0.2634851670009084
+      },
+      "grown": 5,
+      "drifted": [
+        {
+          "collection": "collection_0002",
+          "template": "B2"
+        }
+      ],
+      "new_collections": [
+        "collection_0006",
+        "collection_0007",
+        "collection_0008",
+        "collection_0009",
+        "collection_0010"
+      ],
+      "new_exposure": [
+        "collection_0007",
+        "collection_0008",
+        "collection_0009",
+        "collection_0010"
+      ],
+      "regressions": [
+        "collection_0002"
+      ],
+      "tiles": [
+        {
+          "collection": "collection_0001",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0002",
+          "template": "B2",
+          "new": false,
+          "drifted": true,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0003",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0004",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0005",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0006",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0007",
+          "template": "B5",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0008",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0009",
+          "template": "B5",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0010",
+          "template": "B3",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        }
+      ],
+      "metrics": {
+        "per_template": {
+          "B2": {
+            "tested": 1,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B3": {
+            "tested": 1,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B5": {
+            "tested": 2,
+            "initially_vulnerable": 2,
+            "verified_repairs_still_secure": 2,
+            "remediation_rate": 1.0
+          },
+          "B6": {
+            "tested": 4,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B7": {
+            "tested": 2,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          }
+        },
+        "assessed_collections_before": 10,
+        "assessed_collections_after": 10,
+        "before": {
+          "vulnerable": 5,
+          "patched": 2,
+          "defended": 5,
+          "inconclusive": 0
+        },
+        "after": {
+          "vulnerable": 0,
+          "patched": 7,
+          "defended": 10,
+          "inconclusive": 0
+        },
+        "initially_vulnerable": 5,
+        "verified_repairs_still_secure": 5,
+        "remediation_rate": 1.0,
+        "defender_plans": 5,
+        "defender_applied": 5,
+        "defender_verified": 5,
+        "defender_failed": 0,
+        "defender_rolled_back": 0,
+        "original_vulnerabilities_remaining": 0,
+        "original_vulnerabilities_unresolved": 0,
+        "new_collections_during_agents": 0,
+        "new_vulnerabilities_during_agents": 0,
+        "regressions": 0,
+        "owner_checks_passed": 20,
+        "owner_checks_total": 20,
+        "owner_access_preservation_rate": 1.0
+      },
+      "surface": {
+        "collections": 10,
+        "endpoints": 51
+      },
+      "attack_round": 14,
+      "verify_round": 15
+    },
+    {
+      "round": 3,
+      "started_at": 1794720665.7759302,
+      "finished_at": 1794720666.8744519,
+      "durations": {
+        "grow": 0.008969624992460012,
+        "discover": 0.015563791006570682,
+        "attack": 0.31335133299580775,
+        "defend": 0.3963003749959171,
+        "verify": 0.35877954098396003
+      },
+      "grown": 5,
+      "drifted": [
+        {
+          "collection": "collection_0005",
+          "template": "B6"
+        }
+      ],
+      "new_collections": [
+        "collection_0011",
+        "collection_0012",
+        "collection_0013",
+        "collection_0014",
+        "collection_0015"
+      ],
+      "new_exposure": [
+        "collection_0014",
+        "collection_0015"
+      ],
+      "regressions": [
+        "collection_0005"
+      ],
+      "tiles": [
+        {
+          "collection": "collection_0001",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0002",
+          "template": "B2",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0003",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0004",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0005",
+          "template": "B6",
+          "new": false,
+          "drifted": true,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0006",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0007",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0008",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0009",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0010",
+          "template": "B3",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0011",
+          "template": "B1",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0012",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0013",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0014",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0015",
+          "template": "B5",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        }
+      ],
+      "metrics": {
+        "per_template": {
+          "B1": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B2": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B3": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B5": {
+            "tested": 3,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B6": {
+            "tested": 5,
+            "initially_vulnerable": 2,
+            "verified_repairs_still_secure": 2,
+            "remediation_rate": 1.0
+          },
+          "B7": {
+            "tested": 4,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          }
+        },
+        "assessed_collections_before": 15,
+        "assessed_collections_after": 15,
+        "before": {
+          "vulnerable": 3,
+          "patched": 6,
+          "defended": 12,
+          "inconclusive": 0
+        },
+        "after": {
+          "vulnerable": 0,
+          "patched": 9,
+          "defended": 15,
+          "inconclusive": 0
+        },
+        "initially_vulnerable": 3,
+        "verified_repairs_still_secure": 3,
+        "remediation_rate": 1.0,
+        "defender_plans": 3,
+        "defender_applied": 3,
+        "defender_verified": 3,
+        "defender_failed": 0,
+        "defender_rolled_back": 0,
+        "original_vulnerabilities_remaining": 0,
+        "original_vulnerabilities_unresolved": 0,
+        "new_collections_during_agents": 0,
+        "new_vulnerabilities_during_agents": 0,
+        "regressions": 0,
+        "owner_checks_passed": 30,
+        "owner_checks_total": 30,
+        "owner_access_preservation_rate": 1.0
+      },
+      "surface": {
+        "collections": 15,
+        "endpoints": 70
+      },
+      "attack_round": 16,
+      "verify_round": 17
+    },
+    {
+      "round": 4,
+      "started_at": 1794720666.874732,
+      "finished_at": 1794720668.330812,
+      "durations": {
+        "grow": 0.0076756670023314655,
+        "discover": 0.017516499996418133,
+        "attack": 0.3672584170126356,
+        "defend": 0.590709208016051,
+        "verify": 0.4693954579997808
+      },
+      "grown": 5,
+      "drifted": [
+        {
+          "collection": "collection_0001",
+          "template": "B7"
+        }
+      ],
+      "new_collections": [
+        "collection_0016",
+        "collection_0017",
+        "collection_0018",
+        "collection_0019",
+        "collection_0020"
+      ],
+      "new_exposure": [
+        "collection_0016",
+        "collection_0018",
+        "collection_0019",
+        "collection_0020"
+      ],
+      "regressions": [
+        "collection_0001"
+      ],
+      "tiles": [
+        {
+          "collection": "collection_0001",
+          "template": "B7",
+          "new": false,
+          "drifted": true,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0002",
+          "template": "B2",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0003",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0004",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0005",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0006",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0007",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0008",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0009",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0010",
+          "template": "B3",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0011",
+          "template": "B1",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0012",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0013",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0014",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0015",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0016",
+          "template": "B4",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0017",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0018",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0019",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0020",
+          "template": "B7",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        }
+      ],
+      "metrics": {
+        "per_template": {
+          "B1": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B2": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B3": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B4": {
+            "tested": 1,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B5": {
+            "tested": 3,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B6": {
+            "tested": 7,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B7": {
+            "tested": 6,
+            "initially_vulnerable": 3,
+            "verified_repairs_still_secure": 3,
+            "remediation_rate": 1.0
+          }
+        },
+        "assessed_collections_before": 20,
+        "assessed_collections_after": 20,
+        "before": {
+          "vulnerable": 5,
+          "patched": 8,
+          "defended": 15,
+          "inconclusive": 0
+        },
+        "after": {
+          "vulnerable": 0,
+          "patched": 13,
+          "defended": 20,
+          "inconclusive": 0
+        },
+        "initially_vulnerable": 5,
+        "verified_repairs_still_secure": 5,
+        "remediation_rate": 1.0,
+        "defender_plans": 5,
+        "defender_applied": 5,
+        "defender_verified": 5,
+        "defender_failed": 0,
+        "defender_rolled_back": 0,
+        "original_vulnerabilities_remaining": 0,
+        "original_vulnerabilities_unresolved": 0,
+        "new_collections_during_agents": 0,
+        "new_vulnerabilities_during_agents": 0,
+        "regressions": 0,
+        "owner_checks_passed": 40,
+        "owner_checks_total": 40,
+        "owner_access_preservation_rate": 1.0
+      },
+      "surface": {
+        "collections": 20,
+        "endpoints": 91
+      },
+      "attack_round": 18,
+      "verify_round": 19
+    },
+    {
+      "round": 5,
+      "started_at": 1794720668.331151,
+      "finished_at": 1794720669.7858078,
+      "durations": {
+        "grow": 0.008100125007331371,
+        "discover": 0.021056750003481284,
+        "attack": 0.48943429201608524,
+        "defend": 0.4028626249928493,
+        "verify": 0.5290150410146452
+      },
+      "grown": 5,
+      "drifted": [
+        {
+          "collection": "collection_0008",
+          "template": "B7"
+        }
+      ],
+      "new_collections": [
+        "collection_0021",
+        "collection_0022",
+        "collection_0023",
+        "collection_0024",
+        "collection_0025"
+      ],
+      "new_exposure": [
+        "collection_0024",
+        "collection_0025"
+      ],
+      "regressions": [
+        "collection_0008"
+      ],
+      "tiles": [
+        {
+          "collection": "collection_0001",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0002",
+          "template": "B2",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0003",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0004",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0005",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0006",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0007",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0008",
+          "template": "B7",
+          "new": false,
+          "drifted": true,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0009",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0010",
+          "template": "B3",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0011",
+          "template": "B1",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0012",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0013",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0014",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0015",
+          "template": "B5",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0016",
+          "template": "B4",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0017",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0018",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0019",
+          "template": "B6",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0020",
+          "template": "B7",
+          "new": false,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0021",
+          "template": "B3",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0022",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0023",
+          "template": "B1",
+          "new": true,
+          "drifted": false,
+          "attack": false,
+          "defense": null,
+          "final": false,
+          "patched": false
+        },
+        {
+          "collection": "collection_0024",
+          "template": "B6",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        },
+        {
+          "collection": "collection_0025",
+          "template": "B5",
+          "new": true,
+          "drifted": false,
+          "attack": true,
+          "defense": "patched",
+          "final": false,
+          "patched": true
+        }
+      ],
+      "metrics": {
+        "per_template": {
+          "B1": {
+            "tested": 2,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B2": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B3": {
+            "tested": 2,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B4": {
+            "tested": 1,
+            "initially_vulnerable": 0,
+            "verified_repairs_still_secure": 0,
+            "remediation_rate": null
+          },
+          "B5": {
+            "tested": 4,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B6": {
+            "tested": 9,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          },
+          "B7": {
+            "tested": 6,
+            "initially_vulnerable": 1,
+            "verified_repairs_still_secure": 1,
+            "remediation_rate": 1.0
+          }
+        },
+        "assessed_collections_before": 25,
+        "assessed_collections_after": 25,
+        "before": {
+          "vulnerable": 3,
+          "patched": 12,
+          "defended": 22,
+          "inconclusive": 0
+        },
+        "after": {
+          "vulnerable": 0,
+          "patched": 15,
+          "defended": 25,
+          "inconclusive": 0
+        },
+        "initially_vulnerable": 3,
+        "verified_repairs_still_secure": 3,
+        "remediation_rate": 1.0,
+        "defender_plans": 3,
+        "defender_applied": 3,
+        "defender_verified": 3,
+        "defender_failed": 0,
+        "defender_rolled_back": 0,
+        "original_vulnerabilities_remaining": 0,
+        "original_vulnerabilities_unresolved": 0,
+        "new_collections_during_agents": 0,
+        "new_vulnerabilities_during_agents": 0,
+        "regressions": 0,
+        "owner_checks_passed": 50,
+        "owner_checks_total": 50,
+        "owner_access_preservation_rate": 1.0
+      },
+      "surface": {
+        "collections": 25,
+        "endpoints": 113
+      },
+      "attack_round": 20,
+      "verify_round": 21
+    }
+  ],
+  "totals": {
+    "rounds_completed": 5,
+    "collections_final": 25,
+    "vulnerabilities_detected": 19,
+    "verified_repairs": 19,
+    "remediation_rate": 1.0,
+    "new_exposure": 15,
+    "regressions_detected": 4,
+    "regressions_repaired": 4,
+    "defender_failed": 0,
+    "defender_rolled_back": 0,
+    "legit_checks_passed": 150,
+    "legit_checks_total": 150,
+    "legit_preservation_rate": 1.0,
+    "open_after_last_round": 0,
+    "inconclusive_after_last_round": 0,
+    "mean_round_seconds": 1.1327420080022421
+  }
+}

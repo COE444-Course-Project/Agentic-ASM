@@ -29,19 +29,21 @@ FINDINGS_PATH = STATE_DIR / "findings.json"
 SURFACE_PATH = STATE_DIR / "attack_surface.json"
 ROUNDS_PATH = STATE_DIR / "rounds.json"
 DEFENDER_PATH = STATE_DIR / "defender_plans.json"
+LOOP_PATH = STATE_DIR / "loop.json"
 
 _lock = threading.Lock()
 
 
 def configure(state_dir: Path) -> None:
     """Select output storage at CLI startup only, before any worker starts."""
-    global STATE_DIR, EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH
+    global STATE_DIR, EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH, LOOP_PATH
     STATE_DIR = Path(state_dir)
     EVENTS_PATH = STATE_DIR / "events.jsonl"
     FINDINGS_PATH = STATE_DIR / "findings.json"
     SURFACE_PATH = STATE_DIR / "attack_surface.json"
     ROUNDS_PATH = STATE_DIR / "rounds.json"
     DEFENDER_PATH = STATE_DIR / "defender_plans.json"
+    LOOP_PATH = STATE_DIR / "loop.json"
 
 
 def mark_verified_patch(fid: str, evidence: dict) -> None:
@@ -69,8 +71,11 @@ def _read_json(path: Path, default: Any) -> Any:
 
 
 def _write_json(path: Path, data: Any) -> None:
+    # Atomic so the dashboard's frequent polling never reads a half-written file.
     _ensure_dir()
-    path.write_text(json.dumps(data, indent=2, default=str))
+    temporary = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    temporary.write_text(json.dumps(data, indent=2, default=str))
+    temporary.replace(path)
 
 
 # --------------------------------------------------------------------- events
@@ -220,6 +225,18 @@ def update_round(round_id: int, **fields) -> None:
         _write_json(ROUNDS_PATH, rounds)
 
 
+# ------------------------------------------------------------- closed loop
+
+def get_loop() -> Optional[dict]:
+    return _read_json(LOOP_PATH, None)
+
+
+def set_loop(loop: dict) -> None:
+    """The most recent closed-loop run: config, live phase, per-round results."""
+    with _lock:
+        _write_json(LOOP_PATH, loop)
+
+
 def snapshot() -> dict:
     """Everything the GUI needs in one call."""
     return {
@@ -228,11 +245,12 @@ def snapshot() -> dict:
         "rounds": get_rounds(),
         "events": get_events(),
         "defender_plans": _read_json(DEFENDER_PATH, []),
+        "loop": get_loop(),
     }
 
 
 def reset_all() -> None:
     with _lock:
-        for p in (EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH):
+        for p in (EVENTS_PATH, FINDINGS_PATH, SURFACE_PATH, ROUNDS_PATH, DEFENDER_PATH, LOOP_PATH):
             if p.exists():
                 p.unlink()

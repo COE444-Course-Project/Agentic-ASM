@@ -1,0 +1,281 @@
+{
+  "target": "http://localhost:8000",
+  "mode": "apply",
+  "plans": [
+    {
+      "finding_id": "http://localhost:8000::lab-B7:collection_0001",
+      "target": "http://localhost:8000",
+      "observed_round": 18,
+      "module_id": "lab-B7",
+      "collection": "collection_0001",
+      "template": "B7",
+      "proposal": "Enforce B7 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0001",
+        "template": "B7",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_foreign_scope_status": 200,
+          "alice_foreign_scope_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_foreign_scope_status": 200,
+          "bob_foreign_scope_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0001",
+        "template": "B7",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B4:collection_0016",
+      "target": "http://localhost:8000",
+      "observed_round": 18,
+      "module_id": "lab-B4",
+      "collection": "collection_0016",
+      "template": "B4",
+      "proposal": "Enforce B4 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0016",
+        "template": "B4",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0016",
+        "template": "B4",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B7:collection_0018",
+      "target": "http://localhost:8000",
+      "observed_round": 18,
+      "module_id": "lab-B7",
+      "collection": "collection_0018",
+      "template": "B7",
+      "proposal": "Enforce B7 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0018",
+        "template": "B7",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_foreign_scope_status": 200,
+          "alice_foreign_scope_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_foreign_scope_status": 200,
+          "bob_foreign_scope_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0018",
+        "template": "B7",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B6:collection_0019",
+      "target": "http://localhost:8000",
+      "observed_round": 18,
+      "module_id": "lab-B6",
+      "collection": "collection_0019",
+      "template": "B6",
+      "proposal": "Enforce B6 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0019",
+        "template": "B6",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0019",
+        "template": "B6",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_direct_read_blocked": true,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_direct_read_blocked": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    },
+    {
+      "finding_id": "http://localhost:8000::lab-B7:collection_0020",
+      "target": "http://localhost:8000",
+      "observed_round": 18,
+      "module_id": "lab-B7",
+      "collection": "collection_0020",
+      "template": "B7",
+      "proposal": "Enforce B7 authorization on this scenario operation",
+      "status": "patched",
+      "verification": [
+        "Replay the original exploit and confirm it is blocked",
+        "Confirm legitimate owner workflows still succeed"
+      ],
+      "execution": "apply",
+      "applied": true,
+      "verified": true,
+      "before": {
+        "collection": "collection_0020",
+        "template": "B7",
+        "verdict": true,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 200,
+          "alice_cross_leak": true,
+          "alice_foreign_scope_status": 200,
+          "alice_foreign_scope_leak": true,
+          "bob_cross_status": 200,
+          "bob_cross_leak": true,
+          "bob_foreign_scope_status": 200,
+          "bob_foreign_scope_leak": true
+        },
+        "cleanup_ok": true,
+        "verified_secure": false
+      },
+      "after": {
+        "collection": "collection_0020",
+        "template": "B7",
+        "verdict": false,
+        "checks": {
+          "alice_owner_ok": true,
+          "bob_owner_ok": true,
+          "anonymous_blocked": true,
+          "alice_cross_status": 403,
+          "alice_cross_leak": false,
+          "alice_foreign_scope_status": 403,
+          "alice_foreign_scope_leak": false,
+          "bob_cross_status": 403,
+          "bob_cross_leak": false,
+          "bob_foreign_scope_status": 403,
+          "bob_foreign_scope_leak": false
+        },
+        "cleanup_ok": true,
+        "verified_secure": true
+      }
+    }
+  ],
+  "applied": 5,
+  "verified": 5
+}

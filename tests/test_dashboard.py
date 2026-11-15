@@ -177,3 +177,37 @@ class DashboardTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class LoopEndpointTests(unittest.TestCase):
+    def setUp(self):
+        self.client = server.app.test_client()
+
+    def test_loop_validates_bounds(self):
+        for body in ({"rounds": 0}, {"rounds": 21}, {"grow_per_round": -1}, {"drift": True}, {"phase_delay": 9}, {"seed": "x"}):
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000", **body})
+            self.assertEqual(response.status_code, 400, body)
+
+    def test_loop_starts_background_job_with_config(self):
+        with patch.object(server, "_run_round_in_background", return_value=True) as start:
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000", "rounds": 4,
+                                                           "grow_per_round": 2, "drift": 1})
+        self.assertEqual(response.status_code, 200)
+        args, kwargs = start.call_args
+        self.assertEqual(args[:3], ("http://localhost:8000", server.DEFAULT_MODEL, "loop"))
+        self.assertIn("job", kwargs)
+
+    def test_loop_conflict_when_busy(self):
+        with patch.object(server, "_run_round_in_background", return_value=False):
+            response = self.client.post("/api/loop", json={"target": "http://localhost:8000"})
+        self.assertEqual(response.status_code, 409)
+
+    def test_defense_and_loop_refuse_non_lab_targets(self):
+        client = MagicMock()
+        client.__enter__.return_value = client
+        client.get.return_value.json.return_value = {"paths": {"/users/v1/login": {}}}
+        with patch.object(server.httpx, "Client", return_value=client):
+            with self.assertRaises(ValueError):
+                asyncio.run(server.run_dashboard_defense("http://localhost:5002"))
+            with self.assertRaises(ValueError):
+                asyncio.run(server.run_dashboard_loop("http://localhost:5002", "qwen2.5", rounds=1))

@@ -1,6 +1,6 @@
 import unittest
 
-from run_live import metrics
+from core.metrics import metrics
 
 
 class RunMetricsTests(unittest.TestCase):
